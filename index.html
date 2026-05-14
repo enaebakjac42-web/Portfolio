@@ -4,30 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Enaé.</title>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--noir:#1a1a1a;--blanc:#fff;--creme:#f9f6f1;--vert:#2d5a3d;--terra:#c1714f;--gris:#888;--border:#e8e2d9;--rose:#f2e0d8}
+:root{--noir:#1a1a1a;--blanc:#fff;--creme:#f9f6f1;--vert:#2d5a3d;--terra:#c1714f;--gris:#888;--border:#e8e2d9}
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--blanc);color:var(--noir);overflow-x:hidden}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:60px;background:var(--terra);border-bottom:1px solid rgba(0,0,0,.1)}
-.nav-logo{font-family:'Libre Baskerville',serif;font-size:1.4rem;font-weight:700;color:var(--blanc);cursor:pointer;letter-spacing:-.02em}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:60px;background:var(--blanc);border-bottom:1px solid var(--noir)}
+.nav-logo{font-family:'Libre Baskerville',serif;font-size:1.4rem;font-weight:700;color:var(--noir);cursor:pointer;letter-spacing:-.02em}
+.nav-logo span{color:var(--terra)}
 .nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75);text-decoration:none;transition:color .2s;cursor:pointer}
-.nav-links a:hover,.nav-links a.active{color:var(--blanc)}
+.nav-links a{font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--gris);text-decoration:none;transition:color .2s;cursor:pointer}
+.nav-links a:hover,.nav-links a.active{color:var(--noir)}
 .page{display:none;padding-top:60px;min-height:100vh}
 .page.active{display:block}
 .hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 60px)}
 .hero-left{padding:80px 64px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--border)}
-.hero-right{padding:64px;display:flex;flex-direction:column;justify-content:center;background:var(--creme);align-items:center;text-align:left;position:relative}
-.hero-name{font-family:'Libre Baskerville',serif;font-size:1.1rem;font-weight:400;color:var(--terra);letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px;align-self:flex-start}
-.hero-photo{width:200px;height:200px;object-fit:cover;object-position:top;border-radius:50%;margin-bottom:24px;border:4px solid var(--blanc);box-shadow:0 8px 32px rgba(0,0,0,.12)}
-.hero-blobs{position:absolute;top:40px;right:40px;display:flex;gap:10px;flex-wrap:wrap;max-width:120px}
-.blob{width:28px;height:28px;border-radius:50%;background:var(--rose);opacity:.7}
-.blob:nth-child(2){width:18px;height:18px;opacity:.5;margin-top:8px}
-.blob:nth-child(3){width:22px;height:22px;opacity:.4}
-.blob:nth-child(4){width:14px;height:14px;opacity:.6;margin-top:4px}
-.blob:nth-child(5){width:32px;height:32px;opacity:.3}
+.hero-right{padding:64px;display:flex;flex-direction:column;justify-content:center;background:var(--creme);align-items:center;text-align:left}
+.hero-eyebrow{font-size:.65rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:12px;align-self:flex-start;display:block}
+.hero-name{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--noir);letter-spacing:.08em;margin-bottom:20px;align-self:flex-start;line-height:1}
+.hero-photo{width:190px;height:190px;object-fit:cover;object-position:top;border-radius:50%;margin-bottom:24px;border:4px solid var(--blanc);box-shadow:0 8px 32px rgba(0,0,0,.12)}
 .eyebrow{font-size:.65rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:20px;display:block}
 .hero-title{font-family:'Libre Baskerville',serif;font-size:clamp(2.8rem,5vw,4.2rem);font-weight:700;line-height:1.08;letter-spacing:-.03em;margin-bottom:28px}
 .hero-title em{font-style:italic;color:var(--terra)}
@@ -38,7 +34,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .stat:nth-child(n+3){border-bottom:none}
 .stat-n{font-family:'Libre Baskerville',serif;font-size:2rem;font-weight:700;color:var(--vert);line-height:1}
 .stat-l{font-size:.65rem;color:var(--gris);margin-top:4px;letter-spacing:.05em}
-.about-big{font-family:'Libre Baskerville',serif;font-size:1.3rem;font-weight:400;line-height:1.5;margin-bottom:20px;font-style:italic;align-self:flex-start}
+.about-big{font-family:'Libre Baskerville',serif;font-size:1.25rem;font-weight:400;line-height:1.6;margin-bottom:20px;font-style:italic;align-self:flex-start}
 .about-text{font-size:.87rem;font-weight:300;line-height:1.9;color:#555;margin-bottom:14px;align-self:flex-start}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;align-self:flex-start}
 .tag{font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--noir);color:var(--noir);padding:5px 12px;transition:all .2s;cursor:default}
@@ -124,7 +120,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .proj-meta-val{font-size:.81rem;color:#555;font-weight:300;line-height:1.6}
 .proj-meta-val.dark{color:rgba(255,255,255,.5)}
 .deco-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border)}
-.deco-img{width:100%;height:220px;object-fit:cover;display:block;filter:sepia(15%) saturate(85%)}
+.deco-img{width:100%;height:220px;object-fit:cover;display:block}
 .en-hero{display:grid;grid-template-columns:3fr 2fr;min-height:50vh}
 .en-hero-l{padding:80px 64px;background:var(--noir);display:flex;flex-direction:column;justify-content:center}
 .en-hero-l h1{font-family:'Libre Baskerville',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--blanc);line-height:1.15;letter-spacing:-.02em;margin-bottom:20px;margin-top:12px}
@@ -175,7 +171,7 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
 </head>
 <body>
 <nav>
-  <div class="nav-logo" onclick="go('accueil')">Enaé<span style="color:rgba(255,255,255,.6)">.</span></div>
+  <div class="nav-logo" onclick="go('accueil')">Enaé<span>.</span></div>
   <ul class="nav-links">
     <li><a onclick="go('accueil')" id="n-accueil" class="active">Accueil</a></li>
     <li><a onclick="go('parcours')" id="n-parcours">Mon parcours</a></li>
@@ -192,7 +188,7 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
     <div class="hero-left">
       <span class="eyebrow">Portfolio BUT3 · Business International · 2026</span>
       <h1 class="hero-title">Le monde<br>comme<br><em>terrain.</em></h1>
-      <p class="hero-sub">Étudiante en Business International, passionnée de littérature et de cultures étrangères, j'aborde chaque marché comme une nouvelle langue à apprendre.</p>
+      <p class="hero-sub">Étudiante en Business International, passionnée de littérature et de cultures étrangères, j'aborde chaque univers comme une nouvelle langue à apprendre.</p>
       <div class="stats">
         <div class="stat"><div class="stat-n">3</div><div class="stat-l">ans de BUT TC BI</div></div>
         <div class="stat"><div class="stat-n">1</div><div class="stat-l">semestre en Allemagne</div></div>
@@ -201,18 +197,12 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
       </div>
     </div>
     <div class="hero-right">
-      <div class="hero-blobs">
-        <div class="blob"></div>
-        <div class="blob"></div>
-        <div class="blob"></div>
-        <div class="blob"></div>
-        <div class="blob"></div>
-      </div>
-      <p class="hero-name">Enaé Bakour-Jacob</p>
+      <span class="hero-eyebrow">Portfolio BUT3 · Business International · 2026</span>
+      <h2 class="hero-name">Enaé Bakour-Jacob</h2>
       <img src="Photo_Moi.png" alt="Enaé Bakour-Jacob" class="hero-photo">
-      <p class="about-big">"Investie, exigeante avec moi-même et toujours à l'affût de ce qui se passe ailleurs."</p>
+      <p class="about-big">"J'aime comprendre avant d'agir, lire entre les lignes et aller au fond des choses."</p>
       <p class="about-text">Étudiante en 3e année de BUT TC parcours Business International à l'IUT Jean Monnet de Saint-Étienne. Un semestre à l'ESB Business School en Allemagne et une alternance chez KNDS CBRN ont profondément changé ma façon de voir le commerce international.</p>
-      <p class="about-text">Passionnée de littérature et de langues, je me projette vers des métiers qui donnent autant de place aux mots qu'aux marchés.</p>
+      <p class="about-text">Passionnée de littérature et de langues, je me projette vers des métiers qui donnent autant de place aux mots qu'aux univers qu'ils décrivent.</p>
       <div class="tags">
         <span class="tag">Commerce International</span><span class="tag">Export</span><span class="tag">Marketing BI</span><span class="tag">Défense B2G</span><span class="tag">Allemagne</span><span class="tag">Édition</span>
       </div>
@@ -224,13 +214,13 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
   </div>
 
   <div class="quote-band">
-    <blockquote>« Comprendre un marché, c'est d'abord comprendre les gens qui le font. »</blockquote>
+    <blockquote>« Toujours à chercher le fil qui relie les idées entre elles. »</blockquote>
     <cite>— Enaé Bakour-Jacob</cite>
   </div>
 
   <div class="deco-strip">
     <img class="deco-img" src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&q=80" alt="Allemagne">
-    <img class="deco-img" src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80" alt="Livres">
+    <img class="deco-img" src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&q=80" alt="Littérature">
     <img class="deco-img" src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80" alt="Architecture">
   </div>
 
@@ -264,11 +254,6 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
 
   <div class="about-band fu">
     <div class="about-band-l">
-      <div style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap">
-        <div style="width:36px;height:36px;border-radius:50%;background:var(--rose);opacity:.8"></div>
-        <div style="width:24px;height:24px;border-radius:50%;background:var(--rose);opacity:.5;margin-top:12px"></div>
-        <div style="width:18px;height:18px;border-radius:50%;background:var(--terra);opacity:.3;margin-top:4px"></div>
-      </div>
       <span class="eyebrow">Ce qui me définit</span>
       <h2 class="section-title" style="font-size:1.8rem;margin-top:8px">Au-delà des études.</h2>
     </div>
@@ -306,7 +291,7 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
     </div>
   </div>
 
-  <img src="https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=1400&q=80" alt="Reutlingen" style="width:100%;height:280px;object-fit:cover;display:block;filter:sepia(10%) saturate(85%)">
+  <img src="https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=1400&q=80" alt="Reutlingen" style="width:100%;height:280px;object-fit:cover;display:block">
 
   <div class="tl">
     <h2>Formation</h2>
@@ -345,7 +330,7 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
       <div>
         <div class="tl-title">Assistante commerciale — KNDS CBRN</div>
         <div class="tl-sub">Saint-Chamond · Défense CBRN</div>
-        <p class="tl-text">KNDS CBRN est une filiale du groupe KNDS, l'un des leaders européens de la défense terrestre, spécialisée dans les équipements de protection contre les risques chimiques, biologiques, radiologiques et nucléaires (CBRN).</p>
+        <p class="tl-text">KNDS CBRN est une filiale du groupe KNDS, l'un des leaders européens de la défense terrestre, spécialisée dans les équipements de protection contre les risques chimiques, biologiques, radiologiques et nucléaires.</p>
         <ul class="tl-list">
           <li>Suivi administratif et logistique des commandes internationales (cycle ADV)</li>
           <li>Lecture et analyse d'offres commerciales en anglais pour des clients B2G et B2B dans la défense</li>
@@ -362,11 +347,6 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
 
   <div class="skills-block fu">
     <div class="skills-l">
-      <div style="display:flex;gap:10px;margin-bottom:24px">
-        <div style="width:32px;height:32px;border-radius:50%;background:var(--rose);opacity:.8"></div>
-        <div style="width:20px;height:20px;border-radius:50%;background:var(--rose);opacity:.5;margin-top:10px"></div>
-        <div style="width:16px;height:16px;border-radius:50%;background:var(--terra);opacity:.3;margin-top:3px"></div>
-      </div>
       <span class="section-label">Ce qui me définit</span>
       <h2 class="section-title" style="font-size:1.7rem;margin:8px 0 20px">Au-delà des études.</h2>
       <p style="font-size:.85rem;color:#555;line-height:1.9;font-weight:300;margin-bottom:12px">Je lis beaucoup, des romans, des essais, de la littérature étrangère. Les langues me fascinent, pas seulement comme outils mais comme façons de penser. C'est ce qui oriente doucement mon projet professionnel vers l'édition ou la traduction.</p>
@@ -386,7 +366,7 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
     <span class="section-label">Et après ?</span>
     <h2 class="section-title" style="font-size:1.6rem;margin:8px 0 20px">Mon projet professionnel.</h2>
     <p style="font-size:.87rem;color:#555;line-height:1.9;font-weight:300;max-width:660px">Mon projet professionnel est encore en construction. Ce que je sais avec certitude, c'est que je veux travailler à l'intersection des langues, des cultures et des idées. Que ce soit dans le développement export, l'édition internationale ou la traduction, ce qui m'attire c'est la précision des mots et la compréhension des autres.</p>
-    <p style="font-size:.87rem;color:#555;line-height:1.9;font-weight:300;max-width:660px;margin-top:12px">À court terme, finaliser mon BUT3 BI et consolider mon expérience chez KNDS CBRN. À moyen terme, je me projette vers un Master commerce international ou management de l'innovation, et j'ai aussi postulé en management de l'innovation.</p>
+    <p style="font-size:.87rem;color:#555;line-height:1.9;font-weight:300;max-width:660px;margin-top:12px">À court terme, finaliser mon BUT3 BI et consolider mon expérience chez KNDS CBRN. À moyen terme, je me projette vers un Master commerce international ou management de l'innovation — j'ai également postulé en management de l'innovation.</p>
   </div>
   <footer><p>© 2026 Enaé Bakour-Jacob · Portfolio BUT3 Business International</p><button class="btn btn-green" onclick="go('accueil')" style="font-size:.62rem;padding:8px 20px">↑ Accueil</button></footer>
 </div>
@@ -403,11 +383,7 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
   <div class="comp-sec fu">
     <div class="comp-hdr">
       <div class="comp-num">01</div>
-      <div>
-        <span class="comp-lvl">Niveau 2 · Chargée de développement import/export</span>
-        <h2 class="comp-title">Formuler une stratégie de commerce à l'international</h2>
-        <p class="comp-desc">Analyser les marchés, évaluer les opportunités et les risques, proposer une stratégie d'entrée cohérente sur un marché étranger.</p>
-      </div>
+      <div><span class="comp-lvl">Niveau 2 · Chargée de développement import/export</span><h2 class="comp-title">Formuler une stratégie de commerce à l'international</h2><p class="comp-desc">Analyser les marchés, évaluer les opportunités et les risques, proposer une stratégie d'entrée cohérente sur un marché étranger.</p></div>
     </div>
     <div class="comp-body">
       <div class="comp-col"><h3>Ce que j'ai appris</h3><ul>
@@ -438,10 +414,7 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
           </ul>
           <div style="margin-top:12px"><a href="extrem-lingette.pdf" class="btn btn-green" target="_blank" style="font-size:.62rem;padding:8px 18px">Consulter le document →</a></div>
         </div>
-        <div class="proof" style="margin-top:10px">
-          <h4>KNDS CBRN — Exposition réglementaire export</h4>
-          <p>Observation quotidienne des procédures de contrôle des exportations de matériel de guerre et biens à double usage dans le secteur défense.</p>
-        </div>
+        <div class="proof" style="margin-top:10px"><h4>KNDS CBRN — Exposition réglementaire export</h4><p>Observation quotidienne des procédures de contrôle des exportations de matériel de guerre et biens à double usage dans le secteur défense.</p></div>
       </div>
     </div>
   </div>
@@ -450,11 +423,7 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
   <div class="comp-sec alt fu">
     <div class="comp-hdr">
       <div class="comp-num">02</div>
-      <div>
-        <span class="comp-lvl">Niveau 1 · Pour commercialiser à l'international une offre simple</span>
-        <h2 class="comp-title">Piloter les opérations à l'international</h2>
-        <p class="comp-desc">Comprendre et participer aux processus ADV, logistique et documentation export.</p>
-      </div>
+      <div><span class="comp-lvl">Niveau 1 · Pour commercialiser à l'international une offre simple</span><h2 class="comp-title">Piloter les opérations à l'international</h2><p class="comp-desc">Comprendre et participer aux processus ADV, logistique et documentation export.</p></div>
     </div>
     <div class="comp-body">
       <div class="comp-col"><h3>Ce que j'ai appris</h3><ul>
@@ -465,22 +434,10 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
         <li>Outils : Excel, Outlook</li>
       </ul></div>
       <div class="comp-col"><h3>Mes preuves concrètes</h3>
-        <div class="proof alt">
-          <h4>KNDS CBRN — Rôle ADV international</h4>
-          <ul>
-            <li>Gestion d'une partie du cycle ADV pour des clients B2G et B2B internationaux</li>
-            <li>Coordination avec les équipes logistique, finance et technique</li>
-            <li>Observation des procédures douanières pour matériel de guerre et biens à double usage</li>
-            <li>Préparation des salons professionnels</li>
-          </ul>
-        </div>
+        <div class="proof alt"><h4>KNDS CBRN — Rôle ADV international</h4><ul><li>Gestion d'une partie du cycle ADV pour des clients B2G et B2B internationaux</li><li>Coordination avec les équipes logistique, finance et technique</li><li>Observation des procédures douanières pour matériel de guerre et biens à double usage</li><li>Préparation des salons professionnels</li></ul></div>
         <div class="proof alt" style="margin-top:10px">
           <h4>SAÉ Extrem' Lingette — Plan logistique export (BUT3)</h4>
-          <ul>
-            <li>Sélection du prestataire logistique</li>
-            <li>Plan de transport et documentation douanière</li>
-            <li>Calcul des coûts et calendrier de livraison</li>
-          </ul>
+          <ul><li>Sélection du prestataire logistique</li><li>Plan de transport et documentation douanière</li><li>Calcul des coûts et calendrier de livraison</li></ul>
           <div style="margin-top:12px"><a href="extrem-lingette.pdf" class="btn btn-green" target="_blank" style="font-size:.62rem;padding:8px 18px">Consulter le document →</a></div>
         </div>
         <div class="proof alt" style="margin-top:10px">
@@ -496,11 +453,7 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
   <div class="comp-sec fu">
     <div class="comp-hdr">
       <div class="comp-num">03</div>
-      <div>
-        <span class="comp-lvl">Niveau 2 · Pour élaborer un plan de communication</span>
-        <h2 class="comp-title">Communiquer l'offre commerciale</h2>
-        <p class="comp-desc">Construire une stratégie de communication cohérente, définir un plan média et produire les supports adaptés à une audience internationale.</p>
-      </div>
+      <div><span class="comp-lvl">Niveau 2 · Pour élaborer un plan de communication</span><h2 class="comp-title">Communiquer l'offre commerciale</h2><p class="comp-desc">Construire une stratégie de communication cohérente, définir un plan média et produire les supports adaptés à une audience internationale.</p></div>
     </div>
     <div class="comp-body">
       <div class="comp-col"><h3>Ce que j'ai appris</h3><ul>
@@ -513,12 +466,7 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
       <div class="comp-col"><h3>Mes preuves concrètes</h3>
         <div class="proof">
           <h4>SAÉ Velavi — Plan de communication 360° (BUT2)</h4>
-          <ul>
-            <li>Stratégie de communication complète pour le marché allemand</li>
-            <li>Sélection des canaux adaptés à la cible</li>
-            <li>Production des supports : Canva, fiches produit bilingues</li>
-            <li>Adaptation du ton et des visuels à la culture allemande</li>
-          </ul>
+          <ul><li>Stratégie de communication complète pour le marché allemand</li><li>Sélection des canaux adaptés à la cible</li><li>Production des supports : Canva, fiches produit bilingues</li><li>Adaptation du ton et des visuels à la culture allemande</li></ul>
           <div style="margin-top:12px"><a href="SAE_S4_oral_2002__2_.pdf" class="btn btn-green" target="_blank" style="font-size:.62rem;padding:8px 18px">Consulter le document →</a></div>
         </div>
         <div class="proof" style="margin-top:10px">
@@ -534,11 +482,7 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
   <div class="comp-sec alt fu">
     <div class="comp-hdr">
       <div class="comp-num">04</div>
-      <div>
-        <span class="comp-lvl">Niveau 1 · Pour préparer l'entretien de vente</span>
-        <h2 class="comp-title">Vendre une offre commerciale</h2>
-        <p class="comp-desc">Comprendre les techniques de vente, préparer un argumentaire adapté, utiliser les OAV et mesurer la performance commerciale.</p>
-      </div>
+      <div><span class="comp-lvl">Niveau 1 · Pour préparer l'entretien de vente</span><h2 class="comp-title">Vendre une offre commerciale</h2><p class="comp-desc">Comprendre les techniques de vente, préparer un argumentaire adapté, utiliser les OAV et mesurer la performance commerciale.</p></div>
     </div>
     <div class="comp-body">
       <div class="comp-col"><h3>Ce que j'ai appris</h3><ul>
@@ -550,19 +494,13 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
         <li>Outils : Excel, Outlook, Canva</li>
       </ul></div>
       <div class="comp-col"><h3>Mes preuves concrètes</h3>
-        <div class="proof alt">
-          <h4>KNDS CBRN — Lecture des offres commerciales</h4>
-          <p>Lecture et analyse quotidienne d'offres professionnelles en anglais pour des clients internationaux B2G et B2B dans la défense. Suivi des KPIs dans Excel.</p>
-        </div>
+        <div class="proof alt"><h4>KNDS CBRN — Lecture des offres commerciales</h4><p>Lecture et analyse quotidienne d'offres professionnelles en anglais pour des clients internationaux B2G et B2B dans la défense. Suivi des KPIs dans Excel.</p></div>
         <div class="proof alt" style="margin-top:10px">
           <h4>Pitchs SAÉ Velavi & Extrem' Lingette</h4>
           <p>Présentation des stratégies export en anglais devant un jury : argumentaire complet, analyse marché, marketing mix et projections financières.</p>
           <div style="margin-top:12px"><a href="SAE_S4_oral_2002__2_.pdf" class="btn btn-green" target="_blank" style="font-size:.62rem;padding:8px 18px">Consulter le document →</a></div>
         </div>
-        <div class="proof alt" style="margin-top:10px">
-          <h4>EMOTIS — Vente-conseil en conditions réelles</h4>
-          <p>Salon de la soie "Silk in Lyon" : identification des besoins, argumentation produit et fidélisation client.</p>
-        </div>
+        <div class="proof alt" style="margin-top:10px"><h4>EMOTIS — Vente-conseil en conditions réelles</h4><p>Salon de la soie "Silk in Lyon" : identification des besoins, argumentation produit et fidélisation client.</p></div>
       </div>
     </div>
   </div>
@@ -618,10 +556,10 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
   <div class="proj-block">
     <h2>En images</h2>
     <div class="gallery">
-      <img class="gal-img" src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&q=80" alt="Cosmétiques Velavi">
-      <img class="gal-img" src="https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=600&q=80" alt="ESB Reutlingen">
-      <img class="gal-img" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80" alt="Hygiène">
-      <img class="gal-img" src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80" alt="Défense">
+      <img class="gal-img" src="https://images.unsplash.com/photo-1621235698832-05f246a55b3c?w=600&q=80" alt="Cosmétiques bio">
+      <img class="gal-img" src="https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=600&q=80" alt="Reutlingen ESB">
+      <img class="gal-img" src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=600&q=80" alt="Hygiène produit">
+      <img class="gal-img" src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&q=80" alt="Commerce international">
     </div>
   </div>
   <footer><p>© 2026 Enaé Bakour-Jacob · Portfolio BUT3 Business International</p><button class="btn btn-green" onclick="go('accueil')" style="font-size:.62rem;padding:8px 20px">↑ Accueil</button></footer>
@@ -639,21 +577,19 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
       <div class="lang-row"><span class="lang-n">French</span><span class="lang-l">C2 — Native</span></div>
       <div class="lang-row"><span class="lang-n">English</span><span class="lang-l">C1 — TOEIC</span></div>
       <div class="lang-row"><span class="lang-n">German</span><span class="lang-l">A2 — ESB</span></div>
-      <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap">
-        <a href="cv-en.pdf" class="btn btn-green" target="_blank">Consult my CV</a>
-      </div>
+      <div style="margin-top:32px"><a href="cv-en.pdf" class="btn btn-green" target="_blank">Consult my CV</a></div>
     </div>
   </div>
   <div class="en-sec fu">
     <span class="section-label">Who I am</span>
-    <h2>Committed, exacting with myself and always looking at what's happening elsewhere.</h2>
+    <h2>I like to understand before I act, read between the lines and go to the heart of things.</h2>
     <p>I am a third-year Business Techniques student specialising in International Business at IUT Jean Monnet, Saint-Étienne. A semester at ESB Business School in Reutlingen and an apprenticeship at KNDS CBRN have genuinely changed the way I see international commerce.</p>
     <p>I'm passionate about literature and languages, not just as tools but as ways of thinking. That's what draws me towards publishing or translation as a longer-term project.</p>
   </div>
   <div class="en-sec alt fu">
     <span class="section-label">Work experience</span>
     <h2>My apprenticeship at KNDS CBRN.</h2>
-    <p>KNDS CBRN is a French defence company specialising in CBRN protection equipment, part of the KNDS Group, one of Europe's leading land defence groups. The company works with both B2G and B2B clients across Europe and the Middle East.</p>
+    <p>KNDS CBRN is a French defence company specialising in CBRN protection equipment, part of the KNDS Group. The company works with both B2G and B2B clients across Europe and the Middle East.</p>
     <ul>
       <li>Follow up on international orders administratively and logistically (ADV cycle)</li>
       <li>Read and review commercial proposals in English for international defence clients</li>
@@ -689,7 +625,7 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
   </div>
   <div class="en-next">
     <span class="section-label" style="color:var(--terra);display:block;margin-bottom:12px">What's next</span>
-    <h2>What's next for me.</h2>
+    <h2>Always looking for the thread that connects ideas.</h2>
     <p>My professional project is still taking shape. What I know for certain is that I want to work at the intersection of languages, cultures and ideas. Whether in international trade, publishing or translation, what drives me is precision in words and understanding of others. I'm currently applying to Masters in international business and innovation management.</p>
     <a href="https://www.linkedin.com/in/enae-bakour-jacob-6865982b1/" class="btn btn-green" target="_blank">Connect on LinkedIn →</a>
   </div>

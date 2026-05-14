@@ -20,7 +20,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .page.active{display:block}
 .hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 60px)}
 .hero-left{padding:80px 64px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--border)}
-.hero-right{padding:80px 64px;display:flex;flex-direction:column;justify-content:center;background:var(--creme)}
+.hero-right{padding:64px;display:flex;flex-direction:column;justify-content:center;background:var(--creme);align-items:center;text-align:left}
+.hero-photo{width:200px;height:200px;object-fit:cover;object-position:top;border-radius:50%;margin-bottom:32px;border:4px solid var(--blanc);box-shadow:0 8px 32px rgba(0,0,0,.12)}
 .eyebrow{font-size:.65rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:20px;display:block}
 .hero-title{font-family:'Libre Baskerville',serif;font-size:clamp(2.8rem,5vw,4.2rem);font-weight:700;line-height:1.08;letter-spacing:-.03em;margin-bottom:28px}
 .hero-title em{font-style:italic;color:var(--terra)}
@@ -31,11 +32,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .stat:nth-child(n+3){border-bottom:none}
 .stat-n{font-family:'Libre Baskerville',serif;font-size:2rem;font-weight:700;color:var(--vert);line-height:1}
 .stat-l{font-size:.65rem;color:var(--gris);margin-top:4px;letter-spacing:.05em}
-.about-big{font-family:'Libre Baskerville',serif;font-size:1.4rem;font-weight:400;line-height:1.5;margin-bottom:24px;font-style:italic}
-.about-text{font-size:.87rem;font-weight:300;line-height:1.9;color:#555;margin-bottom:14px}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+.about-big{font-family:'Libre Baskerville',serif;font-size:1.3rem;font-weight:400;line-height:1.5;margin-bottom:20px;font-style:italic;align-self:flex-start}
+.about-text{font-size:.87rem;font-weight:300;line-height:1.9;color:#555;margin-bottom:14px;align-self:flex-start}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;align-self:flex-start}
 .tag{font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--noir);color:var(--noir);padding:5px 12px;transition:all .2s;cursor:default}
 .tag:hover{background:var(--noir);color:var(--blanc)}
+.hero-btns{align-self:flex-start;display:flex;gap:12px;flex-wrap:wrap}
 .btn{display:inline-block;font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:12px 28px;cursor:pointer;text-decoration:none;transition:all .25s;border:none;font-family:'DM Sans',sans-serif}
 .btn-dark{background:var(--noir);color:var(--blanc)}.btn-dark:hover{background:var(--vert)}
 .btn-outline{border:1px solid var(--noir);color:var(--noir);background:transparent}.btn-outline:hover{background:var(--noir);color:var(--blanc)}
@@ -111,11 +113,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .proj-card.dark .card-title{color:var(--blanc)}.proj-card.dark .card-text{color:rgba(255,255,255,.55)}.proj-card.dark .card-ctx{color:rgba(255,255,255,.35)}
 .proj-block{padding:0 64px 64px}.proj-block h2{font-family:'Libre Baskerville',serif;font-size:1.3rem;margin-bottom:20px}
 .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border)}
+.gal-img{width:100%;aspect-ratio:1;object-fit:cover}
 .gal-item{background:var(--creme);aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:.62rem;color:var(--gris);letter-spacing:.1em;text-transform:uppercase;text-align:center;padding:12px;line-height:1.5}
-.proj-meta{display:flex;flex-direction:column;gap:12px}
 .proj-meta-label{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--terra);margin-bottom:4px;font-weight:500}
 .proj-meta-val{font-size:.81rem;color:#555;font-weight:300;line-height:1.6}
 .proj-meta-val.dark{color:rgba(255,255,255,.5)}
+.deco-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);margin:0}
+.deco-img{width:100%;height:220px;object-fit:cover;display:block}
 .en-hero{display:grid;grid-template-columns:3fr 2fr;min-height:50vh}
 .en-hero-l{padding:80px 64px;background:var(--noir);display:flex;flex-direction:column;justify-content:center}
 .en-hero-l h1{font-family:'Libre Baskerville',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--blanc);line-height:1.15;letter-spacing:-.02em;margin-bottom:20px;margin-top:12px}
@@ -160,6 +164,7 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
   footer{padding:20px 24px;flex-direction:column;gap:8px;text-align:center}
   .cv-bar{flex-direction:column;gap:16px;align-items:flex-start}
   .en-hero-r{padding:40px 24px}
+  .deco-strip{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -191,23 +196,32 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
       </div>
     </div>
     <div class="hero-right">
-      <span class="eyebrow">À propos de moi</span>
-      <p class="about-big">"Investie, rigoureuse,<br>et curieuse du monde."</p>
-      <p class="about-text">Étudiante en 3e année de BUT TC parcours Business International à l'IUT Jean Monnet de Saint-Étienne. Un semestre à l'ESB Business School de Reutlingen et une alternance chez KNDS CBRN ont profondément nourri ma vision du commerce international.</p>
-      <p class="about-text">Lectrice insatiable, passionnée d'histoire et de voyages, je me projette vers des métiers qui mêlent langues, cultures et stratégie.</p>
+      <img src="Photo_Moi.png" alt="Enaé Bakour-Jacob" class="hero-photo">
+      <p class="about-big">"Investie, rigoureuse et curieuse du monde."</p>
+      <p class="about-text">Étudiante en 3e année de BUT TC parcours Business International à l'IUT Jean Monnet de Saint-Étienne. Un semestre à l'ESB Business School en Allemagne et une alternance chez KNDS CBRN ont vraiment nourri ma vision du commerce international.</p>
+      <p class="about-text">Lectrice passionnée, curieuse de tout et grande voyageuse, je me projette vers des métiers qui mêlent langues, cultures et stratégie.</p>
       <div class="tags">
         <span class="tag">Commerce International</span><span class="tag">Export</span><span class="tag">Marketing BI</span><span class="tag">Défense B2G</span><span class="tag">Allemagne</span><span class="tag">Édition</span>
       </div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <div class="hero-btns">
         <button class="btn btn-dark" onclick="go('competences')">Mes compétences</button>
         <button class="btn btn-outline" onclick="go('contact')">Me contacter</button>
       </div>
     </div>
   </div>
+
   <div class="quote-band">
     <blockquote>« Entre les marchés et les mots. »</blockquote>
     <cite>— Enaé Bakour-Jacob</cite>
   </div>
+
+  <!-- Photos déco -->
+  <div class="deco-strip">
+    <img class="deco-img" src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&q=80" alt="Allemagne">
+    <img class="deco-img" src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80" alt="Livres">
+    <img class="deco-img" src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80" alt="Voyage">
+  </div>
+
   <div class="home-section">
     <div style="margin-bottom:48px"><span class="section-label">Mes réalisations</span><h2 class="section-title">Projets phares</h2></div>
     <div class="cards-grid">
@@ -215,37 +229,39 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
         <span class="card-tag">SAÉ · BUT2 · Compétences 1 & 3</span>
         <div class="card-title">Velavi — Conquérir le marché allemand</div>
         <div class="card-ctx">Cosmétiques bio · Export · Allemagne</div>
-        <p class="card-text">Stratégie d'internationalisation complète : PESTEL, marketing mix "glocal", distribution via pharmacies et spas allemands. Présenté en anglais à un jury.</p>
+        <p class="card-text">Stratégie d'internationalisation complète pour la marque Velavi : PESTEL, marketing mix "glocal", distribution via pharmacies et spas allemands. Présenté en anglais à un jury.</p>
         <div class="card-skills"><span class="chip">PESTEL</span><span class="chip">Business Plan</span><span class="chip">Marketing Mix</span><span class="chip">Anglais</span></div>
       </div>
       <div class="card fu">
         <span class="card-tag">SAÉ · BUT3 · Compétences 1, 2 & 3</span>
         <div class="card-title">Extrem' Lingette — Un lancement de A à Z</div>
         <div class="card-ctx">Hygiène · Export · Logistique · Allemagne</div>
-        <p class="card-text">Étude de marché, plan logistique export, stratégie de communication cross-culturelle pour le lancement d'un produit d'hygiène en Allemagne.</p>
+        <p class="card-text">Étude de marché, plan logistique export et stratégie de communication cross-culturelle pour le lancement d'un produit d'hygiène en Allemagne.</p>
         <div class="card-skills"><span class="chip">Export</span><span class="chip">Logistique</span><span class="chip">Cross-culturel</span><span class="chip">Canva</span></div>
       </div>
       <div class="card fu">
         <span class="card-tag">Alternance · Depuis sept. 2025 · Compétences 2 & 4</span>
         <div class="card-title">KNDS CBRN — L'international au quotidien</div>
         <div class="card-ctx">Défense B2G · Saint-Chamond</div>
-        <p class="card-text">Administration des ventes internationales, lecture quotidienne d'offres en anglais, observation des procédures douanières dans un secteur de défense exigeant.</p>
+        <p class="card-text">Administration des ventes internationales, lecture quotidienne d'offres en anglais et observation des procédures douanières dans un secteur de défense très exigeant.</p>
         <div class="card-skills"><span class="chip">ADV</span><span class="chip">Anglais B2G</span><span class="chip">Export</span></div>
       </div>
     </div>
     <div style="text-align:center;margin-top:36px"><button class="btn btn-green" onclick="go('projets')">Voir tous mes projets</button></div>
   </div>
+
   <div class="about-band fu">
     <div class="about-band-l">
       <span class="eyebrow">Ce qui me définit</span>
       <h2 class="section-title" style="font-size:1.8rem;margin-top:8px">Au-delà des études.</h2>
     </div>
     <div class="about-band-r">
-      <p>En dehors de mes études, je suis grande lectrice — passionnée par l'histoire, les récits de voyages et la littérature internationale. C'est ce qui nourrit ma vision du monde et oriente doucement mon projet professionnel vers l'édition ou la traduction.</p>
-      <p>Bénévole à l'UNICEF, j'aime m'engager et donner du sens à ce que je fais. Le commerce international n'est pas qu'une technique — c'est une façon de comprendre les autres.</p>
+      <p>En dehors de mes études, je suis grande lectrice, passionnée par l'histoire, les récits de voyages et la littérature internationale. C'est ce qui nourrit vraiment ma vision du monde et qui oriente doucement mon projet professionnel vers l'édition ou la traduction.</p>
+      <p>Bénévole à l'UNICEF, j'aime m'engager et donner du sens à ce que je fais. Le commerce international n'est pas qu'une technique, c'est avant tout une façon de comprendre les autres.</p>
       <button class="btn btn-outline" onclick="go('parcours')" style="margin-top:8px">Mon parcours complet</button>
     </div>
   </div>
+
   <div class="contact-strip">
     <div>
       <h2 class="c-title">Envie d'échanger ?</h2>
@@ -272,13 +288,19 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
       <a href="cv-en.pdf" class="btn btn-outline" download>Download my CV (EN)</a>
     </div>
   </div>
+
+  <!-- Photo déco parcours -->
+  <img src="https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=1400&q=80" alt="Reutlingen" style="width:100%;height:280px;object-fit:cover;display:block">
+
   <div class="tl">
     <h2>Formation</h2>
-    <div class="tl-item fu"><div class="tl-date">2023 – 2026</div><div><div class="tl-title">BUT Techniques de Commercialisation — Parcours BI</div><div class="tl-sub">IUT Jean Monnet · Saint-Étienne</div><p class="tl-text">Semestre S3 (sept.–déc. 2024) : échange universitaire à l'ESB Business School de Reutlingen, Allemagne. Cours entièrement en anglais, environnement multiculturel avec des étudiants de plus de 30 nationalités différentes.</p></div></div>
-    <div class="tl-item fu"><div class="tl-date">Sept.–Déc. 2024</div><div><div class="tl-title">ESB Business School — Semestre d'échange</div><div class="tl-sub">Reutlingen · Allemagne</div><p class="tl-text">Immersion totale dans la culture d'affaires allemande. Une expérience qui a profondément nourri ma vision du commerce international et que j'ai appliquée directement à mes projets sur le marché allemand.</p></div></div>
-    <div class="tl-item fu"><div class="tl-date">2020 – 2023</div><div><div class="tl-title">Baccalauréat général — Mention Bien</div><div class="tl-sub">Lycée Jean Puy · Roanne</div><p class="tl-text">Spécialités : Sciences économiques et sociales · Histoire-Géographie-Géopolitique-Sciences politiques.</p></div></div>
+    <div class="tl-item fu"><div class="tl-date">2023 – 2026</div><div><div class="tl-title">BUT Techniques de Commercialisation — Parcours BI</div><div class="tl-sub">IUT Jean Monnet · Saint-Étienne</div><p class="tl-text">Semestre S3 (sept.–déc. 2024) : échange universitaire à l'ESB Business School de Reutlingen, en Allemagne. Cours entièrement en anglais, environnement multiculturel avec des étudiants de plus de 30 nationalités.</p></div></div>
+    <div class="tl-item fu"><div class="tl-date">Sept.–Déc. 2024</div><div><div class="tl-title">ESB Business School — Semestre d'échange</div><div class="tl-sub">Reutlingen · Allemagne</div><p class="tl-text">Une immersion totale dans la culture d'affaires allemande qui a vraiment changé ma façon de voir le commerce international. J'ai appliqué directement cette expérience dans mes projets sur le marché allemand.</p></div></div>
+    <div class="tl-item fu"><div class="tl-date">2020 – 2023</div><div><div class="tl-title">Baccalauréat général — Mention Bien</div><div class="tl-sub">Lycée Jean Puy · Roanne</div><p class="tl-text">Spécialités : Sciences économiques et sociales et Histoire-Géographie-Géopolitique-Sciences politiques.</p></div></div>
   </div>
+
   <div class="quote-band"><blockquote>« Des frontières à franchir, des pages à écrire. »</blockquote></div>
+
   <div class="tl">
     <h2>Expériences professionnelles</h2>
     <div class="tl-item fu">
@@ -300,11 +322,12 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
     <div class="tl-item fu"><div class="tl-date">Avr.–Sept. 2024</div><div><div class="tl-title">Caissière — CARREFOUR (CDI étudiant)</div><div class="tl-sub">Mably</div><ul class="tl-list"><li>Gestion des encaissements, accueil et fidélisation client</li></ul></div></div>
     <div class="tl-item fu"><div class="tl-date">Mai–Juill. 2023</div><div><div class="tl-title">Bénévole — Municipalité de Riorges</div><div class="tl-sub">Dispositif argent de poche</div><ul class="tl-list"><li>Animation à la Fête des Fleurs : organisation événementielle et gestion de stands</li></ul></div></div>
   </div>
+
   <div class="skills-block fu">
     <div class="skills-l">
       <span class="section-label">Ce qui me définit</span>
       <h2 class="section-title" style="font-size:1.7rem;margin:8px 0 20px">Au-delà des études.</h2>
-      <p style="font-size:.85rem;color:#555;line-height:1.9;font-weight:300;margin-bottom:12px">En dehors de mes études, je suis grande lectrice — passionnée par l'histoire, les récits de voyages et la littérature internationale. Ce qui oriente doucement mon projet professionnel vers l'édition ou la traduction.</p>
+      <p style="font-size:.85rem;color:#555;line-height:1.9;font-weight:300;margin-bottom:12px">En dehors de mes études, je suis grande lectrice, passionnée par l'histoire, les récits de voyages et la littérature internationale. C'est ce qui oriente doucement mon projet professionnel vers l'édition ou la traduction.</p>
       <p style="font-size:.85rem;color:#555;line-height:1.9;font-weight:300">Bénévole à l'UNICEF, j'aime m'engager et donner du sens à ce que je fais.</p>
     </div>
     <div class="skills-r">
@@ -316,11 +339,12 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
       <div class="sg" style="margin-top:24px"><h4>Langues</h4><ul><li>Français : C2 — langue maternelle</li><li>Anglais : C1 — TOEIC · quotidien chez KNDS CBRN · ESB en anglais</li><li>Allemand : A2 — Reutlingen · SAÉ Velavi & Extrem' Lingette</li></ul></div>
     </div>
   </div>
+
   <div style="padding:64px;border-top:1px solid var(--border)">
     <span class="section-label">Et après ?</span>
     <h2 class="section-title" style="font-size:1.6rem;margin:8px 0 20px">Mon projet professionnel.</h2>
-    <p style="font-size:.87rem;color:#555;line-height:1.9;font-weight:300;max-width:660px">Mon projet professionnel est encore en construction — et j'assume cette honnêteté. Ce que je sais avec certitude : je veux travailler à l'intersection des langues, des cultures et des idées. Que ce soit dans le développement export, l'édition internationale ou la traduction, ce qui m'attire c'est la précision des mots et la compréhension des autres.</p>
-    <p style="font-size:.87rem;color:#555;line-height:1.9;font-weight:300;max-width:660px;margin-top:12px">À court terme : finaliser mon BUT3 BI et consolider mon expérience chez KNDS CBRN. À moyen terme : un Master commerce international ou édition/traduction, en alternance.</p>
+    <p style="font-size:.87rem;color:#555;line-height:1.9;font-weight:300;max-width:660px">Mon projet professionnel est encore en construction et j'assume cette honnêteté. Ce que je sais avec certitude : je veux travailler à l'intersection des langues, des cultures et des idées. Que ce soit dans le développement export, l'édition internationale ou la traduction, ce qui m'attire c'est la précision des mots et la compréhension des autres.</p>
+    <p style="font-size:.87rem;color:#555;line-height:1.9;font-weight:300;max-width:660px;margin-top:12px">À court terme, je veux finaliser mon BUT3 BI et consolider mon expérience chez KNDS CBRN. À moyen terme, je me projette vers un Master commerce international ou édition/traduction, en alternance.</p>
   </div>
   <footer><p>© 2026 Enaé Bakour-Jacob · Portfolio BUT3 Business International</p><button class="btn btn-green" onclick="go('accueil')" style="font-size:.62rem;padding:8px 20px">↑ Accueil</button></footer>
 </div>
@@ -341,35 +365,34 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
     </div>
     <div class="comp-body">
       <div class="comp-col"><h3>Ce que j'ai appris</h3><ul>
-        <li>SWOT, PESTEL, Porter's 5 Forces — appliqués au marché allemand des cosmétiques bio (Velavi) et de l'hygiène (Extrem' Lingette)</li>
-        <li>Modes d'entrée : export direct via pharmacies/spas, agent/distributeur local, joint-ventures, filiales</li>
-        <li>Réglementation : Incoterms 2020, Verpackungsgesetz allemand (LUCID), certifications COSMOS/Ecocert, contrôle des exports biens à double usage (DGA)</li>
-        <li>Segmentation STP — stratégie "glocal" Velavi (femme 35-45 ans, urbaine, bio-consciente)</li>
-        <li>Pratiques interculturelles — ESB Business School (Allemagne)</li>
-        <li>Outils : Excel, Microsoft Office, Canva, Wix</li>
+        <li>Analyse stratégique : SWOT, PESTEL, Porter's 5 Forces</li>
+        <li>Modes d'entrée sur les marchés internationaux : export direct, distributeur, agent, joint-venture</li>
+        <li>Réglementation internationale : Incoterms 2020 et contrôle des exportations</li>
+        <li>Segmentation et positionnement sur un marché étranger</li>
+        <li>Pratiques interculturelles vécues à l'ESB Business School (Allemagne)</li>
+        <li>Outils : Excel, Canva, Wix</li>
       </ul></div>
       <div class="comp-col"><h3>Mes preuves concrètes</h3>
         <div class="proof">
-          <h4>SAÉ Velavi — Stratégie export Allemagne (BUT2) · AC24.01BI · AC24.03BI · AC34.01BI</h4>
+          <h4>SAÉ Velavi — Stratégie export Allemagne (BUT2)</h4>
           <ul>
-            <li>Analyse PESTEL : marché bio allemand 30M€ en 2023, fort pouvoir d'achat (SPA 28 500€)</li>
-            <li>Segmentation : femme urbaine 35-45 ans, éco-consciente, habituée des pharmacies et spas</li>
-            <li>Stratégie d'entrée : export direct via pharmacies, spas et concept stores</li>
-            <li>Prix : stratégie d'écrémage à 12,99€ — pricing psychologique justifié par le pouvoir d'achat supérieur</li>
-            <li>Stratégie "glocal" : packaging maintenu avec traduction allemande et label "Made in France"</li>
+            <li>Analyse PESTEL du marché bio allemand (30M€ en 2023)</li>
+            <li>Segmentation de la cible et positionnement "glocal"</li>
+            <li>Choix du mode d'entrée : export direct via pharmacies et spas</li>
+            <li>Construction du pricing et du business plan</li>
           </ul>
           <div style="margin-top:12px"><a href="SAE_S4_oral_2002__2_.pdf" class="btn btn-green" target="_blank" style="font-size:.62rem;padding:8px 18px">Voir le document →</a></div>
         </div>
         <div class="proof" style="margin-top:10px">
-          <h4>SAÉ Extrem' Lingette — Lancement en Allemagne (BUT3) · AC24.01BI · AC34.02BI · AC34.03BI</h4>
+          <h4>SAÉ Extrem' Lingette — Lancement en Allemagne (BUT3)</h4>
           <ul>
             <li>Étude de marché complète du secteur hygiène allemand</li>
-            <li>Export indirect via distributeur local — justifié par analyse coûts-bénéfices et matrice des risques</li>
-            <li>Compréhension culture business allemande — semestre ESB (AC34.02BI)</li>
+            <li>Choix de l'export indirect via distributeur local</li>
+            <li>Application directe de mon expérience ESB</li>
           </ul>
-          <div style="margin-top:12px"><a href="extrem-lingette.pdf" class="btn btn-outline" style="font-size:.62rem;padding:8px 18px">⊕ Ajoute ton PDF Extrem' Lingette ici</a></div>
+          <div style="margin-top:12px"><a href="extrem-lingette.pdf" class="btn btn-green" target="_blank" style="font-size:.62rem;padding:8px 18px">Voir le document →</a></div>
         </div>
-        <div class="proof" style="margin-top:10px"><h4>KNDS CBRN — Exposition réglementaire export</h4><p>Observation quotidienne des procédures de contrôle des exportations de biens à double usage dans le secteur défense (cadre DGA/SBDU).</p></div>
+        <div class="proof" style="margin-top:10px"><h4>KNDS CBRN — Exposition réglementaire export</h4><p>Observation quotidienne des procédures de contrôle des exportations de biens à double usage dans le secteur défense.</p></div>
       </div>
     </div>
   </div>
@@ -382,17 +405,16 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
     </div>
     <div class="comp-body">
       <div class="comp-col"><h3>Ce que j'ai appris</h3><ul>
-        <li>Incoterms 2020 (EXW, FCA, DAP, CIF) — transport multimodal, logistique internationale (AC25.02BI)</li>
-        <li>Documentation export : facture commerciale, liste de colisage, CMR, EUR.1, licences export</li>
-        <li>Procédures douanières pour biens à double usage — observées chez KNDS CBRN (AC25.03BI)</li>
-        <li>Positionnement marketing international : adaptation de l'offre aux spécificités culturelles (AC25.04BI)</li>
-        <li>Paiements internationaux : SWIFT, crédit documentaire, remise documentaire</li>
-        <li>Outils : Excel, Microsoft Office, Outlook</li>
+        <li>Incoterms 2020 et chaîne logistique internationale</li>
+        <li>Documentation export : facture commerciale, liste de colisage, CMR, EUR.1</li>
+        <li>Procédures douanières observées chez KNDS CBRN</li>
+        <li>Instruments de paiement internationaux : SWIFT, crédit documentaire</li>
+        <li>Outils : Excel, Outlook</li>
       </ul></div>
       <div class="comp-col"><h3>Mes preuves concrètes</h3>
-        <div class="proof alt"><h4>KNDS CBRN — Rôle ADV international · AC25.01BI</h4><ul><li>Gestion d'une partie du cycle ADV pour des clients internationaux dans la défense</li><li>Coordination avec les équipes logistique, finance, technique et juridique</li><li>Observation des procédures de contrôle export pour biens à double usage (AC25.03BI)</li><li>Appui à la préparation des salons professionnels</li></ul></div>
-        <div class="proof alt" style="margin-top:10px"><h4>SAÉ Extrem' Lingette — Plan logistique export · AC25.02BI</h4><ul><li>Sélection du prestataire logistique</li><li>Plan de transport et documentation douanière</li><li>Calcul des coûts et calendrier de livraison</li></ul></div>
-        <div class="proof alt" style="margin-top:10px"><h4>SAÉ Velavi — Positionnement marché allemand · AC25.04BI</h4><p>Adaptation de l'offre aux spécificités culturelles : packaging traduit, labels COSMOS/Ecocert mis en avant, "Made in France" valorisé. Prix 12,99€ adapté au pouvoir d'achat local.</p></div>
+        <div class="proof alt"><h4>KNDS CBRN — Rôle ADV international</h4><ul><li>Gestion d'une partie du cycle ADV pour des clients internationaux</li><li>Coordination avec les équipes logistique, finance et technique</li><li>Observation des procédures douanières pour biens à double usage</li><li>Préparation des salons professionnels</li></ul></div>
+        <div class="proof alt" style="margin-top:10px"><h4>SAÉ Extrem' Lingette — Plan logistique export (BUT3)</h4><ul><li>Sélection du prestataire logistique</li><li>Plan de transport et documentation douanière</li><li>Calcul des coûts et calendrier de livraison</li></ul></div>
+        <div class="proof alt" style="margin-top:10px"><h4>SAÉ Velavi — Positionnement marché allemand</h4><p>Adaptation de l'offre au marché allemand : packaging traduit, labels bio mis en avant, prix adapté au pouvoir d'achat local.</p></div>
       </div>
     </div>
   </div>
@@ -405,24 +427,28 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
     </div>
     <div class="comp-body">
       <div class="comp-col"><h3>Ce que j'ai appris</h3><ul>
-        <li>Stratégie de communication alignée sur le mix marketing : objectifs, cibles, supports (AC23.01)</li>
-        <li>Plan média : sélection des canaux, indicateurs, plan 360° (AC23.02 / AC23.03)</li>
-        <li>Stratégie digitale : réseaux sociaux, e-réputation, performance (AC23.04)</li>
-        <li>Adaptation interculturelle — ESB + marchés SAÉ Velavi et Extrem' Lingette en Allemagne</li>
-        <li>Outils : Canva, Wix, Microsoft Office</li>
+        <li>Stratégie de communication alignée sur le mix marketing</li>
+        <li>Plan média et communication 360°</li>
+        <li>Stratégie digitale : réseaux sociaux, e-réputation</li>
+        <li>Adaptation interculturelle des messages</li>
+        <li>Outils : Canva, Wix</li>
       </ul></div>
       <div class="comp-col"><h3>Mes preuves concrètes</h3>
         <div class="proof">
-          <h4>SAÉ Velavi — Plan de communication 360° · AC23.01 · AC23.02 · AC23.03</h4>
+          <h4>SAÉ Velavi — Plan de communication 360° (BUT2)</h4>
           <ul>
-            <li>Stratégie de communication complète du brief à l'exécution pour le marché allemand</li>
-            <li>Sélection des canaux : pharmacies, spas, réseaux sociaux (Instagram/Pinterest), presse bio</li>
-            <li>Production des supports : visuels Canva, site Wix, fiches produit bilingues</li>
-            <li>Adaptation du ton, des visuels et des messages à la culture allemande</li>
+            <li>Stratégie de communication complète pour le marché allemand</li>
+            <li>Sélection des canaux adaptés à la cible</li>
+            <li>Production des supports : Canva, site Wix, fiches produit bilingues</li>
+            <li>Adaptation du ton et des visuels à la culture allemande</li>
           </ul>
           <div style="margin-top:12px"><a href="SAE_S4_oral_2002__2_.pdf" class="btn btn-green" target="_blank" style="font-size:.62rem;padding:8px 18px">Voir le document →</a></div>
         </div>
-        <div class="proof" style="margin-top:10px"><h4>SAÉ Extrem' Lingette — Communication cross-culturelle · AC23.04</h4><p>Adaptation du positionnement et des messages aux attentes des consommateurs allemands — ton, visuels et arguments adaptés au-delà de la simple traduction.</p></div>
+        <div class="proof" style="margin-top:10px">
+          <h4>SAÉ Extrem' Lingette — Communication cross-culturelle (BUT3)</h4>
+          <p>Adaptation des messages aux consommateurs allemands, bien au-delà de la simple traduction : ton, visuels et arguments entièrement retravaillés.</p>
+          <div style="margin-top:12px"><a href="extrem-lingette.pdf" class="btn btn-green" target="_blank" style="font-size:.62rem;padding:8px 18px">Voir le document →</a></div>
+        </div>
       </div>
     </div>
   </div>
@@ -435,18 +461,17 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
     </div>
     <div class="comp-body">
       <div class="comp-col"><h3>Ce que j'ai appris</h3><ul>
-        <li>Plan de découverte client : profil, besoins, attentes (AC12.01)</li>
-        <li>Méthode CAB — Caractéristiques, Avantages, Bénéfices (AC12.02)</li>
-        <li>Outils d'aide à la vente : OAV, supports de pitch (AC12.03)</li>
-        <li>Indicateurs de performance : KPIs, suivi des offres (AC12.04)</li>
-        <li>Techniques de prospection (AC12.05)</li>
-        <li>Codes de communication professionnelle anglais B2G (AC12.06)</li>
+        <li>Plan de découverte client et identification des besoins</li>
+        <li>Méthode CAB et construction d'un argumentaire</li>
+        <li>Outils d'aide à la vente (OAV)</li>
+        <li>Suivi des KPIs et indicateurs de performance</li>
+        <li>Codes de communication professionnelle en anglais B2G</li>
         <li>Outils : Excel, Outlook, Canva</li>
       </ul></div>
       <div class="comp-col"><h3>Mes preuves concrètes</h3>
-        <div class="proof alt"><h4>KNDS CBRN — Lecture des offres commerciales · AC12.04 · AC12.06</h4><p>Lecture et analyse quotidienne d'offres commerciales professionnelles rédigées en anglais pour des clients internationaux dans la défense (B2G). Suivi des KPIs et relances dans Excel.</p></div>
-        <div class="proof alt" style="margin-top:10px"><h4>Pitchs SAÉ Velavi & Extrem' Lingette · AC12.02 · AC12.03</h4><p>Présentation des stratégies export en anglais devant un jury : argumentaire complet intégrant l'analyse marché (PESTEL, segmentation STP), le marketing mix et les projections financières.</p></div>
-        <div class="proof alt" style="margin-top:10px"><h4>EMOTIS — Vente-conseil en conditions réelles · AC12.01 · AC12.05</h4><p>Salon de la soie "Silk in Lyon" : identification des besoins, argumentation produit, fidélisation client.</p></div>
+        <div class="proof alt"><h4>KNDS CBRN — Lecture des offres commerciales</h4><p>Lecture et analyse quotidienne d'offres professionnelles en anglais pour des clients internationaux dans la défense. Suivi des KPIs dans Excel.</p></div>
+        <div class="proof alt" style="margin-top:10px"><h4>Pitchs SAÉ Velavi & Extrem' Lingette</h4><p>Présentation des stratégies export en anglais devant un jury : argumentaire complet, analyse marché, marketing mix et projections financières.</p></div>
+        <div class="proof alt" style="margin-top:10px"><h4>EMOTIS — Vente-conseil en conditions réelles</h4><p>Salon de la soie "Silk in Lyon" : identification des besoins, argumentation produit et fidélisation client.</p></div>
       </div>
     </div>
   </div>
@@ -462,13 +487,20 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
       <span class="card-tag">SAÉ · BUT2 · Compétences 1 & 3</span>
       <div class="card-title">Velavi — Conquérir le marché allemand</div>
       <div class="card-ctx">Cosmétiques bio · Export direct · Allemagne</div>
-      <p class="card-text">Stratégie complète d'internationalisation pour la marque Velavi : cosmétiques bio Made in France, marché allemand du bio estimé à 30M€ en 2023.</p>
-      <div class="proj-meta">
-        <div><div class="proj-meta-label">Objectif</div><div class="proj-meta-val">Développer une stratégie complète d'entrée sur le marché allemand.</div></div>
-        <div><div class="proj-meta-label">Actions</div><div class="proj-meta-val">Analyse PESTEL · Segmentation STP · Stratégie "glocal" · Marketing mix complet · Distribution via pharmacies et spas · Pricing à 12,99€</div></div>
-        <div><div class="proj-meta-label">Résultats</div><div class="proj-meta-val">Plan d'internationalisation complet présenté en anglais à un jury professionnel.</div></div>
+      <p class="card-text">Stratégie complète d'internationalisation pour la marque Velavi, cosmétiques bio Made in France sur le marché allemand estimé à 30M€ en 2023.</p>
+      <div>
+        <div class="proj-meta-label">Objectif</div>
+        <div class="proj-meta-val">Développer une stratégie complète d'entrée sur le marché allemand.</div>
       </div>
-      <div class="card-skills"><span class="chip">PESTEL</span><span class="chip">Marketing Mix</span><span class="chip">Segmentation</span><span class="chip">Canva</span><span class="chip">Wix</span><span class="chip">Anglais</span></div>
+      <div>
+        <div class="proj-meta-label">Actions</div>
+        <div class="proj-meta-val">Analyse PESTEL · Segmentation STP · Stratégie "glocal" · Marketing mix · Distribution via pharmacies et spas · Pricing à 12,99€</div>
+      </div>
+      <div>
+        <div class="proj-meta-label">Résultats</div>
+        <div class="proj-meta-val">Plan d'internationalisation complet présenté en anglais à un jury professionnel.</div>
+      </div>
+      <div class="card-skills"><span class="chip">PESTEL</span><span class="chip">Marketing Mix</span><span class="chip">Canva</span><span class="chip">Wix</span><span class="chip">Anglais</span></div>
       <a href="SAE_S4_oral_2002__2_.pdf" class="btn btn-green" target="_blank" style="align-self:flex-start">Consulter le projet →</a>
     </div>
     <div class="proj-card cream fu">
@@ -476,22 +508,29 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
       <div class="card-title">Extrem' Lingette — Un lancement de A à Z</div>
       <div class="card-ctx">Hygiène · Export indirect · Logistique · Allemagne</div>
       <p class="card-text">Projet complet de lancement d'un produit d'hygiène sur le marché allemand.</p>
-      <div class="proj-meta">
-        <div><div class="proj-meta-label">Objectif</div><div class="proj-meta-val">Lancer "Extrem' Lingette" sur le marché allemand de A à Z.</div></div>
-        <div><div class="proj-meta-label">Actions</div><div class="proj-meta-val">Étude de marché · Sélection distributeur local · Plan logistique export · Documentation douanière · Stratégie de communication cross-culturelle</div></div>
-        <div><div class="proj-meta-label">Résultats</div><div class="proj-meta-val">Stratégie export complète soutenue à l'oral en anglais.</div></div>
+      <div>
+        <div class="proj-meta-label">Objectif</div>
+        <div class="proj-meta-val">Lancer "Extrem' Lingette" sur le marché allemand de A à Z.</div>
+      </div>
+      <div>
+        <div class="proj-meta-label">Actions</div>
+        <div class="proj-meta-val">Étude de marché · Sélection distributeur local · Plan logistique export · Stratégie de communication cross-culturelle</div>
+      </div>
+      <div>
+        <div class="proj-meta-label">Résultats</div>
+        <div class="proj-meta-val">Stratégie export complète soutenue à l'oral en anglais.</div>
       </div>
       <div class="card-skills"><span class="chip">Export indirect</span><span class="chip">Logistique</span><span class="chip">Cross-culturel</span><span class="chip">Incoterms</span></div>
-      <a href="extrem-lingette.pdf" class="btn btn-outline" style="align-self:flex-start;font-size:.65rem">⊕ Ajoute ton PDF ici</a>
+      <a href="extrem-lingette.pdf" class="btn btn-green" target="_blank" style="align-self:flex-start">Consulter le projet →</a>
     </div>
     <div class="proj-card dark fu" style="grid-column:1/-1">
       <span class="card-tag">Alternance · Depuis sept. 2025 · Compétences 2 & 4</span>
       <div class="card-title">KNDS CBRN — L'international au quotidien</div>
       <div class="card-ctx">Défense B2G · Saint-Chamond · Groupe KNDS</div>
-      <p class="card-text">Au sein d'une entreprise de défense spécialisée dans les équipements CBRN, filiale du groupe KNDS — l'un des leaders européens de la défense terrestre.</p>
+      <p class="card-text">Au sein d'une entreprise de défense spécialisée dans les équipements CBRN, filiale du groupe KNDS.</p>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:8px">
-        <div><div class="proj-meta-label">Missions</div><div class="proj-meta-val dark" style="margin-top:6px;font-size:.8rem;font-weight:300;line-height:1.7">Suivi ADV international · Lecture d'offres commerciales en anglais · Observation procédures douanières · Coordination logistique salons</div></div>
-        <div><div class="proj-meta-label">Secteur</div><div class="proj-meta-val dark" style="margin-top:6px;font-size:.8rem;font-weight:300;line-height:1.7">Défense CBRN internationale · Clients gouvernementaux (B2G) · Europe, Moyen-Orient</div></div>
+        <div><div class="proj-meta-label">Missions</div><div class="proj-meta-val dark" style="margin-top:6px;font-size:.8rem;font-weight:300;line-height:1.7">Suivi ADV international · Lecture d'offres en anglais · Observation procédures douanières · Coordination logistique salons</div></div>
+        <div><div class="proj-meta-label">Secteur</div><div class="proj-meta-val dark" style="margin-top:6px;font-size:.8rem;font-weight:300;line-height:1.7">Défense CBRN internationale · Clients gouvernementaux (B2G) · Europe et Moyen-Orient</div></div>
         <div><div class="proj-meta-label">Ce que ça m'apporte</div><div class="proj-meta-val dark" style="margin-top:6px;font-size:.8rem;font-weight:300;line-height:1.7">Rigueur documentaire · Coordination transversale · Réalité concrète du commerce international B2G</div></div>
       </div>
       <div class="card-skills">
@@ -505,12 +544,12 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
   <div class="proj-block">
     <h2>En images</h2>
     <div class="gallery">
-      <div class="gal-item">Capture SAÉ Velavi<br>→ Remplace par<br>ta vraie image</div>
-      <div class="gal-item">Support Canva<br>communication<br>→ Remplace</div>
-      <div class="gal-item">Photo ESB<br>Reutlingen<br>→ Remplace</div>
-      <div class="gal-item">Extrem' Lingette<br>SAÉ BUT3<br>→ Remplace</div>
+      <div class="gal-item">Capture SAÉ Velavi<br>→ Remplace par ta vraie image</div>
+      <div class="gal-item">Support Canva<br>→ Remplace</div>
+      <div class="gal-item">Photo ESB Reutlingen<br>→ Remplace</div>
+      <div class="gal-item">Extrem' Lingette BUT3<br>→ Remplace</div>
     </div>
-    <p style="margin-top:12px;font-size:.72rem;color:var(--gris)">→ Pour ajouter tes images : remplace les div "gal-item" par des balises img, ex : &lt;img src="ma-photo.jpg" style="width:100%;height:100%;object-fit:cover"&gt;</p>
+    <p style="margin-top:12px;font-size:.72rem;color:var(--gris)">→ Pour ajouter tes images, remplace les div "gal-item" par une balise img, ex : &lt;img src="ma-photo.jpg" class="gal-img"&gt;</p>
   </div>
   <footer><p>© 2026 Enaé Bakour-Jacob · Portfolio BUT3 Business International</p><button class="btn btn-green" onclick="go('accueil')" style="font-size:.62rem;padding:8px 20px">↑ Accueil</button></footer>
 </div>
@@ -532,14 +571,14 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
   </div>
   <div class="en-sec fu">
     <span class="section-label">Who I am</span>
-    <h2>Committed, rigorous,<br>and genuinely curious about the world.</h2>
+    <h2>Committed, rigorous and genuinely curious about the world.</h2>
     <p>I am a third-year Business Techniques student specialising in International Business at IUT Jean Monnet, Saint-Étienne. My academic path has taken me to Germany for a full semester at ESB Business School in Reutlingen, and into the world of international defence commerce through my apprenticeship at KNDS CBRN.</p>
-    <p>Beyond my studies, I am an avid reader, a lover of history, and an enthusiastic traveller. I believe that understanding a market means understanding its people — their culture, their language, their stories.</p>
+    <p>Beyond my studies, I am an avid reader, a lover of history and an enthusiastic traveller. I believe that understanding a market means understanding its people, their culture, their language and their stories.</p>
   </div>
   <div class="en-sec alt fu">
     <span class="section-label">Work experience</span>
     <h2>My apprenticeship at KNDS CBRN.</h2>
-    <p>KNDS CBRN is a French defence company specialising in CBRN protection equipment, part of the KNDS Group — one of Europe's leading land defence groups.</p>
+    <p>KNDS CBRN is a French defence company specialising in CBRN protection equipment, part of the KNDS Group, one of Europe's leading land defence groups.</p>
     <ul>
       <li>Follow up on international orders administratively and logistically (ADV cycle)</li>
       <li>Read and review commercial proposals in English for international defence clients</li>
@@ -547,7 +586,7 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
       <li>Support trade fair preparation and internal logistics</li>
       <li>Communicate daily in English with teams and external partners</li>
     </ul>
-    <p style="margin-top:16px">What I've learned: rigour, cross-functional collaboration, and the real mechanics of international trade in a high-stakes, highly regulated environment.</p>
+    <p style="margin-top:16px">What I've learned: rigour, cross-functional collaboration and a real understanding of how international trade works in a high-stakes environment.</p>
   </div>
   <div class="en-sec fu">
     <span class="section-label">Academic projects</span>
@@ -556,25 +595,25 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
       <div class="en-proj">
         <span class="card-tag">SAÉ · Year 2</span>
         <h3>Velavi — Germany Market Entry Strategy</h3>
-        <p>Full internationalisation strategy for the German organic cosmetics market (€30M in 2023): PESTEL analysis, "glocal" strategy, STP segmentation (urban women 35-45, eco-conscious), distribution via pharmacies and spas at €12.99. Presented in English to a professional jury.</p>
+        <p>Full internationalisation strategy for the German organic cosmetics market: PESTEL analysis, "glocal" strategy, STP segmentation, distribution via pharmacies and spas at €12.99. Presented in English to a professional jury.</p>
       </div>
       <div class="en-proj alt">
         <span class="card-tag">SAÉ · Year 3</span>
         <h3>Extrem' Lingette — A Product Launch from A to Z</h3>
-        <p>Full market study of the German hygiene product market, logistics plan (transport, customs, costs, timeline), and cross-cultural communication strategy for German consumers — directly informed by my ESB semester experience.</p>
+        <p>Full market study of the German hygiene product market, logistics plan and cross-cultural communication strategy for German consumers, directly informed by my ESB semester.</p>
       </div>
     </div>
   </div>
   <div class="en-sec alt fu">
     <span class="section-label">ESB Business School · Germany</span>
     <h2>Four months that changed my perspective.</h2>
-    <p>Spending a full semester at ESB Business School in Reutlingen was one of the most formative experiences of my degree. Studying in English alongside students from over 30 different countries taught me to communicate more precisely, think more globally, and truly understand how business culture varies across borders.</p>
-    <p>It also deepened my love for languages — and convinced me that the most important skill in international business is not a technique, but an ability to listen.</p>
+    <p>Spending a full semester at ESB Business School in Reutlingen was one of the most formative experiences of my degree. Studying in English alongside students from over 30 different countries taught me to communicate more precisely, think more globally and truly understand how business culture varies across borders.</p>
+    <p>It also deepened my love for languages and convinced me that the most important skill in international business is not a technique but an ability to listen.</p>
   </div>
   <div class="en-next">
     <span class="section-label" style="color:var(--terra);display:block;margin-bottom:12px">What's next</span>
     <h2>What's next for me.</h2>
-    <p>My professional project is still taking shape — and I own that honestly. What I know for certain is that I want to work at the intersection of languages, cultures and ideas. Whether in international trade, publishing or translation, what drives me is precision in words and understanding of others.</p>
+    <p>My professional project is still taking shape and I own that honestly. What I know for certain is that I want to work at the intersection of languages, cultures and ideas. Whether in international trade, publishing or translation, what drives me is precision in words and understanding of others.</p>
     <a href="https://www.linkedin.com/in/enae-bakour-jacob-6865982b1/" class="btn btn-green" target="_blank">Connect on LinkedIn →</a>
   </div>
   <footer style="background:var(--noir);border-top:1px solid rgba(255,255,255,.1)"><p style="color:rgba(255,255,255,.3)">© 2026 Enaé Bakour-Jacob · Portfolio BUT3 Business International</p><button class="btn btn-green" onclick="go('accueil')" style="font-size:.62rem;padding:8px 20px">↑ Home</button></footer>

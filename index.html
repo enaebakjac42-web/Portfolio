@@ -10,12 +10,12 @@
 :root{--noir:#1a1a1a;--blanc:#fff;--creme:#f9f6f1;--vert:#2d5a3d;--terra:#c1714f;--gris:#888;--border:#e8e2d9}
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--blanc);color:var(--noir);overflow-x:hidden}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:60px;background:var(--blanc);border-bottom:1px solid var(--noir)}
-.nav-logo{font-family:'Libre Baskerville',serif;font-size:1.4rem;font-weight:700;color:var(--noir);cursor:pointer;letter-spacing:-.02em}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:60px;background:var(--terra);border-bottom:1px solid var(--noir)}
+.nav-logo{font-family:'Libre Baskerville',serif;font-size:1.4rem;font-weight:700;color:var(--blanc);cursor:pointer;letter-spacing:-.02em}
 .nav-logo span{color:var(--terra)}
 .nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--gris);text-decoration:none;transition:color .2s;cursor:pointer}
-.nav-links a:hover,.nav-links a.active{color:var(--noir)}
+.nav-links a{font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75);text-decoration:none;transition:color .2s;cursor:pointer}
+.nav-links a:hover,.nav-links a.active{color:var(--blanc)}
 .page{display:none;padding-top:60px;min-height:100vh}
 .page.active{display:block}
 .hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 60px)}

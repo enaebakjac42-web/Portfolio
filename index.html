@@ -172,7 +172,7 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
 <body>
 <nav>
   <div class="nav-logo" onclick="go('accueil')">Enaé<span>.</span></div>
-  <ul class="nav-links">
+  <ul class="nav-links" id="nav-links">
     <li><a onclick="go('accueil')" id="n-accueil" class="active">Accueil</a></li>
     <li><a onclick="go('parcours')" id="n-parcours">Mon parcours</a></li>
     <li><a onclick="go('competences')" id="n-competences">Compétences BI</a></li>
@@ -180,14 +180,15 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
     <li><a onclick="go('english')" id="n-english">English</a></li>
     <li><a onclick="go('contact')" id="n-contact">Contact</a></li>
   </ul>
+  <button onclick="toggleLang()" id="lang-btn" style="font-size:.65rem;font-weight:600;letter-spacing:.15em;background:rgba(255,255,255,.15);color:var(--blanc);border:1px solid rgba(255,255,255,.4);padding:5px 12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s">EN</button>
 </nav>
 
 <!-- ACCUEIL -->
 <div id="p-accueil" class="page active">
   <div class="hero">
     <div class="hero-left">
-      <span class="eyebrow">Portfolio BUT3 · Business International · 2026</span>
-      <h1 class="hero-title">Le monde<br>comme<br><em>terrain.</em></h1>
+      <span class="eyebrow" data-t="h-eyebrow">Portfolio BUT3 · Business International · 2026</span>
+      <h1 class="hero-title" data-t="h-title">Le monde<br>comme<br><em>terrain.</em></h1>
       <p class="hero-sub">Étudiante en Business International, passionnée de littérature et de cultures étrangères, j'aborde chaque univers comme une nouvelle langue à apprendre.</p>
       <div class="stats">
         <div class="stat"><div class="stat-n">3</div><div class="stat-l">ans de BUT TC BI</div></div>
@@ -199,21 +200,21 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
     <div class="hero-right">
       <h2 class="hero-name" style="align-self:center;text-align:center;margin-bottom:16px">Enaé Bakour-Jacob</h2>
       <img src="Photo_Moi.png" alt="Enaé Bakour-Jacob" class="hero-photo">
-      <p class="about-big">"J'aime comprendre avant d'agir, lire entre les lignes et aller au fond des choses."</p>
+      <p class="about-big" data-t="h-about-big">"J'aime comprendre avant d'agir, lire entre les lignes et aller au fond des choses."</p>
       <p class="about-text">Étudiante en 3e année de BUT TC parcours Business International à l'IUT Jean Monnet de Saint-Étienne. Un semestre à l'ESB Business School en Allemagne et une alternance chez KNDS CBRN ont profondément changé ma façon de voir le commerce international.</p>
       <p class="about-text">Passionnée de littérature et de langues, je me projette vers des métiers qui donnent autant de place aux mots qu'aux univers qu'ils décrivent.</p>
       <div class="tags">
         <span class="tag">Commerce International</span><span class="tag">Export</span><span class="tag">Marketing BI</span><span class="tag">Défense B2G</span><span class="tag">Allemagne</span><span class="tag">Édition</span>
       </div>
       <div class="hero-btns">
-        <button class="btn btn-dark" onclick="go('competences')">Mes compétences</button>
+        <button class="btn btn-dark" onclick="go('competences')" data-t="btn-comp">Mes compétences</button>
         <button class="btn btn-outline" onclick="go('contact')">Me contacter</button>
       </div>
     </div>
   </div>
 
   <div class="quote-band">
-    <blockquote>« Toujours à chercher le fil qui relie les idées entre elles. »</blockquote>
+    <blockquote data-t="quote-main">« Toujours à chercher le fil qui relie les idées entre elles. »</blockquote>
     <cite>— Enaé Bakour-Jacob</cite>
   </div>
 
@@ -252,7 +253,7 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
   <div class="about-band fu">
     <div class="about-band-l">
       <span class="eyebrow">Ce qui me définit</span>
-      <h2 class="section-title" style="font-size:1.8rem;margin-top:8px">Au-delà des études.</h2>
+      <h2 class="section-title" style="font-size:1.8rem;margin-top:8px" data-t="about-title">Au-delà des études.</h2>
     </div>
     <div class="about-band-r">
       <p>Je lis beaucoup, des romans, des essais, de la littérature étrangère. Les langues me fascinent, pas seulement comme outils de communication mais comme façons de penser le monde différemment. C'est ce qui me donne envie de travailler dans l'édition ou la traduction un jour.</p>
@@ -263,7 +264,7 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
 
   <div class="contact-strip">
     <div>
-      <h2 class="c-title">Envie d'échanger ?</h2>
+      <h2 class="c-title" data-t="contact-title">Envie d'échanger ?</h2>
       <p class="c-sub">N'hésitez pas à me contacter pour toute opportunité ou collaboration.</p>
       <button class="btn btn-green" onclick="go('contact')">Me contacter</button>
     </div>
@@ -385,7 +386,7 @@ footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var
     <div class="comp-body">
       <div class="comp-col"><h3>Ce que j'ai appris</h3><ul>
         <li>Analyse stratégique : SWOT, PESTEL, Porter's 5 Forces</li>
-        <li>Modes d'entrée sur les marchés internationaux : export direct/indirect, distributeur, agent, joint-venture</li>
+        <li>Modes d'entrée sur les marchés internationaux : export direct, distributeur, agent, joint-venture</li>
         <li>Réglementation internationale : Incoterms 2020 et contrôle des exportations</li>
         <li>Segmentation et positionnement sur un marché étranger</li>
         <li>Pratiques interculturelles vécues à l'ESB Business School (Allemagne)</li>
@@ -735,6 +736,79 @@ function anim(){
   document.querySelectorAll('.fu:not(.vis)').forEach(el=>obs.observe(el));
 }
 document.addEventListener('DOMContentLoaded',anim);
+</script>
+
+<script>
+var lang = 'fr';
+
+var t = {
+  // NAV
+  'nav-accueil': ['Accueil', 'Home'],
+  'nav-parcours': ['Mon parcours', 'My journey'],
+  'nav-competences': ['Compétences BI', 'BI Skills'],
+  'nav-projets': ['Projets', 'Projects'],
+  'nav-contact': ['Contact', 'Contact'],
+
+  // ACCUEIL
+  'h-eyebrow': ['Portfolio BUT3 · Business International · 2026', 'Portfolio BUT3 · International Business · 2026'],
+  'h-title': ['Le monde<br>comme<br><em>terrain.</em>', 'The world<br>as a<br><em>playground.</em>'],
+  'h-sub': ["Étudiante en Business International, passionnée de littérature et de cultures étrangères, j'aborde chaque univers comme une nouvelle langue à apprendre.", "International Business student, passionate about literature and foreign cultures, I approach every new world like a language waiting to be learned."],
+  'stat-l-1': ['ans de BUT TC BI', 'years of BUT TC BI'],
+  'stat-l-2': ['semestre en Allemagne', 'semester in Germany'],
+  'stat-l-4': ['compétences BI', 'BI skills'],
+  'h-about-big': ['"J'aime comprendre avant d'agir, lire entre les lignes et aller au fond des choses."', '"I like to understand before I act, read between the lines and get to the heart of things."'],
+  'h-about-1': ["Étudiante en 3e année de BUT TC parcours Business International à l'IUT Jean Monnet de Saint-Étienne. Un semestre à l'ESB Business School en Allemagne et une alternance chez KNDS CBRN ont profondément changé ma façon de voir le commerce international.", "Third-year Business Techniques student specialising in International Business at IUT Jean Monnet, Saint-Étienne. A semester at ESB Business School in Germany and an apprenticeship at KNDS CBRN have genuinely changed the way I see international commerce."],
+  'h-about-2': ["Passionnée de littérature et de langues, je me projette vers des métiers qui donnent autant de place aux mots qu'aux univers qu'ils décrivent.", "Passionate about literature and languages, I see myself in careers that give as much room to words as to the worlds they describe."],
+  'btn-comp': ['Mes compétences', 'My skills'],
+  'btn-contact-hero': ['Me contacter', 'Get in touch'],
+  'quote-main': ['« Toujours à chercher le fil qui relie les idées entre elles. »', '"Always looking for the thread that connects ideas."'],
+  'proj-label': ['Mes réalisations', 'My work'],
+  'proj-title': ['Projets phares', 'Key projects'],
+  'btn-all-proj': ['Voir tous mes projets', 'See all projects'],
+  'about-eyebrow': ['Ce qui me définit', 'What defines me'],
+  'about-title': ['Au-delà des études.', 'Beyond studies.'],
+  'about-p1': ["Je lis beaucoup, des romans, des essais, de la littérature étrangère. Les langues me fascinent, pas seulement comme outils de communication mais comme façons de penser le monde différemment. C'est ce qui me donne envie de travailler dans l'édition ou la traduction un jour.", "I read a lot — novels, essays, foreign literature. Languages fascinate me, not just as communication tools but as ways of thinking about the world differently. That's what draws me towards publishing or translation."],
+  'about-p2': ["J'ai aussi été bénévole à l'UNICEF au lycée, une expérience qui compte encore pour moi aujourd'hui même si je n'y suis plus active.", "I also volunteered with UNICEF during high school, an experience that still means a lot to me today even though I'm no longer active."],
+  'btn-parcours': ['Mon parcours complet', 'My full journey'],
+  'contact-title': ['Envie d'échanger ?', 'Want to connect?'],
+  'contact-sub': ["N'hésitez pas à me contacter pour toute opportunité ou collaboration.", "Feel free to reach out for any opportunity or collaboration."],
+  'btn-contact-strip': ['Me contacter', 'Get in touch'],
+};
+
+function toggleLang() {
+  lang = lang === 'fr' ? 'en' : 'fr';
+  document.getElementById('lang-btn').textContent = lang === 'fr' ? 'EN' : 'FR';
+  applyLang();
+}
+
+function applyLang() {
+  var i = lang === 'fr' ? 0 : 1;
+
+  // Nav links
+  var navEl = {
+    'n-accueil': t['nav-accueil'],
+    'n-parcours': t['nav-parcours'],
+    'n-competences': t['nav-competences'],
+    'n-projets': t['nav-projets'],
+    'n-contact': t['nav-contact']
+  };
+  for (var id in navEl) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = navEl[id][i];
+  }
+
+  // Simple text swaps by data-t attribute
+  document.querySelectorAll('[data-t]').forEach(function(el) {
+    var key = el.getAttribute('data-t');
+    if (t[key]) {
+      if (el.innerHTML !== undefined && t[key][i].indexOf('<') > -1) {
+        el.innerHTML = t[key][i];
+      } else {
+        el.textContent = t[key][i];
+      }
+    }
+  });
+}
 </script>
 </body>
 </html>

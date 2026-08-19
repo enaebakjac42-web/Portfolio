@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enaé.</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--noir:#1a1a1a;--blanc:#fff;--creme:#f9f6f1;--vert:#2d5a3d;--terra:#c1714f;--gris:#888;--border:#e8e2d9}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--blanc);color:var(--noir);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:60px;background:var(--terra);border-bottom:1px solid var(--noir)}
+.nav-logo{font-family:'Libre Baskerville',serif;font-size:1.4rem;font-weight:700;color:var(--blanc);cursor:pointer;letter-spacing:-.02em}
+.nav-logo span{color:var(--noir)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75);text-decoration:none;transition:color .2s;cursor:pointer}
+.nav-links a:hover,.nav-links a.active{color:var(--blanc)}
+.lang-btn{font-size:.65rem;font-weight:600;letter-spacing:.15em;background:rgba(255,255,255,.15);color:var(--blanc);border:1px solid rgba(255,255,255,.4);padding:5px 14px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.lang-btn:hover{background:rgba(255,255,255,.3)}
+.page{display:none;padding-top:60px;min-height:100vh}
+.page.active{display:block}
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 60px)}
+.hero-left{padding:40px 64px;display:flex;flex-direction:column;justify-content:flex-start;padding-top:48px;border-right:1px solid var(--border)}
+.hero-right{padding:64px;display:flex;flex-direction:column;justify-content:center;background:var(--creme);align-items:center;text-align:left}
+.hero-name{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--noir);letter-spacing:.08em;margin-bottom:20px;align-self:center;text-align:center;line-height:1}
+.hero-photo{width:190px;height:190px;object-fit:cover;object-position:top;border-radius:50%;margin-bottom:24px;border:4px solid var(--blanc);box-shadow:0 8px 32px rgba(0,0,0,.12)}
+.eyebrow{font-size:.65rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:20px;display:block}
+.hero-title{font-family:'Libre Baskerville',serif;font-size:clamp(2.8rem,5vw,4.2rem);font-weight:700;line-height:1.08;letter-spacing:-.03em;margin-bottom:28px}
+.hero-title em{font-style:italic;color:var(--terra)}
+.hero-sub{font-size:.88rem;font-weight:300;color:var(--gris);line-height:1.7;max-width:400px;margin-bottom:48px}
+.stats{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border)}
+.stat{padding:20px 0;border-bottom:1px solid var(--border)}
+.stat:nth-child(2n){padding-left:20px;border-left:1px solid var(--border)}
+.stat:nth-child(n+3){border-bottom:none}
+.stat-n{font-family:'Libre Baskerville',serif;font-size:2rem;font-weight:700;color:var(--vert);line-height:1}
+.stat-l{font-size:.65rem;color:var(--gris);margin-top:4px;letter-spacing:.05em}
+.about-big{font-family:'Libre Baskerville',serif;font-size:1.25rem;font-weight:400;line-height:1.6;margin-bottom:20px;font-style:italic;align-self:flex-start}
+.about-text{font-size:.87rem;font-weight:300;line-height:1.9;color:#555;margin-bottom:14px;align-self:flex-start}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;align-self:flex-start}
+.tag{font-size:.6rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--noir);color:var(--noir);padding:5px 12px;transition:all .2s;cursor:default}
+.tag:hover{background:var(--noir);color:var(--blanc)}
+.hero-btns{align-self:flex-start;display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:12px 28px;cursor:pointer;text-decoration:none;transition:all .25s;border:none;font-family:'DM Sans',sans-serif}
+.btn-dark{background:var(--noir);color:var(--blanc)}.btn-dark:hover{background:var(--vert)}
+.btn-outline{border:1px solid var(--noir);color:var(--noir);background:transparent}.btn-outline:hover{background:var(--noir);color:var(--blanc)}
+.btn-green{background:var(--vert);color:var(--blanc);border-radius:50px}.btn-green:hover{background:#1e3f2a}
+.quote-band{background:var(--noir);padding:48px 64px;text-align:center}
+.quote-band blockquote{font-family:'Libre Baskerville',serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:400;font-style:italic;color:var(--blanc);line-height:1.5}
+.quote-band cite{display:block;margin-top:12px;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--terra);font-style:normal}
+.section-label{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:8px;display:block}
+.section-title{font-family:'Libre Baskerville',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;line-height:1.15;letter-spacing:-.02em}
+.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border)}
+.card{background:var(--blanc);padding:36px 32px;transition:transform .3s}.card:hover{transform:translateY(-3px)}
+.card-tag{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--terra);margin-bottom:12px;display:block}
+.card-title{font-family:'Libre Baskerville',serif;font-size:1.15rem;font-weight:700;line-height:1.25;margin-bottom:8px}
+.card-ctx{font-size:.7rem;color:var(--gris);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+.card-text{font-size:.82rem;line-height:1.8;color:#555;font-weight:300}
+.card-skills{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.chip{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;background:var(--creme);color:var(--noir);padding:3px 9px;border:1px solid var(--border)}
+.home-section{padding:80px 64px}
+.about-band{display:grid;grid-template-columns:1fr 1fr;background:var(--creme)}
+.about-band-l{padding:72px 64px}.about-band-r{padding:72px 64px;border-left:1px solid var(--border)}
+.about-band-r p{font-size:.87rem;line-height:1.9;color:#555;font-weight:300;margin-bottom:14px}
+.contact-strip{padding:64px;background:var(--blanc);display:grid;grid-template-columns:1fr 1fr;gap:64px;border-top:1px solid var(--border)}
+.c-title{font-family:'Libre Baskerville',serif;font-size:2rem;font-weight:700;letter-spacing:-.02em;margin-bottom:12px}
+.c-sub{font-size:.85rem;color:var(--gris);font-weight:300;margin-bottom:28px}
+.c-items{display:flex;flex-direction:column}
+.c-item{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--border);font-size:.83rem}
+.c-label{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--terra);min-width:70px}
+.page-hdr{padding:80px 64px 48px;border-bottom:1px solid var(--border)}
+.page-hdr h1{font-family:'Libre Baskerville',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-top:8px}
+.cv-bar{padding:36px 64px;background:var(--creme);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.cv-bar p{font-size:.85rem;color:var(--gris);font-weight:300}
+.cv-bar-btns{display:flex;gap:12px}
+.tl{padding:64px}.tl h2{font-family:'Libre Baskerville',serif;font-size:1.4rem;font-weight:700;margin-bottom:40px;letter-spacing:-.02em}
+.tl-item{display:grid;grid-template-columns:180px 1fr;gap:32px;margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid var(--border)}
+.tl-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.tl-date{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);padding-top:3px;font-weight:500}
+.tl-title{font-family:'Libre Baskerville',serif;font-size:1.05rem;font-weight:700;margin-bottom:4px}
+.tl-sub{font-size:.78rem;color:var(--gris);margin-bottom:10px}
+.tl-text{font-size:.83rem;line-height:1.8;color:#555;font-weight:300}
+.tl-list{list-style:none;margin-top:8px}
+.tl-list li{font-size:.82rem;color:#555;font-weight:300;padding:3px 0 3px 16px;position:relative;line-height:1.6}
+.tl-list li::before{content:'·';position:absolute;left:4px;color:var(--terra)}
+.skills-block{display:grid;grid-template-columns:1fr 1fr;background:var(--creme);border-top:1px solid var(--border)}
+.skills-l{padding:64px}.skills-r{padding:64px;border-left:1px solid var(--border)}
+.skills-r h3{font-family:'Libre Baskerville',serif;font-size:1.2rem;font-weight:700;margin-bottom:24px}
+.s2col{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.sg h4{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--terra);margin-bottom:10px;font-weight:500}
+.sg ul{list-style:none}
+.sg ul li{font-size:.8rem;color:#555;font-weight:300;padding:4px 0;border-bottom:1px solid var(--border);line-height:1.5}
+.comp-intro{padding:40px 64px;background:var(--creme);border-bottom:1px solid var(--border)}
+.comp-intro p{font-size:.87rem;line-height:1.9;color:#555;font-weight:300;max-width:640px}
+.comp-sec{padding:64px;border-bottom:2px solid var(--noir)}.comp-sec:last-child{border-bottom:none}.comp-sec.alt{background:var(--creme)}
+.comp-hdr{display:flex;align-items:flex-start;gap:32px;margin-bottom:40px}
+.comp-num{font-family:'Libre Baskerville',serif;font-size:5rem;font-weight:700;color:rgba(0,0,0,.07);line-height:1;flex-shrink:0;margin-top:-10px}
+.comp-lvl{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);margin-bottom:6px;display:block}
+.comp-title{font-family:'Libre Baskerville',serif;font-size:1.6rem;font-weight:700;letter-spacing:-.02em;line-height:1.2;margin-bottom:10px}
+.comp-desc{font-size:.83rem;color:var(--gris);font-weight:300;line-height:1.7}
+.comp-body{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.comp-col h3{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--noir);margin-bottom:14px;font-weight:500;padding-bottom:8px;border-bottom:2px solid var(--noir)}
+.comp-col ul{list-style:none}
+.comp-col ul li{font-size:.81rem;color:#555;font-weight:300;padding:7px 0 7px 16px;position:relative;border-bottom:1px solid var(--border);line-height:1.6}
+.comp-col ul li::before{content:'→';position:absolute;left:0;color:var(--terra);font-size:.7rem}
+.proof{background:var(--creme);padding:20px 20px 20px 18px;border-left:3px solid var(--terra);margin-top:10px}
+.proof.alt{background:var(--blanc)}
+.proof h4{font-family:'Libre Baskerville',serif;font-size:.95rem;font-weight:700;margin-bottom:8px}
+.proof p{font-size:.79rem;color:#555;line-height:1.7;font-weight:300}
+.proof ul{list-style:none;margin-top:6px}
+.proof ul li{font-size:.77rem;color:#555;font-weight:300;padding:3px 0 3px 14px;position:relative;line-height:1.6}
+.proof ul li::before{content:'·';position:absolute;left:4px;color:var(--terra)}
+.proj-grid{padding:64px;display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border)}
+.proj-card{background:var(--blanc);padding:48px 40px;display:flex;flex-direction:column;gap:20px}
+.proj-card.dark{background:var(--noir)}.proj-card.cream{background:var(--creme)}
+.proj-card.dark .card-title{color:var(--blanc)}.proj-card.dark .card-text{color:rgba(255,255,255,.55)}.proj-card.dark .card-ctx{color:rgba(255,255,255,.35)}
+.proj-block{padding:0 64px 64px}.proj-block h2{font-family:'Libre Baskerville',serif;font-size:1.3rem;margin-bottom:20px}
+.proj-meta-label{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--terra);margin-bottom:4px;font-weight:500}
+.proj-meta-val{font-size:.81rem;color:#555;font-weight:300;line-height:1.6}
+.proj-meta-val.dark{color:rgba(255,255,255,.5)}
+.en-hero{display:grid;grid-template-columns:3fr 2fr;min-height:50vh}
+.en-hero-l{padding:80px 64px;background:var(--noir);display:flex;flex-direction:column;justify-content:center}
+.en-hero-l h1{font-family:'Libre Baskerville',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--blanc);line-height:1.15;letter-spacing:-.02em;margin-bottom:20px;margin-top:12px}
+.en-hero-l p{font-size:.87rem;color:rgba(255,255,255,.45);font-weight:300;line-height:1.8}
+.en-hero-r{background:var(--vert);padding:64px 40px;display:flex;flex-direction:column;justify-content:center}
+.lang-row{border-top:1px solid rgba(255,255,255,.15);padding:16px 0;display:flex;justify-content:space-between;align-items:center}
+.lang-n{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.lang-l{font-family:'Libre Baskerville',serif;font-size:1rem;font-style:italic;color:var(--blanc)}
+.en-sec{padding:64px;border-bottom:1px solid var(--border)}.en-sec.alt{background:var(--creme)}
+.en-sec h2{font-family:'Libre Baskerville',serif;font-size:1.6rem;font-weight:700;margin-bottom:20px;letter-spacing:-.02em;margin-top:8px}
+.en-sec p{font-size:.85rem;line-height:1.9;color:#555;font-weight:300;margin-bottom:12px}
+.en-sec ul{list-style:none;margin-top:6px}
+.en-sec ul li{font-size:.83rem;color:#555;font-weight:300;padding:8px 0 8px 18px;position:relative;border-bottom:1px solid var(--border);line-height:1.6}
+.en-sec ul li::before{content:'→';position:absolute;left:0;color:var(--terra)}
+.en-projs{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);margin-top:24px}
+.en-proj{background:var(--blanc);padding:32px}.en-proj.alt{background:var(--creme)}
+.en-proj h3{font-family:'Libre Baskerville',serif;font-size:1.1rem;font-weight:700;margin-bottom:10px}
+.en-proj p{font-size:.81rem;color:#555;font-weight:300;line-height:1.7}
+.en-next{padding:72px 64px;background:var(--noir);text-align:center}
+.en-next h2{font-family:'Libre Baskerville',serif;font-size:2rem;color:var(--blanc);font-weight:700;margin-bottom:16px;margin-top:8px}
+.en-next p{font-size:.85rem;color:rgba(255,255,255,.45);max-width:500px;margin:0 auto 32px;line-height:1.8}
+.contact-page{padding:64px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+.form{display:flex;flex-direction:column;gap:20px}
+.fg{display:flex;flex-direction:column;gap:6px}
+.fg label{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--terra)}
+.fg input,.fg textarea{border:none;border-bottom:1px solid var(--border);padding:10px 0;font-family:'DM Sans',sans-serif;font-size:.87rem;background:transparent;outline:none;color:var(--noir);transition:border-color .2s}
+.fg input:focus,.fg textarea:focus{border-color:var(--noir)}
+.fg textarea{resize:none;height:120px}
+footer{background:var(--creme);border-top:1px solid var(--border);padding:24px 64px;display:flex;justify-content:space-between;align-items:center}
+footer p{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gris)}
+.fu{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.fu.vis{opacity:1;transform:translateY(0)}
+.fr-only{display:block}.en-only{display:none}
+body.en .fr-only{display:none}
+body.en .en-only{display:block}
+body.en .fr-only-inline{display:none}
+body.en .en-only-inline{display:inline}
+.fr-only-inline{display:inline}.en-only-inline{display:none}
+@media(max-width:900px){
+  nav{padding:0 20px}.nav-links{gap:14px}
+  .hero,.about-band,.skills-block,.en-hero,.contact-grid{grid-template-columns:1fr}
+  .hero-left,.hero-right,.about-band-l,.about-band-r,.skills-l,.skills-r,.en-hero-l,.en-hero-r{padding:48px 24px}
+  .cards-grid,.proj-grid,.en-projs{grid-template-columns:1fr}
+  .comp-body,.s2col{grid-template-columns:1fr}
+  .tl-item{grid-template-columns:1fr;gap:6px}
+  .tl,.comp-sec,.home-section,.proj-grid,.proj-block,.en-sec,.contact-page,.page-hdr,.cv-bar,.comp-intro{padding-left:24px;padding-right:24px}
+  footer{padding:20px 24px;flex-direction:column;gap:8px;text-align:center}
+  .cv-bar{flex-direction:column;gap:16px;align-items:flex-start}
+  .en-hero-r{padding:40px 24px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo" onclick="go('accueil')">Enaé<span>.</span></div>
+  <ul class="nav-links">
+    <li><a onclick="go('accueil')" id="n-accueil" class="active"><span class="fr-only-inline">Accueil</span><span class="en-only-inline">Home</span></a></li>
+    <li><a onclick="go('parcours')" id="n-parcours"><span class="fr-only-inline">Mon parcours</span><span class="en-only-inline">My journey</span></a></li>
+    <li><a onclick="go('competences')" id="n-competences"><span class="fr-only-inline">Compétences BI</span><span class="en-only-inline">BI Skills</span></a></li>
+    <li><a onclick="go('projets')" id="n-projets"><span class="fr-only-inline">Projets</span><span class="en-only-inline">Projects</span></a></li>
+    <li><a onclick="go('english')" id="n-english">Internship</a></li>
+    <li><a onclick="go('contact')" id="n-contact">Contact</a></li>
+  </ul>
+  <button class="lang-btn" onclick="toggleLang()" id="lang-btn">EN</button>
+</nav>
+
+<!-- ACCUEIL -->
+<div id="p-accueil" class="page active">
+  <div class="hero">
+    <div class="hero-left">
+      <span class="eyebrow">Portfolio BUT3 · <span class="fr-only-inline">Business International</span><span class="en-only-inline">International Business</span> · 2026</span>
+      <h1 class="hero-title">
+        <span class="fr-only-inline">Le monde<br>comme<br><em>terrain.</em></span>
+        <span class="en-only-inline">The world<br>as a<br><em>playground.</em></span>
+      </h1>
+      <p class="hero-sub">
+        <span class="fr-only-inline">Étudiante en Business International, passionnée de littérature et de cultures étrangères, j'aborde chaque univers comme une nouvelle langue à apprendre.</span>
+        <span class="en-only-inline">International Business student, passionate about literature and foreign cultures, I approach every new world like a language waiting to be learned.</span>
+      </p>
+      <div class="stats">
+        <div class="stat"><div class="stat-n">3</div><div class="stat-l"><span class="fr-only-inline">ans de BUT TC BI</span><span class="en-only-inline">years of BUT TC BI</span></div></div>
+        <div class="stat"><div class="stat-n">1</div><div class="stat-l"><span class="fr-only-inline">semestre en Allemagne</span><span class="en-only-inline">semester in Germany</span></div></div>
+        <div class="stat"><div class="stat-n">C1</div><div class="stat-l">English : TOEIC</div></div>
+        <div class="stat"><div class="stat-n">4</div><div class="stat-l"><span class="fr-only-inline">compétences BI</span><span class="en-only-inline">BI skills</span></div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <h2 class="hero-name">Enaé Bakour-Jacob</h2>
+      <img src="Photo_Moi.png" alt="Enaé Bakour-Jacob" class="hero-photo">
+      <p class="about-big" style="align-self:center;text-align:center;">
+        <span class="fr-only-inline">"Investie, fiable, et toujours là où ça compte."</span>
+        <span class="en-only-inline">"Committed, reliable, and always where it matters."</span>
+      </p>
+      <p class="about-text">
+        <span class="fr-only-inline">Depuis septembre 2024, je travaille comme assistante commerciale chez KNDS CBRN à Saint-Chamond, une entreprise de défense française qui exporte des équipements de protection CBRN vers des clients gouvernementaux et industriels en Europe et au Moyen-Orient. Un environnement exigeant et très réglementé, qui m'a rendue rigoureuse, précise et véritablement à l'aise dans des processus B2G et B2B complexes. C'est ici que la théorie est devenue pratique.</span>
+        <span class="en-only-inline">Third-year Business Techniques student specialising in International Business at IUT Jean Monnet, Saint-Étienne. A semester at ESB Business School in Germany and an apprenticeship at KNDS CBRN have genuinely changed the way I see international commerce.</span>
+      </p>
+      <p class="about-text">
+        <span class="fr-only-inline">Ce qui m'a attirée vers le commerce international, c'est la même chose que vers la littérature : la nécessité de lire entre les lignes, de comprendre ce qui ne se dit pas, et de trouver les bons mots pour le bon contexte. Que je rédige une offre commerciale en anglais ou que je recommande une stratégie d'entrée sur un marché, la compétence sous-jacente est toujours la même : écouter avant de parler.</span>
+        <span class="en-only-inline">Passionate about literature and languages, I see myself in careers that give as much room to words as to the worlds they describe.</span>
+      </p>
+      <div class="tags">
+        <span class="tag"><span class="fr-only-inline">Commerce International</span><span class="en-only-inline">International Trade</span></span>
+        <span class="tag">Export</span>
+        <span class="tag">Marketing BI</span>
+        <span class="tag"><span class="fr-only-inline">Défense B2G</span><span class="en-only-inline">B2G Defence</span></span>
+        <span class="tag">Allemagne / Germany</span>
+        <span class="tag"><span class="fr-only-inline">Édition</span><span class="en-only-inline">Publishing</span></span>
+      </div>
+      <div class="hero-btns">
+        <button class="btn btn-dark" onclick="go('competences')"><span class="fr-only-inline">Mes compétences</span><span class="en-only-inline">My skills</span></button>
+        <button class="btn btn-outline" onclick="go('contact')"><span class="fr-only-inline">Me contacter</span><span class="en-only-inline">Get in touch</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-band">
+    <blockquote>
+      <span class="fr-only-inline">« Toujours à chercher le fil qui relie les idées entre elles. »</span>
+      <span class="en-only-inline">"Always looking for the thread that connects ideas."</span>
+    </blockquote>
+    <cite>— Enaé Bakour-Jacob</cite>
+  </div>
+
+  <div style="width:100%;height:320px;overflow:hidden">
+    <img src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=1600&q=80" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center">
+  </div>
+
+  <div class="home-section">
+    <div style="margin-bottom:48px">
+      <span class="section-label"><span class="fr-only-inline">Mes réalisations</span><span class="en-only-inline">My work</span></span>
+      <h2 class="section-title"><span class="fr-only-inline">Projets phares</span><span class="en-only-inline">Key projects</span></h2>
+    </div>
+    <div class="cards-grid">
+      <div class="card fu">
+        <span class="card-tag"><span class="fr-only-inline">SAÉ · BUT2 · Compétences 1 & 3</span><span class="en-only-inline">SAÉ · Year 2 · Skills 1 & 3</span></span>
+        <div class="card-title">Velavi : <span class="fr-only-inline">Conquérir le marché allemand</span><span class="en-only-inline">Conquering the German market</span></div>
+        <div class="card-ctx"><span class="fr-only-inline">Cosmétiques bio · Export · Allemagne</span><span class="en-only-inline">Organic cosmetics · Export · Germany</span></div>
+        <p class="card-text">
+          <span class="fr-only-inline">Stratégie d'internationalisation complète pour la marque Velavi : PESTEL, marketing mix "glocal", distribution via pharmacies et spas allemands. Présenté en anglais à un jury.</span>
+          <span class="en-only-inline">Full internationalisation strategy for Velavi: PESTEL analysis, "glocal" marketing mix, distribution via German pharmacies and spas. Presented in English to a professional jury.</span>
+        </p>
+        <div class="card-skills"><span class="chip">PESTEL</span><span class="chip">Business Plan</span><span class="chip">Marketing Mix</span><span class="chip">Internship</span></div>
+      </div>
+      <div class="card fu">
+        <span class="card-tag"><span class="fr-only-inline">SAÉ · BUT3 · Compétences 1, 2 & 3</span><span class="en-only-inline">SAÉ · Year 3 · Skills 1, 2 & 3</span></span>
+        <div class="card-title">Extrem' Lingette : <span class="fr-only-inline">Un lancement de A à Z</span><span class="en-only-inline">A launch from A to Z</span></div>
+        <div class="card-ctx"><span class="fr-only-inline">Hygiène · Export · Logistique · Allemagne</span><span class="en-only-inline">Hygiene · Export · Logistics · Germany</span></div>
+        <p class="card-text">
+          <span class="fr-only-inline">Étude de marché, plan logistique export et stratégie de communication cross-culturelle pour le lancement d'un produit d'hygiène en Allemagne.</span>
+          <span class="en-only-inline">Market study, export logistics plan and cross-cultural communication strategy for launching a hygiene product in Germany.</span>
+        </p>
+        <div class="card-skills"><span class="chip">Export</span><span class="chip"><span class="fr-only-inline">Logistique</span><span class="en-only-inline">Logistics</span></span><span class="chip">Cross-cultural</span><span class="chip">Canva</span></div>
+      </div>
+      <div class="card fu">
+        <span class="card-tag"><span class="fr-only-inline">Alternance · Depuis sept. 2025 · Compétences 2 & 4</span><span class="en-only-inline">Apprenticeship · Since Sept. 2025 · Skills 2 & 4</span></span>
+        <div class="card-title">KNDS CBRN : <span class="fr-only-inline">L'international au quotidien</span><span class="en-only-inline">International trade daily</span></div>
+        <div class="card-ctx">Defence B2G & B2B · Saint-Chamond</div>
+        <p class="card-text">
+          <span class="fr-only-inline">Assistante commerciale au sein d'une entreprise de défense exportant des équipements CBRN vers des gouvernements et industriels à l'international. Suivi du cycle ADV, lecture et analyse d'offres en anglais, observation des procédures douanières pour biens à double usage, et préparation de salons professionnels internationaux.</span>
+          <span class="en-only-inline">Commercial assistant in a defence company exporting CBRN equipment to governments and industrial clients internationally. ADV cycle follow-up, reading and analysing commercial proposals in English, observing customs procedures for dual-use goods, and preparing international trade fairs.</span>
+        </p>
+        <div class="card-skills"><span class="chip">ADV</span><span class="chip">English B2G</span><span class="chip">Export</span></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px">
+      <button class="btn btn-green" onclick="go('projets')"><span class="fr-only-inline">Voir tous mes projets</span><span class="en-only-inline">See all projects</span></button>
+    </div>
+  </div>
+
+  <div class="about-band fu">
+    <div class="about-band-l">
+      <span class="eyebrow"><span class="fr-only-inline">Ce qui me définit</span><span class="en-only-inline">What defines me</span></span>
+      <h2 class="section-title" style="font-size:1.8rem;margin-top:8px"><span class="fr-only-inline">Au-delà des études.</span><span class="en-only-inline">Beyond studies.</span></h2>
+    </div>
+    <div class="about-band-r">
+      <p>
+        <span class="fr-only-inline">Je lis beaucoup — des romans, des essais, de la littérature étrangère. Les langues me fascinent, pas seulement comme outils de communication mais comme façons de penser le monde différemment. C'est ce qui me donne envie de travailler dans l'édition ou la traduction un jour.</span>
+        <span class="en-only-inline">I read a lot — novels, essays, foreign literature. Languages fascinate me not just as communication tools but as ways of thinking about the world differently. That's what draws me towards publishing or translation one day.</span>
+      </p>
+      <p>
+        <span class="fr-only-inline">J'ai aussi été bénévole à l'UNICEF au lycée, une expérience qui compte encore pour moi aujourd'hui.</span>
+        <span class="en-only-inline">I also volunteered with UNICEF during high school, an experience that still means a lot to me today.</span>
+      </p>
+      <button class="btn btn-outline" onclick="go('parcours')" style="margin-top:8px"><span class="fr-only-inline">Mon parcours complet</span><span class="en-only-inline">My full journey</span></button>
+    </div>
+  </div>
+
+  <div class="contact-strip">
+    <div>
+      <h2 class="c-title"><span class="fr-only-inline">Envie d'échanger ?</span><span class="en-only-inline">Want to connect?</span></h2>
+      <p class="c-sub"><span class="fr-only-inline">N'hésitez pas à me contacter pour toute opportunité ou collaboration.</span><span class="en-only-inline">Feel free to reach out for any opportunity or collaboration.</span></p>
+      <button class="btn btn-green" onclick="go('contact')"><span class="fr-only-inline">Me contacter</span><span class="en-only-inline">Get in touch</span></button>
+    </div>
+    <div class="c-items">
+      <div class="c-item"><span class="c-label">Email</span>enaebakj42@gmail.com</div>
+      <div class="c-item"><span class="c-label"><span class="fr-only-inline">Tél.</span><span class="en-only-inline">Phone</span></span>06 15 12 47 70</div>
+      <div class="c-item"><span class="c-label">LinkedIn</span>enae-bakour-jacob-6865982b1</div>
+      <div class="c-item"><span class="c-label"><span class="fr-only-inline">Lieu</span><span class="en-only-inline">Location</span></span>Saint-Étienne / Riorges</div>
+    </div>
+  </div>
+  <footer>
+    <p>© 2026 Enaé Bakour-Jacob · Portfolio BUT3 Business International</p>
+    <p>IUT Jean Monnet · Saint-Étienne</p>
+  </footer>
+</div>
+
+<!-- PARCOURS -->
+<div id="p-parcours" class="page">
+  <div class="page-hdr">
+    <span class="section-label"><span class="fr-only-inline">Mon parcours</span><span class="en-only-inline">My journey</span></span>
+    <h1>
+      <span class="fr-only-inline">Formation, expériences<br><em style="font-style:italic">& ce qui me définit.</em></span>
+      <span class="en-only-inline">Education, experience<br><em style="font-style:italic">& what defines me.</em></span>
+    </h1>
+  </div>
+  <div class="cv-bar">
+    <p><span class="fr-only-inline">Mon CV complet est disponible ci-dessous.</span><span class="en-only-inline">My full CV is available below.</span></p>
+    <div class="cv-bar-btns">
+      <a href="cv-fr.pdf" class="btn btn-green" target="_blank"><span class="fr-only-inline">Consulter mon CV (FR)</span><span class="en-only-inline">View my CV (FR)</span></a>
+      <a href="cv-en.pdf" class="btn btn-outline" target="_blank"><span class="fr-only-inline">Consulter mon CV (EN)</span><span class="en-only-inline">View my CV (EN)</span></a>
+    </div>
+  </div>
+
+  <img src="https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=1400&q=80" alt="Reutlingen" style="width:100%;height:280px;object-fit:cover;display:block">
+
+  <div class="tl">
+    <h2><span class="fr-only-inline">Formation</span><span class="en-only-inline">Education</span></h2>
+    <div class="tl-item fu">
+      <div class="tl-date">2023 – 2026</div>
+      <div>
+        <div class="tl-title"><span class="fr-only-inline">BUT Techniques de Commercialisation : Parcours Business International</span><span class="en-only-inline">BUT Business Techniques : International Business track</span></div>
+        <div class="tl-sub">IUT Jean Monnet · Saint-Étienne</div>
+        <p class="tl-text">
+          <span class="fr-only-inline">Trois ans de formation en Techniques de Commercialisation avec spécialisation Business International. En 1ère année : fondamentaux du commerce, vente, marketing, communication et premiers projets en conditions réelles. En 2ème année : approfondissement de l'internationalisation avec le parcours BI : stratégie export, opérations internationales, marketing cross-culturel. Réalisation de la SAÉ Velavi sur le marché allemand. En 3ème année : alternance chez KNDS CBRN en parallèle des cours, SAÉ Extrem' Lingette et présentation du portfolio de compétences.</span>
+          <span class="en-only-inline">Three years of Business Techniques with an International Business specialisation. Year 1: marketing, sales, communication and first real-world projects. Year 2: export strategy, international operations and cross-cultural marketing, plus SAÉ Velavi on the German market. Year 3: apprenticeship at KNDS CBRN alongside studies, SAÉ Extrem' Lingette and the skills portfolio.</span>
+        </p>
+      </div>
+    </div>
+    <div class="tl-item fu">
+      <div class="tl-date">Sept.–Déc. 2024</div>
+      <div>
+        <div class="tl-title">ESB Business School : <span class="fr-only-inline">Semestre d'échange</span><span class="en-only-inline">Exchange semester</span></div>
+        <div class="tl-sub">Reutlingen · <span class="fr-only-inline">Allemagne</span><span class="en-only-inline">Germany</span></div>
+        <p class="tl-text">
+          <span class="fr-only-inline">Six mois à Reutlingen au cœur de la Bade-Wurtemberg, la région la plus industrielle d'Allemagne. Cours entièrement en anglais dispensés par des professionnels et des académiques internationaux. Environnement multiculturel avec des étudiants venus de plus de 30 pays. J'y ai développé une vraie aisance à travailler dans un contexte interculturel, appris les codes de la négociation à l'allemande — directs, factuels, exigeants — et compris de l'intérieur comment fonctionne le consommateur allemand. Une expérience que j'ai directement appliquée dans mes deux SAÉ sur le marché allemand.</span>
+          <span class="en-only-inline">Six months in Reutlingen, Baden-Württemberg. Courses entirely in English, delivered by international professionals. Students from over 30 countries. I learned the German negotiation style (direct, factual, demanding) and understood the German consumer from the inside. Everything I applied this experience directly to my German-market projects.</span>
+        </p>
+      </div>
+    </div>
+    <div class="tl-item fu">
+      <div class="tl-date">2020 – 2023</div>
+      <div>
+        <div class="tl-title"><span class="fr-only-inline">Baccalauréat général : Mention Bien</span><span class="en-only-inline">General Baccalaureate : With Honours</span></div>
+        <div class="tl-sub">Lycée Jean Puy · Roanne</div>
+        <p class="tl-text">
+          <span class="fr-only-inline">Spécialités : Sciences économiques et sociales et Histoire-Géographie-Géopolitique-Sciences politiques.</span>
+          <span class="en-only-inline">Specialisations: Economics and social sciences, History-Geography-Geopolitics-Political science.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-band"><blockquote>« <span class="fr-only-inline">Des frontières à franchir, des pages à écrire.</span><span class="en-only-inline">Borders to cross, pages to write.</span> »</blockquote></div>
+
+  <div class="tl">
+    <h2><span class="fr-only-inline">Expériences professionnelles</span><span class="en-only-inline">Professional experience</span></h2>
+    <div class="tl-item fu">
+      <div class="tl-date" style="color:var(--vert)"><span class="fr-only-inline">Depuis sept. 2025 · Alternance</span><span class="en-only-inline">Since Sept. 2025 · Apprenticeship</span></div>
+      <div>
+        <div class="tl-title"><span class="fr-only-inline">Assistante commerciale : KNDS CBRN</span><span class="en-only-inline">Sales Assistant : KNDS CBRN</span></div>
+        <div class="tl-sub">Saint-Chamond · <span class="fr-only-inline">Défense CBRN</span><span class="en-only-inline">CBRN Defence</span></div>
+        <p class="tl-text">
+          <span class="fr-only-inline">KNDS CBRN est une filiale du groupe KNDS, l'un des leaders européens de la défense terrestre, spécialisée dans les équipements de protection contre les risques chimiques, biologiques, radiologiques et nucléaires.</span>
+          <span class="en-only-inline">KNDS CBRN is a subsidiary of the KNDS Group, one of Europe's leading land defence groups, specialising in CBRN protection equipment.</span>
+        </p>
+        <ul class="tl-list">
+          <li><span class="fr-only-inline">Suivi administratif et logistique des commandes internationales (cycle ADV)</span><span class="en-only-inline">Administrative and logistical follow-up of international orders (ADV cycle)</span></li>
+          <li><span class="fr-only-inline">Lecture et analyse d'offres commerciales en anglais pour des clients B2G et B2B dans la défense</span><span class="en-only-inline">Reading and analysing commercial proposals in English for B2G and B2B defence clients</span></li>
+          <li><span class="fr-only-inline">Observation des procédures douanières et de contrôle export pour matériel de guerre et biens à double usage</span><span class="en-only-inline">Observing customs and export control procedures for military equipment and dual-use goods</span></li>
+          <li><span class="fr-only-inline">Coordination logistique des salons professionnels</span><span class="en-only-inline">Logistical coordination of trade fairs</span></li>
+          <li><span class="fr-only-inline">Communication quotidienne en anglais avec clients et partenaires</span><span class="en-only-inline">Daily communication in English with clients and partners</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item fu">
+      <div class="tl-date">Nov. 2023–2025</div>
+      <div>
+        <div class="tl-title"><span class="fr-only-inline">Vendeuse-conseillère : EMOTIS</span><span class="en-only-inline">Sales Advisor : EMOTIS</span></div>
+        <div class="tl-sub"><span class="fr-only-inline">Salon de la soie "Silk in Lyon"</span><span class="en-only-inline">"Silk in Lyon" trade show</span></div>
+        <ul class="tl-list">
+          <li><span class="fr-only-inline">Relation client et négociation</span><span class="en-only-inline">Customer relations and negotiation</span></li>
+          <li><span class="fr-only-inline">Conseil et orientation produit selon le profil client</span><span class="en-only-inline">Product advice tailored to customer profile</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-item fu">
+      <div class="tl-date">Avr.–Sept. 2024</div>
+      <div>
+        <div class="tl-title"><span class="fr-only-inline">Caissière : CARREFOUR (CDI étudiant)</span><span class="en-only-inline">Cashier : CARREFOUR (student contract)</span></div>
+        <div class="tl-sub">Mably</div>
+        <ul class="tl-list"><li><span class="fr-only-inline">Gestion des encaissements, accueil et fidélisation client</span><span class="en-only-inline">Cash management, customer welcome and loyalty</span></li></ul>
+      </div>
+    </div>
+    <div class="tl-item fu">
+      <div class="tl-date">Mai–Juill. 2023</div>
+      <div>
+        <div class="tl-title"><span class="fr-only-inline">Bénévole : Municipalité de Riorges</span><span class="en-only-inline">Volunteer : Riorges Municipality</span></div>
+        <div class="tl-sub"><span class="fr-only-inline">Dispositif argent de poche</span><span class="en-only-inline">Pocket money scheme</span></div>
+        <ul class="tl-list"><li><span class="fr-only-inline">Animation à la Fête des Fleurs : organisation événementielle et gestion de stands</span><span class="en-only-inline">Event animation at the Flower Festival: event organisation and stand management</span></li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="skills-block fu">
+    <div class="skills-l">
+      <span class="section-label"><span class="fr-only-inline">Ce qui me définit</span><span class="en-only-inline">What defines me</span></span>
+      <h2 class="section-title" style="font-size:1.7rem;margin:8px 0 20px"><span class="fr-only-inline">Au-delà des études.</span><span class="en-only-inline">Beyond studies.</span></h2>
+      <p style="font-size:.85rem;color:#555;line-height:1.9;font-weight:300;margin-bottom:12px">
+        <span class="fr-only-inline">Je consacre une grande partie de mon temps libre à la lecture, explorant aussi bien des romans et des essais que de la littérature étrangère. Au-delà du plaisir de lire, je suis fascinée par les langues car je les considère comme de véritables fenêtres sur le monde. Pour moi, chaque langue représente une façon unique de réfléchir et de percevoir la réalité, ce qui m'a naturellement poussée à envisager une carrière dans l'édition ou la traduction. Je souhaite mettre cette curiosité et mon sens de l'analyse au service de projets éditoriaux qui permettent de faire voyager les idées et les cultures.</span>
+        <span class="en-only-inline">I spend a lot of my free time reading, exploring everything from novels and essays to foreign literature. Beyond the simple pleasure of reading, I am fascinated by languages because I see them as true windows to the world. To me, every language represents a unique way of thinking and perceiving reality, which naturally led me to consider a career in publishing or translation. I want to use this curiosity and my analytical skills to support editorial projects that help ideas and cultures travel.</span>
+      </p>
+      <p style="font-size:.85rem;color:#555;line-height:1.9;font-weight:300">
+        <span class="fr-only-inline">Mon parcours est également marqué par un engagement concret qui a débuté au lycée, lorsque j'étais bénévole pour l'UNICEF. Cette expérience m'a permis de développer un sens des responsabilités et une capacité à m'investir pour des causes qui me tiennent à cœur. Aujourd'hui, cet engagement reste un moteur important dans ma vie personnelle et professionnelle. Il témoigne de mon envie d'apporter une contribution utile et de m'impliquer pleinement dans tout ce que j'entreprends, avec sérieux et empathie.</span>
+        <span class="en-only-inline">My background is also shaped by a real commitment that began in high school when I volunteered for UNICEF. This experience helped me develop a sense of responsibility and the ability to dedicate myself to causes I care about. Today, this commitment remains an important driver in both my personal and professional life. It shows my desire to make a useful contribution and to fully involve myself in everything I do, with seriousness and empathy.</span>
+      </p>
+    </div>
+    <div class="skills-r">
+      <h3><span class="fr-only-inline">Compétences & Langues</span><span class="en-only-inline">Skills & Languages</span></h3>
+      <div class="s2col">
+        <div class="sg">
+          <h4>Hard skills</h4>
+          <ul><li>MS Office (Excel, PowerPoint, Word)</li><li><span class="fr-only-inline">Analyse de données</span><span class="en-only-inline">Data analysis</span></li><li><span class="fr-only-inline">Études de marché</span><span class="en-only-inline">Market research</span></li><li><span class="fr-only-inline">Gestion de projet</span><span class="en-only-inline">Project management</span></li><li><span class="fr-only-inline">Analyse stratégique</span><span class="en-only-inline">Strategic analysis</span></li><li>Canva</li></ul>
+        </div>
+        <div class="sg">
+          <h4>Soft skills</h4>
+          <ul><li><span class="fr-only-inline">Esprit analytique</span><span class="en-only-inline">Analytical mind</span></li><li><span class="fr-only-inline">Curiosité intellectuelle</span><span class="en-only-inline">Intellectual curiosity</span></li><li><span class="fr-only-inline">Capacité rédactionnelle</span><span class="en-only-inline">Writing skills</span></li><li><span class="fr-only-inline">Travail collaboratif</span><span class="en-only-inline">Team work</span></li><li><span class="fr-only-inline">Rigueur et précision</span><span class="en-only-inline">Rigour and precision</span></li><li><span class="fr-only-inline">Adaptabilité</span><span class="en-only-inline">Adaptability</span></li></ul>
+        </div>
+      </div>
+      <div class="sg" style="margin-top:24px">
+        <h4><span class="fr-only-inline">Langues</span><span class="en-only-inline">Languages</span></h4>
+        <ul>
+          <li><span class="fr-only-inline">Français : C2 : langue maternelle</span><span class="en-only-inline">French: C2 : native language</span></li>
+          <li><span class="fr-only-inline">Anglais : C1 : TOEIC · quotidien chez KNDS CBRN · ESB en anglais</span><span class="en-only-inline">English: C1 : TOEIC · daily at KNDS CBRN · ESB in English</span></li>
+          <li><span class="fr-only-inline">Allemand : A2 : Reutlingen · SAÉ Velavi & Extrem' Lingette</span><span class="en-only-inline">German: A2 : Reutlingen · SAÉ Velavi & Extrem' Lingette</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:64px;border-top:1px solid var(--border)">
+    <span class="section-label"><span class="fr-only-inline">Et après ?</span><span class="en-only-inline">What's next?</span></span>
+    <h2 class="section-title" style="font-size:1.6rem;margin:8px 0 20px"><span class="fr-only-inline">Mon projet professionnel.</span><span class="en-only-inline">My professional project.</span></h2>
+    <p style="font-size:.87rem;color:#555;line-height:1.9;font-weight:300;max-width:660px">
+      <span class="fr-only-inline">Mon projet professionnel est encore en construction. Ce que je sais avec certitude, c'est que je veux travailler à l'intersection des langues, des cultures et des idées. Que ce soit dans le développement export, l'édition internationale ou la traduction, ce qui m'attire c'est la précision des mots et la compréhension des autres.</span>
+      <span class="en-only-inline">My professional project is still taking shape. What I know for certain is that I want to work at the intersection of languages, cultures and ideas. Whether in export development, international publishing or translation, what draws me is precision in words and understanding of others.</span>
+    </p>
+    <p style="font-size:.87rem;color:#555;line-height:1.9;font-weight:300;max-width:660px;margin-top:12px">
+      <span class="fr-only-inline">À court terme, finaliser mon BUT3 BI et consolider mon expérience chez KNDS CBRN. À moyen terme, je me projette vers un Master en commerce international ou en management de l'innovation.</span>
+      <span class="en-only-inline">Short-term: complete my BUT3 BI and consolidate my experience at KNDS CBRN. Medium-term: I'm aiming for a Master's in international business or innovation management.</span>
+    </p>
+  </div>
+  <footer><p>© 2026 Enaé Bakour-Jacob · Portfolio BUT3 Business International</p><button class="btn btn-green" onclick="go('accueil')" style="font-size:.62rem;padding:8px 20px">↑ <span class="fr-only-inline">Accueil</span><span class="en-only-inline">Home</span></button></footer>
+</div>
+
+<!-- COMPÉTENCES PAGE - NOUVELLE VERSION -->
+<!-- COMPÉTENCES PAGE -->
+<div id="p-competences" class="page">
+  <div class="page-hdr">
+    <span class="section-label"><span class="fr-only-inline">Référentiel BUT3 BI</span><span class="en-only-inline">BUT3 BI Framework</span></span>
+    <h1><span class="fr-only-inline">Mes 4 compétences<br><em style="font-style:italic">BUT3 BI.</em></span><span class="en-only-inline">My 4 skills<br><em style="font-style:italic">BUT3 BI.</em></span></h1>
+  </div>
+  <div class="comp-intro">
+    <p><span class="fr-only-inline">Mon autoévaluation des 4 compétences du parcours Business International.</span><span class="en-only-inline">My self-assessment of the 4 International Business skills.</span></p>
+    <div style="margin-top:20px"><a href="portfolio-but3.pdf" class="btn btn-green" target="_blank"><span class="fr-only-inline">Consulter mon portfolio BUT3</span><span class="en-only-inline">View my BUT3 portfolio</span></a></div>
+  </div>
+
+<style>
+.comp-cards{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--noir)}
+.comp-card{padding:48px 40px;cursor:pointer}
+.comp-card.blanc{background:var(--blanc)}
+.comp-card.vert{background:var(--vert)}
+.comp-card-num{font-family:"Libre Baskerville",serif;font-size:4rem;font-weight:700;color:rgba(0,0,0,.12);line-height:1;margin-bottom:-16px}
+.comp-card.vert .comp-card-num{color:rgba(0,0,0,.12)}
+.comp-card-level{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;display:block;margin-bottom:8px}
+.comp-card.blanc .comp-card-level{color:var(--terra)}
+.comp-card.vert .comp-card-level{color:rgba(255,255,255,.7)}
+.comp-card-title{font-family:"Libre Baskerville",serif;font-size:1.4rem;font-weight:700;line-height:1.2;margin-bottom:12px}
+.comp-card.blanc .comp-card-title{color:var(--noir)}
+.comp-card.vert .comp-card-title{color:var(--blanc)}
+.comp-card-desc{font-size:.82rem;line-height:1.7;font-weight:300;margin-bottom:24px}
+.comp-card.blanc .comp-card-desc{color:var(--gris)}
+.comp-card.vert .comp-card-desc{color:rgba(255,255,255,.75)}
+.comp-card-btn{display:inline-block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:8px 20px;border-radius:50px;margin-top:8px}
+.comp-card.blanc .comp-card-btn{background:var(--vert);color:var(--blanc)}
+.comp-card.vert .comp-card-btn{background:var(--blanc);color:var(--vert)}
+.comp-detail{display:none;background:#f4f4f4}
+.comp-detail-hdr{display:flex;justify-content:space-between;align-items:center;padding:40px 48px 24px;background:var(--blanc);border-bottom:2px solid var(--noir)}
+.ac-wrap{border-bottom:2px solid var(--noir);background:var(--blanc)}
+.ac-wrap:last-of-type{border-bottom:none}
+.ac-top{padding:28px 48px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.ac-code{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--terra)}
+.ac-status-ok{font-size:.75rem;background:#e8f5e9;color:#2d5a3d;padding:4px 14px;border-radius:20px;font-weight:600}
+.ac-status-wip{font-size:.75rem;background:#fff3e0;color:#e65100;padding:4px 14px;border-radius:20px;font-weight:600}
+.ac-status-no{font-size:.75rem;background:#fce4ec;color:#b71c1c;padding:4px 14px;border-radius:20px;font-weight:600}
+.ac-title{font-family:"Libre Baskerville",serif;font-size:1.1rem;font-weight:700;padding:0 48px 20px;line-height:1.3}
+.ac-section{margin:0 48px 0;border-radius:4px;overflow:hidden;margin-bottom:12px}
+.ac-section-lbl{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);font-weight:700;padding:9px 14px;background:#efefef;border-left:3px solid var(--terra);display:block}
+.ac-line{font-size:.87rem;color:#444;line-height:1.7;padding:7px 14px;border-bottom:1px solid #e0e0e0;background:#f7f7f7}
+.ac-line:last-child{border-bottom:none}
+.ac-proof{font-size:.82rem;padding:7px 14px;background:#eaf2ec;border-bottom:1px solid #c8dfc9}
+.ac-proof a{color:var(--vert);font-weight:600;text-decoration:none}
+.ac-proof a:hover{text-decoration:underline}
+.ac-proof span{color:#555;font-style:italic}
+.ac-proof:last-child{border-bottom:none}
+.ac-bottom{padding:20px 48px 28px}
+.smart-box{background:var(--noir);padding:40px 48px}
+.smart-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:20px}
+.smart-cell{background:rgba(255,255,255,.05);padding:16px;border-top:2px solid #C9A84C}
+.smart-letter{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#C9A84C;margin-bottom:8px}
+.smart-text{font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.6}
+</style>
+
+  <div class="comp-cards">
+    <div class="comp-card blanc" onclick="toggleComp('c1')">
+      <div class="comp-card-num">01</div>
+      <span class="comp-card-level"><span class="fr-only-inline">Niveau 2 · Chargée de développement import/export</span><span class="en-only-inline">Level 2 · Import/export development officer</span></span>
+      <div class="comp-card-title"><span class="fr-only-inline">Formuler une stratégie à l'international</span><span class="en-only-inline">Formulating an international business strategy</span></div>
+      <div class="comp-card-desc"><span class="fr-only-inline">Formuler une stratégie de commerce à l'international.</span><span class="en-only-inline">Formulating an international business strategy.</span></div>
+      <div class="comp-card-btn"><span class="fr-only-inline">→ Voir le détail</span><span class="en-only-inline">→ View details</span></div>
+    </div>
+    <div class="comp-card vert" onclick="toggleComp('c2')">
+      <div class="comp-card-num">02</div>
+      <span class="comp-card-level"><span class="fr-only-inline">Niveau 1 · Commercialiser une offre simple à l'international</span><span class="en-only-inline">Level 1 · Commercialise a simple international offer</span></span>
+      <div class="comp-card-title"><span class="fr-only-inline">Piloter les opérations à l'international</span><span class="en-only-inline">Managing international operations</span></div>
+      <div class="comp-card-desc"><span class="fr-only-inline">Piloter les opérations à l'international.</span><span class="en-only-inline">Managing international operations.</span></div>
+      <div class="comp-card-btn"><span class="fr-only-inline">→ Voir le détail</span><span class="en-only-inline">→ View details</span></div>
+    </div>
+    <div class="comp-card vert" onclick="toggleComp('c3')">
+      <div class="comp-card-num">03</div>
+      <span class="comp-card-level"><span class="fr-only-inline">Niveau 1 · Préparer l'entretien de vente</span><span class="en-only-inline">Level 1 · Preparing the sales interview</span></span>
+      <div class="comp-card-title"><span class="fr-only-inline">Vendre & communiquer l'offre commerciale</span><span class="en-only-inline">Selling & communicating commercial offers</span></div>
+      <div class="comp-card-desc"><span class="fr-only-inline">Vendre et communiquer l'offre commerciale.</span><span class="en-only-inline">Selling and communicating the commercial offer.</span></div>
+      <div class="comp-card-btn"><span class="fr-only-inline">→ Voir le détail</span><span class="en-only-inline">→ View details</span></div>
+    </div>
+    <div class="comp-card blanc" onclick="toggleComp('c4')">
+      <div class="comp-card-num">04</div>
+      <span class="comp-card-level"><span class="fr-only-inline">Niveau 1 · Construire une offre commerciale simple</span><span class="en-only-inline">Level 1 · Building a simple commercial offer</span></span>
+      <div class="comp-card-title"><span class="fr-only-inline">Conduire les actions marketing</span><span class="en-only-inline">Managing marketing campaigns</span></div>
+      <div class="comp-card-desc"><span class="fr-only-inline">Conduire les actions marketing.</span><span class="en-only-inline">Conducting marketing actions.</span></div>
+      <div class="comp-card-btn"><span class="fr-only-inline">→ Voir le détail</span><span class="en-only-inline">→ View details</span></div>
+    </div>
+  </div>
+
+  <!-- DETAIL 1 -->
+  <div id="c1" class="comp-detail">
+    <div class="comp-detail-hdr">
+      <div>
+        <span style="font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);display:block;margin-bottom:8px"><span class="fr-only-inline">Niveau 2 · Chargée de développement import/export</span><span class="en-only-inline">Level 2 · Import/export development officer</span></span>
+        <h2 style="font-family:'Libre Baskerville',serif;font-size:1.8rem;font-weight:700"><span class="fr-only-inline">Formuler une stratégie à l'international</span><span class="en-only-inline">Formulating an international business strategy</span></h2>
+      </div>
+      <button onclick="toggleComp('c1')" style="background:var(--noir);border:none;color:var(--blanc);padding:10px 24px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase">✕ <span class="fr-only-inline">Fermer</span><span class="en-only-inline">Close</span></button>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC24.01BI</span><span class="ac-status-ok">✅ <span class="fr-only-inline">Acquis</span><span class="en-only-inline">Acquired</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Réaliser de manière structurée un diagnostic export/import et formuler des recommandations</span><span class="en-only-inline">Carry out a structured export/import diagnostic and formulate recommendations</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line"><span class="fr-only-inline">SWOT, PESTEL, Porter's 5 Forces</span><span class="en-only-inline">SWOT, PESTEL, Porter's 5 Forces</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Modes d'entrée sur les marchés internationaux : export direct, distributeur, agent, joint-venture</span><span class="en-only-inline">International market entry modes: direct export, distributor, agent, joint-venture</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Incoterms 2020 et réglementation internationale</span><span class="en-only-inline">Incoterms 2020 and international regulation</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Pratiques interculturelles : ESB Business School, Reutlingen</span><span class="en-only-inline">Cross-cultural business practices : ESB Business School, Reutlingen</span></div>
+        <div class="ac-line">Excel · Canva</div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Analyser un marché international avec des outils stratégiques</span><span class="en-only-inline">Analyse an international market using strategic tools</span></div>
+        <div class="ac-line"><span class="fr-only-inline">SAÉ Extrem' Lingette (BUT3) : étude de marché complète sur le secteur hygiène allemand : analyse PESTEL, exigences réglementaires, paysage concurrentiel</span><span class="en-only-inline">SAÉ Extrem' Lingette (Year 3): complete market study on the German hygiene sector : PESTEL, regulatory requirements, competitive landscape</span></div>
+        <div class="ac-line"><span class="fr-only-inline">SAÉ Velavi (BUT2) : même démarche sur les cosmétiques bio : recommandations présentées en anglais à un jury professionnel</span><span class="en-only-inline">SAÉ Velavi (Year 2): same approach on organic cosmetics : recommendations presented in English to a professional jury</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Rigueur analytique et esprit de synthèse</span><span class="en-only-inline">Analytical rigour and synthesis</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Adaptabilité interculturelle acquise lors de mon immersion à l'ESB</span><span class="en-only-inline">Intercultural adaptability gained during my ESB immersion</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Autonomie et initiative dans la gestion des SAÉ</span><span class="en-only-inline">Autonomy and initiative in managing SAÉ projects</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><a href="SAE_S4_oral_2002__2_.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Velavi</span><span class="en-only-inline">View: SAÉ Velavi</span></a></div>
+        <div class="ac-proof"><a href="extrem-lingette.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Extrem' Lingette</span><span class="en-only-inline">View: SAÉ Extrem' Lingette</span></a></div>
+      </div>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC24.02BI</span><span class="ac-status-ok">✅ <span class="fr-only-inline">Acquis</span><span class="en-only-inline">Acquired</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Collecter les informations de l'environnement international</span><span class="en-only-inline">Collect information on the international environment</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Bases de données commerciales et rapports institutionnels</span><span class="en-only-inline">Commercial databases and institutional reports</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Veille sectorielle et évaluation de la fiabilité des sources</span><span class="en-only-inline">Sector monitoring and source reliability assessment</span></div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">SAÉ Velavi & Extrem' Lingette : données issues de bases commerciales, rapports institutionnels et observation terrain ESB</span><span class="en-only-inline">SAÉ Velavi & Extrem' Lingette: data from commercial databases, institutional reports and ESB field observation</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Curiosité intellectuelle et esprit critique sur la fiabilité des sources</span><span class="en-only-inline">Intellectual curiosity and critical thinking on source reliability</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Autonomie dans la recherche documentaire</span><span class="en-only-inline">Autonomy in desk research</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><a href="SAE_S4_oral_2002__2_.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Velavi</span><span class="en-only-inline">View: SAÉ Velavi</span></a></div>
+        <div class="ac-proof"><a href="extrem-lingette.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Extrem' Lingette</span><span class="en-only-inline">View: SAÉ Extrem' Lingette</span></a></div>
+        <div class="ac-proof"><span>📍 <span class="fr-only-inline">Semestre ESB Business School, Reutlingen (sept.–déc. 2024)</span><span class="en-only-inline">ESB Business School semester, Reutlingen (Sept.–Dec. 2024)</span></span></div>
+      </div>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC24.03BI</span><span class="ac-status-ok">✅ <span class="fr-only-inline">Acquis</span><span class="en-only-inline">Acquired</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Sélectionner les marchés opportuns, à l'import comme à l'export</span><span class="en-only-inline">Select suitable markets, for import as well as export</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Critères de sélection quantitatifs et qualitatifs</span><span class="en-only-inline">Quantitative and qualitative selection criteria</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Analyse coûts-bénéfices et matrice des risques</span><span class="en-only-inline">Cost-benefit analysis and risk matrix</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Indicateurs économiques et culturels</span><span class="en-only-inline">Economic and cultural indicators</span></div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">SAÉ Velavi (BUT2) : justification du choix de l'Allemagne comme marché cible</span><span class="en-only-inline">SAÉ Velavi (Year 2): justified Germany as the target market</span></div>
+        <div class="ac-line"><span class="fr-only-inline">SAÉ Extrem' Lingette (BUT3) : export indirect via distributeur local, justifié par analyse coûts-bénéfices</span><span class="en-only-inline">SAÉ Extrem' Lingette (Year 3): indirect export via local distributor, justified by cost-benefit analysis</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Pensée analytique et prise de décision structurée</span><span class="en-only-inline">Analytical thinking and structured decision-making</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Capacité à justifier mes choix de façon argumentée</span><span class="en-only-inline">Ability to justify choices with clear arguments</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><a href="SAE_S4_oral_2002__2_.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Velavi</span><span class="en-only-inline">View: SAÉ Velavi</span></a></div>
+        <div class="ac-proof"><a href="extrem-lingette.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Extrem' Lingette</span><span class="en-only-inline">View: SAÉ Extrem' Lingette</span></a></div>
+      </div>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC34.01BI</span><span class="ac-status-ok">✅ <span class="fr-only-inline">Acquis</span><span class="en-only-inline">Acquired</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Évaluer le diagnostic export/import et formuler des recommandations</span><span class="en-only-inline">Evaluate the export/import diagnostic and formulate recommendations</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Construction d'un business plan</span><span class="en-only-inline">Business plan construction</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Recommandations stratégiques chiffrées et projections financières</span><span class="en-only-inline">Quantified strategic recommendations and financial projections</span></div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">SAÉ Velavi & Extrem' Lingette : analyses transformées en recommandations stratégiques concrètes intégrées dans des business plans</span><span class="en-only-inline">SAÉ Velavi & Extrem' Lingette: analyses turned into concrete strategic recommendations integrated into business plans</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Présentés en anglais à un jury professionnel</span><span class="en-only-inline">Presented in English to a professional jury</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Autonomie et sens des responsabilités</span><span class="en-only-inline">Autonomy and sense of responsibility</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Pensée stratégique : transformer une analyse en propositions concrètes</span><span class="en-only-inline">Strategic thinking : turning analysis into concrete proposals</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><a href="SAE_S4_oral_2002__2_.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Velavi</span><span class="en-only-inline">View: SAÉ Velavi</span></a></div>
+        <div class="ac-proof"><a href="extrem-lingette.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Extrem' Lingette</span><span class="en-only-inline">View: SAÉ Extrem' Lingette</span></a></div>
+      </div>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC34.02BI</span><span class="ac-status-wip">🔄 <span class="fr-only-inline">En cours</span><span class="en-only-inline">In progress</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Évaluer les marchés internationaux en vue d'une décision d'implantation</span><span class="en-only-inline">Evaluate international markets with a view to an establishment decision</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Analyse géopolitique, culturelle et éthique des marchés</span><span class="en-only-inline">Geopolitical, cultural and ethical market analysis</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Facteurs d'implantation et normes de négociation selon les cultures</span><span class="en-only-inline">Establishment factors and negotiation norms across cultures</span></div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Semestre ESB (Allemagne) : compréhension réelle de la culture d'affaires allemande et des normes de négociation</span><span class="en-only-inline">ESB semester (Germany): developed real understanding of German business culture and negotiation norms</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Application directe dans mes deux SAÉ sur le marché allemand</span><span class="en-only-inline">Direct application in both German-market SAÉ projects</span></div>
+        <div class="ac-line"><span class="fr-only-inline">En cours : pas encore travaillé sur une décision d'implantation réelle</span><span class="en-only-inline">In progress: haven't yet worked on a real establishment decision</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Ouverture interculturelle et adaptabilité</span><span class="en-only-inline">Intercultural openness and adaptability</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Curiosité pour les cultures étrangères</span><span class="en-only-inline">Curiosity for foreign cultures</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><span>📍 <span class="fr-only-inline">Semestre ESB Business School, Reutlingen (sept.–déc. 2024)</span><span class="en-only-inline">ESB Business School semester, Reutlingen (Sept.–Dec. 2024)</span></span></div>
+      </div>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC34.03BI</span><span class="ac-status-wip">🔄 <span class="fr-only-inline">En cours</span><span class="en-only-inline">In progress</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Proposer le mode d'entrée le plus adapté</span><span class="en-only-inline">Propose the most suitable market entry mode</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Modes d'entrée : filiale, joint-venture, agent, distributeur</span><span class="en-only-inline">Entry modes: subsidiary, joint-venture, agent, distributor</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Analyse des risques et critères de sélection du mode d'entrée</span><span class="en-only-inline">Risk analysis and entry mode selection criteria</span></div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">SAÉ Velavi (BUT2) : distribution via agent local, justifiée par analyse pays</span><span class="en-only-inline">SAÉ Velavi (Year 2): distribution via local agent, justified by country analysis</span></div>
+        <div class="ac-line"><span class="fr-only-inline">SAÉ Extrem' Lingette (BUT3) : export indirect via distributeur local, justifié par matrice des risques</span><span class="en-only-inline">SAÉ Extrem' Lingette (Year 3): indirect export via local distributor, justified by risk matrix</span></div>
+        <div class="ac-line"><span class="fr-only-inline">En cours : expérience limitée aux contextes académiques</span><span class="en-only-inline">In progress: experience limited to academic contexts</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Esprit de décision et capacité à justifier mes choix</span><span class="en-only-inline">Decision-making and ability to justify choices</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Autonomie dans l'analyse stratégique</span><span class="en-only-inline">Autonomy in strategic analysis</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><a href="SAE_S4_oral_2002__2_.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Velavi</span><span class="en-only-inline">View: SAÉ Velavi</span></a></div>
+        <div class="ac-proof"><a href="extrem-lingette.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Extrem' Lingette</span><span class="en-only-inline">View: SAÉ Extrem' Lingette</span></a></div>
+      </div>
+    </div>
+
+        <div style="background:var(--blanc);padding:32px 48px;border-bottom:2px solid var(--noir);display:flex;gap:32px;flex-wrap:wrap;align-items:center">
+      <span style="font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gris);font-weight:500"><span class="fr-only-inline">Synthèse</span><span class="en-only-inline">Summary</span></span>
+      <span style="font-size:.95rem;font-weight:600;color:#2d5a3d">✅ 4 <span class="fr-only-inline">acquis</span><span class="en-only-inline">acquired</span></span>
+      <span style="font-size:.95rem;font-weight:600;color:#e65100">🔄 2 <span class="fr-only-inline">en cours</span><span class="en-only-inline">in progress</span></span>
+      <span style="font-size:.95rem;font-weight:600;color:#b71c1c">❌ 0 <span class="fr-only-inline">non acquis</span><span class="en-only-inline">not yet acquired</span></span>
+    </div>
+<div class="smart-box">
+      <div style="font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:#C9A84C;margin-bottom:8px;font-weight:500">🎯 Objectif SMART</div>
+      <h3 style="font-family:'Libre Baskerville',serif;font-size:1.1rem;color:var(--blanc);margin-bottom:20px"><span class="fr-only-inline">AC34.02BI : Évaluer les marchés en vue d'une implantation</span><span class="en-only-inline">AC34.02BI : Evaluate markets for a potential establishment</span></h3>
+      <div class="smart-grid">
+        <div class="smart-cell"><div class="smart-letter">S</div><p class="smart-text"><span class="fr-only-inline">Approfondir l'évaluation des marchés pour une décision d'implantation lors de mon Master.</span><span class="en-only-inline">Deepen market evaluation for establishment decisions during my Master's.</span></p></div>
+        <div class="smart-cell"><div class="smart-letter">M</div><p class="smart-text"><span class="fr-only-inline">Produire une étude d'implantation complète validée par un jury ou tuteur professionnel.</span><span class="en-only-inline">Produce a complete establishment study validated by a jury or professional tutor.</span></p></div>
+        <div class="smart-cell"><div class="smart-letter">A</div><p class="smart-text"><span class="fr-only-inline">Bases analytiques solides acquises via mes SAÉ. Approfondissement sur un contexte plus complexe.</span><span class="en-only-inline">Solid analytical foundations from my SAÉ. Going deeper in a more complex context.</span></p></div>
+        <div class="smart-cell"><div class="smart-letter">R</div><p class="smart-text"><span class="fr-only-inline">Réalisable via un projet de Master, en m'appuyant sur mon expérience chez KNDS CBRN et à l'ESB.</span><span class="en-only-inline">Achievable through a Master's project, building on my KNDS CBRN and ESB experience.</span></p></div>
+        <div class="smart-cell"><div class="smart-letter">T</div><p class="smart-text"><span class="fr-only-inline">D'ici juin 2027.</span><span class="en-only-inline">By June 2027.</span></p></div>
+      </div>
+    </div>
+    <div style="text-align:center;padding:24px;background:#f4f4f4"><button onclick="toggleComp('c1')" class="btn btn-green">↑ <span class="fr-only-inline">Fermer</span><span class="en-only-inline">Close</span></button></div>
+  </div>
+
+  <!-- DETAIL 2 -->
+  <div id="c2" class="comp-detail">
+    <div class="comp-detail-hdr">
+      <div>
+        <span style="font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);display:block;margin-bottom:8px"><span class="fr-only-inline">Niveau 1 · Commercialiser une offre simple à l'international</span><span class="en-only-inline">Level 1 · Commercialise a simple international offer</span></span>
+        <h2 style="font-family:'Libre Baskerville',serif;font-size:1.8rem;font-weight:700"><span class="fr-only-inline">Piloter les opérations à l'international</span><span class="en-only-inline">Managing international operations</span></h2>
+      </div>
+      <button onclick="toggleComp('c2')" style="background:var(--noir);border:none;color:var(--blanc);padding:10px 24px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase">✕ <span class="fr-only-inline">Fermer</span><span class="en-only-inline">Close</span></button>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC25.01BI</span><span class="ac-status-wip">🔄 <span class="fr-only-inline">En cours</span><span class="en-only-inline">In progress</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Gérer les processus de vente et d'achat à l'international</span><span class="en-only-inline">Manage international sales and purchasing processes</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Cycle ADV et gestion des commandes internationales</span><span class="en-only-inline">ADV cycle and international order management</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Coordination avec équipes logistique, finance et technique</span><span class="en-only-inline">Coordination with logistics, finance and technical teams</span></div>
+        <div class="ac-line">Excel · Outlook</div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">KNDS CBRN : gestion d'une partie du cycle ADV pour des clients B2G et B2B internationaux</span><span class="en-only-inline">KNDS CBRN: managing part of the ADV cycle for international B2G and B2B clients</span></div>
+        <div class="ac-line"><span class="fr-only-inline">En cours : mon rôle se concentre sur les flux sortants, les aspects achats entrants restent à développer</span><span class="en-only-inline">In progress: my role focuses on outbound flows, inbound purchasing aspects are yet to be developed</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Rigueur documentaire et organisation</span><span class="en-only-inline">Documentary rigour and organisation</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Capacité à gérer plusieurs tâches simultanément</span><span class="en-only-inline">Ability to manage multiple tasks simultaneously</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><span>📍 <span class="fr-only-inline">Alternance KNDS CBRN (expérience en cours)</span><span class="en-only-inline">KNDS CBRN apprenticeship (ongoing experience)</span></span></div>
+      </div>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC25.02BI</span><span class="ac-status-wip">🔄 <span class="fr-only-inline">En cours</span><span class="en-only-inline">In progress</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Suivre les opérations logistiques à l'international</span><span class="en-only-inline">Monitor international logistics operations</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Incoterms 2020 : EXW, FCA, DAP, CIF</span><span class="en-only-inline">Incoterms 2020: EXW, FCA, DAP, CIF</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Documentation export : facture commerciale, liste de colisage, CMR, EUR.1</span><span class="en-only-inline">Export documentation: commercial invoice, packing list, CMR, EUR.1</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Cadre réglementaire SBDU/DGA pour matériel de guerre et biens à double usage</span><span class="en-only-inline">SBDU/DGA regulatory framework for military equipment and dual-use goods</span></div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">KNDS CBRN : observation des procédures douanières pour matériel de guerre et biens à double usage</span><span class="en-only-inline">KNDS CBRN: observing customs procedures for military equipment and dual-use goods</span></div>
+        <div class="ac-line"><span class="fr-only-inline">SAÉ Extrem' Lingette : plan logistique export complet : prestataire, transport, coûts, calendrier</span><span class="en-only-inline">SAÉ Extrem' Lingette: full export logistics plan : provider, transport, costs, timeline</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Attention aux détails et rigueur documentaire</span><span class="en-only-inline">Attention to detail and documentary rigour</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Adaptation rapide aux processus internes de KNDS CBRN</span><span class="en-only-inline">Quick adaptation to KNDS CBRN's internal processes</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><span>📍 <span class="fr-only-inline">Alternance KNDS CBRN</span><span class="en-only-inline">KNDS CBRN apprenticeship</span></span></div>
+        <div class="ac-proof"><a href="extrem-lingette.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Extrem' Lingette</span><span class="en-only-inline">View: SAÉ Extrem' Lingette</span></a></div>
+      </div>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC25.03BI</span><span class="ac-status-no">❌ <span class="fr-only-inline">Non acquis</span><span class="en-only-inline">Not yet acquired</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Sélectionner les outils de financement adaptés</span><span class="en-only-inline">Select the appropriate financing tools</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Instruments de paiement internationaux : SWIFT, crédit documentaire, remise documentaire, lettre de crédit</span><span class="en-only-inline">International payment instruments: SWIFT, documentary credit, documentary remittance, letter of credit</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Gestion des risques financiers à l'export</span><span class="en-only-inline">Financial risk management in export</span></div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Instruments connus en théorie, non manipulés en conditions réelles</span><span class="en-only-inline">Instruments known in theory, not yet handled in real conditions</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Chez KNDS CBRN, la dimension financière est gérée par le service dédié</span><span class="en-only-inline">At KNDS CBRN, the financial dimension is managed by a dedicated department</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Prudence et rigueur dans l'analyse financière</span><span class="en-only-inline">Prudence and rigour in financial analysis</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Conscience de mes limites et volonté de progresser en Master</span><span class="en-only-inline">Awareness of my limits and will to progress during my Master's</span></div>
+      </div>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC25.04BI</span><span class="ac-status-ok">✅ <span class="fr-only-inline">Acquis</span><span class="en-only-inline">Acquired</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Positionner l'offre en fonction du marché ciblé</span><span class="en-only-inline">Position the offer according to the target market</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Adaptation du mix marketing aux spécificités culturelles</span><span class="en-only-inline">Marketing mix adaptation to cultural specificities</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Pricing international et stratégie "glocal"</span><span class="en-only-inline">International pricing and "glocal" strategy</span></div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">SAÉ Velavi : positionnement "glocal" : packaging traduit, "Made in France" valorisé, prix 12,99€ adapté, distribution via pharmacies et spas</span><span class="en-only-inline">SAÉ Velavi: "glocal" positioning : translated packaging, "Made in France" highlighted, €12.99 pricing, distribution via pharmacies and spas</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Semestre ESB : compréhension directe des attentes des consommateurs allemands</span><span class="en-only-inline">ESB semester: direct understanding of German consumer expectations</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Sensibilité interculturelle et adaptabilité</span><span class="en-only-inline">Intercultural sensitivity and adaptability</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Créativité commerciale dans l'adaptation de l'offre</span><span class="en-only-inline">Commercial creativity in adapting the offer</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><a href="SAE_S4_oral_2002__2_.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Velavi</span><span class="en-only-inline">View: SAÉ Velavi</span></a></div>
+      </div>
+    </div>
+
+        <div style="background:var(--blanc);padding:32px 48px;border-bottom:2px solid var(--noir);display:flex;gap:32px;flex-wrap:wrap;align-items:center">
+      <span style="font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gris);font-weight:500"><span class="fr-only-inline">Synthèse</span><span class="en-only-inline">Summary</span></span>
+      <span style="font-size:.95rem;font-weight:600;color:#2d5a3d">✅ 1 <span class="fr-only-inline">acquis</span><span class="en-only-inline">acquired</span></span>
+      <span style="font-size:.95rem;font-weight:600;color:#e65100">🔄 2 <span class="fr-only-inline">en cours</span><span class="en-only-inline">in progress</span></span>
+      <span style="font-size:.95rem;font-weight:600;color:#b71c1c">❌ 1 <span class="fr-only-inline">non acquis</span><span class="en-only-inline">not yet acquired</span></span>
+    </div>
+<div class="smart-box">
+      <div style="font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:#C9A84C;margin-bottom:8px;font-weight:500">🎯 Objectif SMART</div>
+      <h3 style="font-family:'Libre Baskerville',serif;font-size:1.1rem;color:var(--blanc);margin-bottom:20px"><span class="fr-only-inline">AC25.03BI : Maîtriser les instruments de financement internationaux</span><span class="en-only-inline">AC25.03BI : Master international financing instruments</span></h3>
+      <div class="smart-grid">
+        <div class="smart-cell"><div class="smart-letter">S</div><p class="smart-text"><span class="fr-only-inline">Maîtriser crédit documentaire, remise documentaire et lettre de crédit.</span><span class="en-only-inline">Master documentary credit, documentary remittance and letter of credit.</span></p></div>
+        <div class="smart-cell"><div class="smart-letter">M</div><p class="smart-text"><span class="fr-only-inline">Traiter une opération de financement de A à Z dans mon alternance ou un projet de Master.</span><span class="en-only-inline">Process a financing operation from A to Z within my apprenticeship or a Master's project.</span></p></div>
+        <div class="smart-cell"><div class="smart-letter">A</div><p class="smart-text"><span class="fr-only-inline">Bases théoriques acquises. Mise en pratique dans un contexte professionnel réel.</span><span class="en-only-inline">Theoretical foundations in place. Putting them into practice in a real professional context.</span></p></div>
+        <div class="smart-cell"><div class="smart-letter">R</div><p class="smart-text"><span class="fr-only-inline">Réalisable grâce à mon expérience ADV chez KNDS CBRN et aux modules de financement en Master.</span><span class="en-only-inline">Achievable through my ADV experience at KNDS CBRN and financing modules in the Master's.</span></p></div>
+        <div class="smart-cell"><div class="smart-letter">T</div><p class="smart-text"><span class="fr-only-inline">D'ici juin 2027.</span><span class="en-only-inline">By June 2027.</span></p></div>
+      </div>
+    </div>
+    <div style="text-align:center;padding:24px;background:#f4f4f4"><button onclick="toggleComp('c2')" class="btn btn-green">↑ <span class="fr-only-inline">Fermer</span><span class="en-only-inline">Close</span></button></div>
+  </div>
+
+  <!-- DETAIL 3 -->
+  <div id="c3" class="comp-detail">
+    <div class="comp-detail-hdr">
+      <div>
+        <span style="font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);display:block;margin-bottom:8px"><span class="fr-only-inline">Niveau 1 · Préparer l'entretien de vente</span><span class="en-only-inline">Level 1 · Preparing the sales interview</span></span>
+        <h2 style="font-family:'Libre Baskerville',serif;font-size:1.8rem;font-weight:700"><span class="fr-only-inline">Vendre & communiquer l'offre commerciale</span><span class="en-only-inline">Selling & communicating commercial offers</span></h2>
+      </div>
+      <button onclick="toggleComp('c3')" style="background:var(--noir);border:none;color:var(--blanc);padding:10px 24px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase">✕ <span class="fr-only-inline">Fermer</span><span class="en-only-inline">Close</span></button>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC12.01</span><span class="ac-status-wip">🔄 <span class="fr-only-inline">En cours</span><span class="en-only-inline">In progress</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Préparer un plan de découverte pour profiler le client et découvrir ses besoins</span><span class="en-only-inline">Prepare a discovery plan to profile the client and discover their needs</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Techniques de questionnement</span><span class="en-only-inline">Questioning techniques</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Profilage client et identification des besoins</span><span class="en-only-inline">Customer profiling and needs identification</span></div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">EMOTIS "Silk in Lyon" : première expérience en conditions réelles lors d'un salon professionnel : j'ai accueilli des visiteurs, identifié leurs besoins et les ai orientés vers les produits adaptés, en adaptant mon discours à chaque profil</span><span class="en-only-inline">EMOTIS "Silk in Lyon": first real-conditions experience at a professional trade show : I welcomed visitors, identified their needs and guided them towards suitable products, adapting my speech to each profile</span></div>
+        <div class="ac-line"><span class="fr-only-inline">En cours d'acquisition : mon rôle chez KNDS CBRN ne m'expose pas directement aux entretiens de vente avec des clients : je n'ai pas encore de pratique régulière en contexte B2B professionnel</span><span class="en-only-inline">In progress: my role at KNDS CBRN doesn't directly expose me to client sales interviews : I don't yet have regular practice in a professional B2B context</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Écoute active et empathie naturelle</span><span class="en-only-inline">Natural active listening and empathy</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Curiosité pour comprendre les besoins avant de proposer une solution</span><span class="en-only-inline">Curiosity to understand needs before proposing a solution</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><span>📍 <span class="fr-only-inline">En 1ère année de BUT TC, nous avons travaillé les techniques de découverte client à travers des jeux de rôle et des simulations d'entretiens : j'ai appris à poser les bonnes questions et à adapter mon discours selon le profil du client en face de moi</span><span class="en-only-inline">In Year 1 of BUT TC, we worked on client discovery techniques through role-plays and sales interview simulations : I learned to ask the right questions and adapt my speech according to the client profile in front of me</span></span></div>
+        <div class="ac-proof"><span>📍 <span class="fr-only-inline">Expérience EMOTIS : Salon de la soie "Silk in Lyon"</span><span class="en-only-inline">EMOTIS experience : "Silk in Lyon" trade show</span></span></div>
+      </div>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC12.02</span><span class="ac-status-wip">🔄 <span class="fr-only-inline">En cours</span><span class="en-only-inline">In progress</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Concevoir un argumentaire de vente qui permette de proposer une solution adaptée aux besoins du client</span><span class="en-only-inline">Conceive a sales pitch that fits the client's needs</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Méthode CAB : Caractéristiques, Avantages, Bénéfices</span><span class="en-only-inline">CAB method: Characteristics, Advantages, Benefits</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Construction d'un pitch commercial</span><span class="en-only-inline">Commercial pitch construction</span></div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">SAÉ Velavi & Extrem' Lingette : présentations en anglais devant un jury de professionnels : argumentaires intégrant analyse de marché, positionnement différenciant et projections financières chiffrées. En cours d'acquisition : je n'ai pas encore testé cette compétence face à un vrai client avec de vrais enjeux</span><span class="en-only-inline">SAÉ Velavi & Extrem' Lingette: presentations in English before a professional jury : pitches integrating market analysis, differentiating positioning and quantified financial projections. In progress: not yet tested against a real client with real commercial stakes</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Clarté à l'oral et sens de la persuasion</span><span class="en-only-inline">Oral clarity and persuasion</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Adaptabilité au profil client</span><span class="en-only-inline">Adaptability to client profile</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><span>📍 <span class="fr-only-inline">En 2ème et 3ème année de BUT TC, j'ai conçu des argumentaires complets pour défendre mes projets export : chaque argumentaire était structuré pour répondre aux objections, valoriser les points forts du produit et convaincre un jury professionnel</span><span class="en-only-inline">In Years 2 and 3 of BUT TC, I designed complete pitches to defend my export projects : each structured to address objections, highlight the product's strengths and convince a professional jury</span></span></div>
+        <div class="ac-proof"><a href="SAE_S4_oral_2002__2_.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Velavi</span><span class="en-only-inline">View: SAÉ Velavi</span></a></div>
+        <div class="ac-proof"><a href="extrem-lingette.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Extrem' Lingette</span><span class="en-only-inline">View: SAÉ Extrem' Lingette</span></a></div>
+      </div>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC12.03</span><span class="ac-status-ok">✅ <span class="fr-only-inline">Acquis</span><span class="en-only-inline">Acquired</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Concevoir des OAV efficaces</span><span class="en-only-inline">Design effective sales support tools (OAV)</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line">Canva</div>
+        <div class="ac-line"><span class="fr-only-inline">Mise en page et cohérence visuelle</span><span class="en-only-inline">Layout and visual consistency</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Supports d'argumentation bilingues FR/DE</span><span class="en-only-inline">Bilingual FR/DE argumentation materials</span></div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">SAÉ Velavi & Extrem' Lingette : production de supports commerciaux bilingues FR/DE : fiches produit traduites et adaptées au marché allemand, présentations Canva intégrant les codes visuels locaux, supports d'argumentation utilisés lors des soutenances devant jury</span><span class="en-only-inline">SAÉ Velavi & Extrem' Lingette: production of bilingual FR/DE commercial materials : product sheets translated and adapted to the German market, Canva presentations integrating local visual codes, argumentation materials used during jury presentations</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Créativité et sens esthétique</span><span class="en-only-inline">Creativity and aesthetic sense</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Attention à la cohérence de marque</span><span class="en-only-inline">Attention to brand consistency</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><span>📍 <span class="fr-only-inline">En 1ère, 2ème et 3ème année de BUT TC, j'ai produit des supports de vente variés : de la simple affiche à la présentation orale complète, en passant par des fiches produit et des plans de communication</span><span class="en-only-inline">In Years 1, 2 and 3 of BUT TC, I produced a variety of sales materials : from simple posters to full oral presentations, including product sheets and communication plans</span></span></div>
+        <div class="ac-proof"><a href="SAE_S4_oral_2002__2_.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Velavi : supports commerciaux et présentation</span><span class="en-only-inline">View: SAÉ Velavi : commercial materials and presentation</span></a></div>
+        <div class="ac-proof"><a href="extrem-lingette.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Extrem' Lingette : supports commerciaux et présentation</span><span class="en-only-inline">View: SAÉ Extrem' Lingette : commercial materials and presentation</span></a></div>
+      </div>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC12.04</span><span class="ac-status-wip">🔄 <span class="fr-only-inline">En cours</span><span class="en-only-inline">In progress</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Évaluer la performance commerciale au moyen d'indicateurs</span><span class="en-only-inline">Evaluate commercial performance using indicators</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line"><span class="fr-only-inline">KPIs commerciaux et indicateurs de performance</span><span class="en-only-inline">Commercial KPIs and performance indicators</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Tableaux de suivi Excel et relances</span><span class="en-only-inline">Excel tracking tables and follow-ups</span></div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">KNDS CBRN : suivi des offres commerciales et relances dans Excel</span><span class="en-only-inline">KNDS CBRN: commercial proposal tracking and follow-ups in Excel</span></div>
+        <div class="ac-line"><span class="fr-only-inline">En cours : pas encore accès à l'ensemble des indicateurs de performance de l'entreprise</span><span class="en-only-inline">In progress: don't yet have access to all company performance indicators</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Rigueur et sens de l'analyse</span><span class="en-only-inline">Rigour and analytical mind</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Précision dans la gestion des tableaux Excel</span><span class="en-only-inline">Precision in managing Excel tables</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><span>📍 <span class="fr-only-inline">Alternance KNDS CBRN</span><span class="en-only-inline">KNDS CBRN apprenticeship</span></span></div>
+      </div>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC12.05</span><span class="ac-status-wip">🔄 <span class="fr-only-inline">En cours</span><span class="en-only-inline">In progress</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Recourir aux techniques adaptées à la démarche de prospection</span><span class="en-only-inline">Use techniques adapted to the prospecting approach</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Outils de prospection et CRM</span><span class="en-only-inline">Prospecting tools and CRM</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Emailing commercial et cold calling</span><span class="en-only-inline">Commercial emailing and cold calling</span></div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">En cours d'acquisition : mon rôle actuel chez KNDS CBRN ne comprend pas de prospection active : les clients sont des partenaires gouvernementaux et industriels déjà établis. Je souhaite développer cette compétence dans le cadre de mon Master</span><span class="en-only-inline">In progress: my current role at KNDS CBRN does not include active prospecting : clients are already established government and industrial partners. I wish to develop this skill within my Master's</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Initiative et persévérance à développer</span><span class="en-only-inline">Initiative and perseverance to develop</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Résilience face au refus : un axe de progression assumé</span><span class="en-only-inline">Resilience to rejection: a growth area I fully acknowledge</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><span>📍 <span class="fr-only-inline">En 1ère année de BUT TC, j'ai mené une première démarche de prospection : identification de prospects potentiels, construction d'un argumentaire de premier contact et organisation des relances pour décrocher des rendez-vous</span><span class="en-only-inline">In Year 1 of BUT TC, I carried out a first prospecting approach : identifying potential prospects, building a first-contact pitch and organising follow-ups to secure appointments</span></span></div>
+        <div class="ac-proof"><span>📍 <span class="fr-only-inline">1ère année BUT TC : bloc Vente : première démarche de prospection commerciale</span><span class="en-only-inline">BUT TC Year 1 : Sales unit: first commercial prospecting approach</span></span></div>
+      </div>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC12.06</span><span class="ac-status-ok">✅ <span class="fr-only-inline">Acquis</span><span class="en-only-inline">Acquired</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Recourir aux codes d'expression spécifiques et professionnels</span><span class="en-only-inline">Apply professional communication codes in commercial contexts</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Anglais C1 (TOEIC)</span><span class="en-only-inline">English C1 (TOEIC)</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Registres de communication professionnelle B2B et B2G en anglais</span><span class="en-only-inline">Professional B2B and B2G communication registers in English</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Codes spécifiques au secteur défense internationale</span><span class="en-only-inline">Codes specific to the international defence sector</span></div>
+        <div class="ac-line">Outlook · Microsoft Office</div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">KNDS CBRN : lecture et analyse quotidienne d'offres commerciales en anglais pour des clients internationaux dans la défense</span><span class="en-only-inline">KNDS CBRN: daily reading and analysis of commercial proposals in English for international defence clients</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Cette exposition quotidienne m'a permis de comprendre en profondeur comment une offre est structurée, argumentée et présentée en anglais</span><span class="en-only-inline">This daily exposure allowed me to deeply understand how a professional offer is structured, argued and presented in English</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Pitchs SAÉ Velavi et Extrem' Lingette présentés en anglais devant un jury professionnel</span><span class="en-only-inline">SAÉ Velavi and Extrem' Lingette pitches presented in English before a professional jury</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Adaptabilité et professionnalisme dans la communication en anglais</span><span class="en-only-inline">Adaptability and professionalism in English communication</span></div>
+        <div class="ac-line"><span class="fr-only-inline">TOEIC C1 et usage quotidien de l'anglais chez KNDS CBRN</span><span class="en-only-inline">TOEIC C1 and daily use of English at KNDS CBRN</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><span>📍 <span class="fr-only-inline">Alternance KNDS CBRN</span><span class="en-only-inline">KNDS CBRN apprenticeship</span></span></div>
+        <div class="ac-proof"><a href="SAE_S4_oral_2002__2_.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Velavi</span><span class="en-only-inline">View: SAÉ Velavi</span></a></div>
+      </div>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC13.01</span><span class="ac-status-ok">✅ <span class="fr-only-inline">Acquis</span><span class="en-only-inline">Acquired</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Identifier les cibles et objectifs de communication en tenant compte de la cohérence du mix</span><span class="en-only-inline">Identify communication targets and objectives taking into account the consistency of the mix</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Stratégie de communication alignée sur le mix marketing</span><span class="en-only-inline">Communication strategy aligned with the marketing mix</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Définition des cibles et objectifs de communication</span><span class="en-only-inline">Target and objective definition</span></div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">SAÉ Velavi (BUT2) : construction d'une stratégie de communication complète du brief à l'exécution : définition de la cible (femme urbaine 35-45 ans, éco-consciente), fixation des objectifs (notoriété, préférence de marque), choix des canaux et production des supports, le tout en cohérence avec le mix marketing global</span><span class="en-only-inline">SAÉ Velavi (Year 2): building a full communication strategy from brief to execution : defining the target (urban women 35-45, eco-conscious), setting objectives (awareness, brand preference), choosing channels and producing materials, all in line with the overall marketing mix</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Sens stratégique et cohérence dans les plans de communication</span><span class="en-only-inline">Strategic thinking and consistency in communication plans</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><span>📍 <span class="fr-only-inline">En 1ère année de BUT TC, nous avons appris à définir des cibles de communication et à fixer des objectifs précis avant de lancer la moindre action : j'ai compris que communiquer sans cible claire, c'est dépenser de l'énergie sans résultat</span><span class="en-only-inline">In Year 1 of BUT TC, we learned to define communication targets and set precise objectives before launching any action : I understood that communicating without a clear target means expending energy without results</span></span></div>
+        <div class="ac-proof"><a href="SAE_S4_oral_2002__2_.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Velavi : stratégie de communication</span><span class="en-only-inline">View: SAÉ Velavi : communication strategy</span></a></div>
+      </div>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC13.02</span><span class="ac-status-ok">✅ <span class="fr-only-inline">Acquis</span><span class="en-only-inline">Acquired</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Analyser de manière pertinente les moyens de communication commerciale (médias, hors médias, médias sociaux)</span><span class="en-only-inline">Relevantly analyse commercial communication channels (media, non-media, social media)</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Plan média 360°</span><span class="en-only-inline">360° media plan</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Médias et hors médias, réseaux sociaux</span><span class="en-only-inline">Media and non-media, social networks</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Indicateurs de sélection des supports et communication cross-culturelle</span><span class="en-only-inline">Channel selection indicators and cross-cultural communication</span></div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">SAÉ Velavi & Extrem' Lingette : construction d'un plan média 360° pour le marché allemand : sélection et justification des canaux retenus (pharmacies partenaires, spas, Instagram/Pinterest pour les consommateurs, presse bio spécialisée), avec production des supports correspondants</span><span class="en-only-inline">SAÉ Velavi & Extrem' Lingette: building a 360° media plan for the German market : selection and justification of chosen channels (partner pharmacies, spas, Instagram/Pinterest for consumers, specialist organic press), with production of the corresponding materials</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Esprit critique dans la sélection des canaux</span><span class="en-only-inline">Critical thinking in channel selection</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Sensibilité interculturelle appliquée au-delà de la traduction</span><span class="en-only-inline">Intercultural sensitivity applied beyond translation</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><span>📍 <span class="fr-only-inline">En 1ère année de BUT TC, nous avons analysé les différents moyens de communication disponibles : médias (TV, radio, presse), hors-médias (salons, PLV, événementiel) et réseaux sociaux : pour apprendre à choisir les canaux les plus pertinents selon la cible et le budget</span><span class="en-only-inline">In Year 1 of BUT TC, we analysed the different communication channels available : media (TV, radio, press), non-media (trade shows, POS, events) and social networks : to learn how to choose the most relevant channels according to the target and budget</span></span></div>
+        <div class="ac-proof"><a href="SAE_S4_oral_2002__2_.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Velavi</span><span class="en-only-inline">View: SAÉ Velavi</span></a></div>
+        <div class="ac-proof"><a href="extrem-lingette.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Extrem' Lingette</span><span class="en-only-inline">View: SAÉ Extrem' Lingette</span></a></div>
+      </div>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC13.03</span><span class="ac-status-ok">✅ <span class="fr-only-inline">Acquis</span><span class="en-only-inline">Acquired</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Élaborer des supports simples (Imprimé Sans Adresse, affiches, dossier de sponsoring, ...)</span><span class="en-only-inline">Develop simple materials (unaddressed mail, posters, sponsorship file, ...)</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line">Canva</div>
+        <div class="ac-line"><span class="fr-only-inline">Identité visuelle et supports cross-culturels bilingues FR/DE</span><span class="en-only-inline">Visual identity and cross-cultural bilingual FR/DE materials</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Adaptation du ton et des messages à une culture étrangère</span><span class="en-only-inline">Tone and message adaptation to a foreign culture</span></div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">SAÉ Velavi : production de fiches produit bilingues FR/DE, de visuels Canva et d'un site Wix adapté au marché allemand : grâce à mon semestre en Allemagne, j'ai su aller au-delà de la simple traduction pour adapter le ton, les couleurs et les arguments selon les codes culturels allemands</span><span class="en-only-inline">SAÉ Velavi: production of bilingual FR/DE product sheets, Canva visuals and a Wix website adapted to the German market : thanks to my semester in Germany, I went beyond simple translation to adapt tone, colours and arguments to German cultural codes</span></div>
+        <div class="ac-line"><span class="fr-only-inline">SAÉ Extrem' Lingette : adaptation des supports de communication pour un lancement sur le marché allemand : même logique d'adaptation culturelle appliquée au secteur hygiène</span><span class="en-only-inline">SAÉ Extrem' Lingette: adapting communication materials for a launch on the German market : same cultural adaptation logic applied to the hygiene sector</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Créativité et sensibilité interculturelle</span><span class="en-only-inline">Creativity and intercultural sensitivity</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Sens esthétique et cohérence de marque</span><span class="en-only-inline">Aesthetic sense and brand consistency</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><span>📍 <span class="fr-only-inline">En 1ère année de BUT TC, nous avons appris à produire des supports simples : affiches, ISA (Imprimés Sans Adresse), dossiers de sponsoring : en respectant une charte graphique et les contraintes réglementaires</span><span class="en-only-inline">In Year 1 of BUT TC, we learned to produce simple materials : posters, unaddressed mail, sponsorship files : respecting a visual identity and regulatory constraints</span></span></div>
+        <div class="ac-proof"><a href="SAE_S4_oral_2002__2_.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Velavi</span><span class="en-only-inline">View: SAÉ Velavi</span></a></div>
+        <div class="ac-proof"><a href="extrem-lingette.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Extrem' Lingette</span><span class="en-only-inline">View: SAÉ Extrem' Lingette</span></a></div>
+      </div>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC13.04</span><span class="ac-status-no">❌ <span class="fr-only-inline">Non acquis</span><span class="en-only-inline">Not yet acquired</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Analyser les indicateurs post campagne (impact, efficacité)</span><span class="en-only-inline">Analyse post-campaign indicators (impact, effectiveness)</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Réseaux sociaux, blog, influenceurs, e-réputation</span><span class="en-only-inline">Social media, blog, influencers, e-reputation</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Indicateurs de performance post-campagne : impact, efficacité, ROI</span><span class="en-only-inline">Post-campaign performance indicators: impact, effectiveness, ROI</span></div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Non acquis en conditions réelles : je n'ai pas encore lancé et suivi une campagne digitale complète de A à Z avec des indicateurs de performance : mes missions chez KNDS CBRN ne comprennent pas de volet marketing digital</span><span class="en-only-inline">Not yet acquired in real conditions: I haven't yet launched and monitored a complete digital campaign from A to Z with performance indicators : my missions at KNDS CBRN do not include a digital marketing component</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Esprit analytique et curiosité digitale</span><span class="en-only-inline">Analytical mind and digital curiosity</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Volonté de développer une approche data-driven du marketing</span><span class="en-only-inline">Will to develop a data-driven approach to marketing</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><span>📍 <span class="fr-only-inline">En 1ère année de BUT TC, nous avons abordé la communication digitale : réseaux sociaux, stratégie de contenu, notions d'e-réputation : mais sans aller jusqu'à la mesure des performances post-campagne</span><span class="en-only-inline">In Year 1 of BUT TC, we covered digital communication : social media, content strategy, e-reputation basics : but without going as far as post-campaign performance measurement</span></span></div>
+      </div>
+    </div>
+
+        <div style="background:var(--blanc);padding:32px 48px;border-bottom:2px solid var(--noir);display:flex;gap:32px;flex-wrap:wrap;align-items:center">
+      <span style="font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gris);font-weight:500"><span class="fr-only-inline">Synthèse</span><span class="en-only-inline">Summary</span></span>
+      <span style="font-size:.95rem;font-weight:600;color:#2d5a3d">✅ 5 <span class="fr-only-inline">acquis</span><span class="en-only-inline">acquired</span></span>
+      <span style="font-size:.95rem;font-weight:600;color:#e65100">🔄 3 <span class="fr-only-inline">en cours</span><span class="en-only-inline">in progress</span></span>
+      <span style="font-size:.95rem;font-weight:600;color:#b71c1c">❌ 2 <span class="fr-only-inline">non acquis</span><span class="en-only-inline">not yet acquired</span></span>
+    </div>
+<div class="smart-box">
+      <div style="font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:#C9A84C;margin-bottom:8px;font-weight:500">🎯 Objectif SMART</div>
+      <h3 style="font-family:'Libre Baskerville',serif;font-size:1.1rem;color:var(--blanc);margin-bottom:20px"><span class="fr-only-inline">AC12.05 : Développer les techniques de prospection</span><span class="en-only-inline">AC12.05 : Develop prospecting techniques</span></h3>
+      <div class="smart-grid">
+        <div class="smart-cell"><div class="smart-letter">S</div><p class="smart-text"><span class="fr-only-inline">Développer des techniques de prospection B2B en prenant en charge une mission lors de mon Master.</span><span class="en-only-inline">Develop B2B prospecting techniques by taking on a prospecting mission during my Master's.</span></p></div>
+        <div class="smart-cell"><div class="smart-letter">M</div><p class="smart-text"><span class="fr-only-inline">Réaliser et documenter au moins une campagne de prospection avec indicateurs de résultats.</span><span class="en-only-inline">Carry out and document at least one prospecting campaign with result indicators.</span></p></div>
+        <div class="smart-cell"><div class="smart-letter">A</div><p class="smart-text"><span class="fr-only-inline">Faisable dans le cadre d'une alternance de Master en développement commercial.</span><span class="en-only-inline">Feasible within a Master's apprenticeship in commercial development.</span></p></div>
+        <div class="smart-cell"><div class="smart-letter">R</div><p class="smart-text"><span class="fr-only-inline">Mon expérience EMOTIS et ma connaissance des offres chez KNDS CBRN constituent des bases solides.</span><span class="en-only-inline">My EMOTIS experience and knowledge of commercial proposals at KNDS CBRN provide solid foundations.</span></p></div>
+        <div class="smart-cell"><div class="smart-letter">T</div><p class="smart-text"><span class="fr-only-inline">D'ici décembre 2026.</span><span class="en-only-inline">By December 2026.</span></p></div>
+      </div>
+    </div>
+    <div style="text-align:center;padding:24px;background:#f4f4f4"><button onclick="toggleComp('c3')" class="btn btn-green">↑ <span class="fr-only-inline">Fermer</span><span class="en-only-inline">Close</span></button></div>
+  </div>
+
+  <!-- DETAIL 4 -->
+  <div id="c4" class="comp-detail">
+    <div class="comp-detail-hdr">
+      <div>
+        <span style="font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);display:block;margin-bottom:8px"><span class="fr-only-inline">Niveau 1 · Construire une offre commerciale simple</span><span class="en-only-inline">Level 1 · Building a simple commercial offer</span></span>
+        <h2 style="font-family:'Libre Baskerville',serif;font-size:1.8rem;font-weight:700"><span class="fr-only-inline">Conduire les actions marketing</span><span class="en-only-inline">Managing marketing campaigns</span></h2>
+      </div>
+      <button onclick="toggleComp('c4')" style="background:var(--noir);border:none;color:var(--blanc);padding:10px 24px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase">✕ <span class="fr-only-inline">Fermer</span><span class="en-only-inline">Close</span></button>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC11.01</span><span class="ac-status-ok">✅ <span class="fr-only-inline">Acquis</span><span class="en-only-inline">Acquired</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Analyser l'environnement d'une entreprise en repérant et appréciant les sources d'informations (fiabilité et pertinence)</span><span class="en-only-inline">Analyse a company's environment by identifying and assessing information sources (reliability and relevance)</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line">PESTEL</div>
+        <div class="ac-line"><span class="fr-only-inline">Veille documentaire et évaluation de la fiabilité des sources</span><span class="en-only-inline">Desk research and source reliability assessment</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Contextes économiques, juridiques et commerciaux</span><span class="en-only-inline">Economic, legal and commercial contexts</span></div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">SAÉ Velavi (BUT2) : analyse PESTEL complète du marché allemand des cosmétiques bio : facteurs clés identifiés : pouvoir d'achat élevé, réglementation sur l'emballage LUCID, forte sensibilité écologique des consommateurs allemands</span><span class="en-only-inline">SAÉ Velavi (Year 2): full PESTEL of the German organic cosmetics market : key factors: high purchasing power, LUCID packaging regulation, strong ecological sensitivity</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Esprit critique et curiosité intellectuelle</span><span class="en-only-inline">Critical thinking and intellectual curiosity</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Rigueur dans l'évaluation de la fiabilité des sources</span><span class="en-only-inline">Rigour in assessing source reliability</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><span>📍 <span class="fr-only-inline">En 1ère année de BUT TC, nous avons appris à analyser l'environnement d'une entreprise avec le PESTEL : j'ai découvert comment les facteurs politiques, économiques, sociaux, technologiques, écologiques et légaux influencent les décisions stratégiques d'une entreprise</span><span class="en-only-inline">In Year 1 of BUT TC, we learned to analyse a company's environment using PESTEL : I discovered how political, economic, social, technological, ecological and legal factors influence a company's strategic decisions</span></span></div>
+        <div class="ac-proof"><a href="SAE_S4_oral_2002__2_.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Velavi</span><span class="en-only-inline">View: SAÉ Velavi</span></a></div>
+        <div class="ac-proof"><a href="extrem-lingette.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Extrem' Lingette</span><span class="en-only-inline">View: SAÉ Extrem' Lingette</span></a></div>
+      </div>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC11.02</span><span class="ac-status-ok">✅ <span class="fr-only-inline">Acquis</span><span class="en-only-inline">Acquired</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Mettre en œuvre une étude de marché dans un environnement simple</span><span class="en-only-inline">Implement a market study in a simple environment</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Méthodologie d'étude de marché</span><span class="en-only-inline">Market study methodology</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Analyse quantitative et qualitative</span><span class="en-only-inline">Quantitative and qualitative analysis</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Benchmark concurrentiel et segmentation de la demande</span><span class="en-only-inline">Competitive benchmark and demand segmentation</span></div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">SAÉ Velavi (BUT2) : étude de marché complète sur les cosmétiques bio en Allemagne : profil du consommateur cible, taille du marché, benchmark concurrentiel, identification des opportunités de différenciation et des barrières à l'entrée</span><span class="en-only-inline">SAÉ Velavi (Year 2): complete market study on organic cosmetics in Germany : target consumer profile, market size, competitive benchmark, identification of differentiation opportunities and entry barriers</span></div>
+        <div class="ac-line"><span class="fr-only-inline">SAÉ Extrem' Lingette (BUT3) : même démarche appliquée au secteur hygiène : deux études de marché complètes sur le même pays m'ont permis de développer une vraie maîtrise de cette méthodologie</span><span class="en-only-inline">SAÉ Extrem' Lingette (Year 3): same approach applied to the hygiene sector : two complete market studies on the same country allowed me to develop real mastery of this methodology</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Rigueur et méthode dans la collecte et l'analyse des données</span><span class="en-only-inline">Rigour and method in data collection and analysis</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Capacité à croiser données quantitatives et qualitatives</span><span class="en-only-inline">Ability to combine quantitative and qualitative data</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><span>📍 <span class="fr-only-inline">En 1ère année de BUT TC, nous avons réalisé notre première étude de marché : collecte de données quantitatives et qualitatives, analyse de la demande, identification des concurrents et formulation de conclusions exploitables par une entreprise</span><span class="en-only-inline">In Year 1 of BUT TC, we carried out our first market study : collecting quantitative and qualitative data, analysing demand, identifying competitors and formulating conclusions usable by a company</span></span></div>
+        <div class="ac-proof"><a href="SAE_S4_oral_2002__2_.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Velavi</span><span class="en-only-inline">View: SAÉ Velavi</span></a></div>
+        <div class="ac-proof"><a href="extrem-lingette.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Extrem' Lingette</span><span class="en-only-inline">View: SAÉ Extrem' Lingette</span></a></div>
+      </div>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC11.03</span><span class="ac-status-ok">✅ <span class="fr-only-inline">Acquis</span><span class="en-only-inline">Acquired</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Choisir une cible et un positionnement en fonction de la segmentation du marché</span><span class="en-only-inline">Choose a target and positioning based on market segmentation</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Segmentation STP : Segmentation, Targeting, Positioning</span><span class="en-only-inline">STP segmentation: Segmentation, Targeting, Positioning</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Matrice de positionnement et stratégie de pricing international</span><span class="en-only-inline">Positioning matrix and international pricing strategy</span></div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">SAÉ Velavi (BUT2) : segmentation STP complète du marché allemand : cible principale : femme urbaine 35-45 ans, éco-consciente, habituée des pharmacies et spas. Positionnement "glocal" justifié par l'étude marché. Prix d'écrémage à 12,99€ justifié par le pouvoir d'achat supérieur des consommateurs allemands par rapport aux Français</span><span class="en-only-inline">SAÉ Velavi (Year 2): full STP segmentation of the German market : primary target: urban women 35-45, eco-conscious, pharmacy and spa regulars. Justified "glocal" positioning based on market study. Skimming pricing at €12.99 justified by German consumers' higher purchasing power compared to French consumers</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Sens de la décision et vision stratégique</span><span class="en-only-inline">Decision-making and strategic vision</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Capacité à justifier mes choix de façon argumentée</span><span class="en-only-inline">Ability to justify choices with clear arguments</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><span>📍 <span class="fr-only-inline">En 1ère année de BUT TC, nous avons appris la méthode STP (Segmentation, Targeting, Positioning) : segmenter un marché en groupes homogènes, choisir la cible la plus pertinente et définir comment positionner l'offre par rapport à la concurrence</span><span class="en-only-inline">In Year 1 of BUT TC, we learned the STP method (Segmentation, Targeting, Positioning) : segmenting a market into homogeneous groups, choosing the most relevant target and defining how to position the offer relative to the competition</span></span></div>
+        <div class="ac-proof"><a href="SAE_S4_oral_2002__2_.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Velavi</span><span class="en-only-inline">View: SAÉ Velavi</span></a></div>
+      </div>
+    </div>
+
+    <div class="ac-wrap">
+      <div class="ac-top"><span class="ac-code">AC11.04</span><span class="ac-status-wip">🔄 <span class="fr-only-inline">En cours</span><span class="en-only-inline">In progress</span></span></div>
+      <div class="ac-title"><span class="fr-only-inline">Concevoir une offre cohérente et éthique en termes de produits, de prix, de distribution et de communication</span><span class="en-only-inline">Design a coherent and ethical offer in terms of products, price, distribution and communication</span></div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Connaissances</span><span class="en-only-inline">Knowledge</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Marketing mix 4P : Produit, Prix, Distribution, Communication</span><span class="en-only-inline">4P marketing mix: Product, Price, Place, Promotion</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Cohérence entre les éléments du mix</span><span class="en-only-inline">Consistency across mix elements</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Intégration des enjeux éthiques et écologiques (RSE)</span><span class="en-only-inline">Integration of ethical and ecological issues (CSR)</span></div>
+      </div>
+      <div class="ac-section">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Compétences professionnelles</span><span class="en-only-inline">Professional skills</span></span>
+        <div class="ac-line"><span class="fr-only-inline">SAÉ Velavi & Extrem' Lingette (BUT2 & BUT3) : construction du mix 4P complet pour deux lancements sur le marché allemand : cohérence entre chaque élément vérifiée à chaque étape, avec une attention particulière portée à la dimension éthique sur Velavi (produit bio, packaging recyclable)</span><span class="en-only-inline">SAÉ Velavi & Extrem' Lingette (Years 2 & 3): full 4P mix construction for two launches on the German market : consistency between each element verified at every stage, with particular attention paid to the ethical dimension on Velavi (organic product, recyclable packaging)</span></div>
+        <div class="ac-line"><span class="fr-only-inline">En cours d'acquisition : la dimension RSE et environnementale du mix reste à approfondir : je l'ai abordée sur Velavi mais sans encore la formaliser complètement avec les outils dédiés (analyse du cycle de vie, bilan carbone)</span><span class="en-only-inline">In progress: the CSR and environmental dimension of the mix remains to be deepened : I addressed it on Velavi but without yet fully formalising it with dedicated tools (life cycle analysis, carbon footprint)</span></div>
+      </div>
+      <div class="ac-section" style="margin-bottom:20px">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Qualités personnelles</span><span class="en-only-inline">Personal qualities</span></span>
+        <div class="ac-line"><span class="fr-only-inline">Sens de l'éthique et vision globale</span><span class="en-only-inline">Ethical sense and global vision</span></div>
+        <div class="ac-line"><span class="fr-only-inline">Sensibilité personnelle pour les enjeux environnementaux</span><span class="en-only-inline">Personal sensitivity to environmental issues</span></div>
+      </div>
+
+      <div style="margin:0 48px 20px;border-radius:4px;overflow:hidden">
+        <span class="ac-section-lbl"><span class="fr-only-inline">Preuves</span><span class="en-only-inline">Evidence</span></span>
+        <div class="ac-proof"><span>📍 <span class="fr-only-inline">En 1ère année de BUT TC, nous avons construit nos premiers mix marketing complets : apprendre à rendre cohérents le produit, le prix, la distribution et la communication pour que l'offre soit lisible et crédible aux yeux du client</span><span class="en-only-inline">In Year 1 of BUT TC, we built our first complete marketing mixes : learning to make product, price, distribution and communication consistent so that the offer is clear and credible to the client</span></span></div>
+        <div class="ac-proof"><a href="SAE_S4_oral_2002__2_.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Velavi</span><span class="en-only-inline">View: SAÉ Velavi</span></a></div>
+        <div class="ac-proof"><a href="extrem-lingette.pdf" target="_blank">📎 <span class="fr-only-inline">Consulter : SAÉ Extrem' Lingette</span><span class="en-only-inline">View: SAÉ Extrem' Lingette</span></a></div>
+      </div>
+    </div>
+
+        <div style="background:var(--blanc);padding:32px 48px;border-bottom:2px solid var(--noir);display:flex;gap:32px;flex-wrap:wrap;align-items:center">
+      <span style="font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gris);font-weight:500"><span class="fr-only-inline">Synthèse</span><span class="en-only-inline">Summary</span></span>
+      <span style="font-size:.95rem;font-weight:600;color:#2d5a3d">✅ 3 <span class="fr-only-inline">acquis</span><span class="en-only-inline">acquired</span></span>
+      <span style="font-size:.95rem;font-weight:600;color:#e65100">🔄 1 <span class="fr-only-inline">en cours</span><span class="en-only-inline">in progress</span></span>
+      <span style="font-size:.95rem;font-weight:600;color:#b71c1c">❌ 0 <span class="fr-only-inline">non acquis</span><span class="en-only-inline">not yet acquired</span></span>
+    </div>
+<div class="smart-box">
+      <div style="font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:#C9A84C;margin-bottom:8px;font-weight:500">🎯 Objectif SMART</div>
+      <h3 style="font-family:'Libre Baskerville',serif;font-size:1.1rem;color:var(--blanc);margin-bottom:20px"><span class="fr-only-inline">AC11.04 : Intégrer les dimensions éthiques et RSE dans le mix</span><span class="en-only-inline">AC11.04 : Integrate ethical and CSR dimensions into the mix</span></h3>
+      <div class="smart-grid">
+        <div class="smart-cell"><div class="smart-letter">S</div><p class="smart-text"><span class="fr-only-inline">Intégrer systématiquement les dimensions éthiques et environnementales dans la construction d'un mix marketing.</span><span class="en-only-inline">Systematically integrating ethical and environmental dimensions into marketing mix construction.</span></p></div>
+        <div class="smart-cell"><div class="smart-letter">M</div><p class="smart-text"><span class="fr-only-inline">Produire un mix intégrant une analyse RSE complète, validée dans un projet de Master.</span><span class="en-only-inline">Produce a mix integrating a full CSR analysis, validated within a Master's project.</span></p></div>
+        <div class="smart-cell"><div class="smart-letter">A</div><p class="smart-text"><span class="fr-only-inline">J'ai déjà travaillé sur des produits bio (Velavi). Il s'agit d'aller plus loin dans la formalisation.</span><span class="en-only-inline">I have already worked on organic products (Velavi). It's about going further in formalising this.</span></p></div>
+        <div class="smart-cell"><div class="smart-letter">R</div><p class="smart-text"><span class="fr-only-inline">Réalisable grâce aux cours de RSE en Master et à ma sensibilité personnelle.</span><span class="en-only-inline">Achievable through CSR courses in the Master's and my personal sensitivity.</span></p></div>
+        <div class="smart-cell"><div class="smart-letter">T</div><p class="smart-text"><span class="fr-only-inline">D'ici décembre 2026.</span><span class="en-only-inline">By December 2026.</span></p></div>
+      </div>
+    </div>
+    <div style="text-align:center;padding:24px;background:#f4f4f4"><button onclick="toggleComp('c4')" class="btn btn-green">↑ <span class="fr-only-inline">Fermer</span><span class="en-only-inline">Close</span></button></div>
+  </div>
+
+  <footer><p>© 2026 Enaé Bakour-Jacob · Portfolio BUT3 Business International</p><button class="btn btn-green" onclick="go('accueil')" style="font-size:.62rem;padding:8px 20px">↑ <span class="fr-only-inline">Accueil</span><span class="en-only-inline">Home</span></button></footer>
+</div>
+
+<script>
+function toggleComp(id){
+  var el=document.getElementById(id);
+  if(!el) return;
+  if(el.style.display==='none'||el.style.display===''){
+    el.style.display='block';
+    setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'start'})},100);
+  } else {
+    el.style.display='none';
+  }
+}
+</script>
+
+<!-- PROJETS -->
+<div id="p-projets" class="page">
+  <div class="page-hdr">
+    <span class="section-label"><span class="fr-only-inline">Mes réalisations</span><span class="en-only-inline">My work</span></span>
+    <h1><span class="fr-only-inline">Des projets concrets,<br><em style="font-style:italic">des marchés réels.</em></span><span class="en-only-inline">Concrete projects,<br><em style="font-style:italic">real markets.</em></span></h1>
+  </div>
+  <div class="proj-grid">
+    <div class="proj-card fu">
+      <span class="card-tag"><span class="fr-only-inline">SAÉ · BUT2 · Compétences 1 & 3</span><span class="en-only-inline">SAÉ · Year 2 · Skills 1 & 3</span></span>
+      <div class="card-title">Velavi : <span class="fr-only-inline">Conquérir le marché allemand</span><span class="en-only-inline">Conquering the German market</span></div>
+      <div class="card-ctx"><span class="fr-only-inline">Cosmétiques bio · Export direct · Allemagne</span><span class="en-only-inline">Organic cosmetics · Direct export · Germany</span></div>
+      <p class="card-text"><span class="fr-only-inline">Stratégie complète d'internationalisation pour la marque Velavi.</span><span class="en-only-inline">Full internationalisation strategy for Velavi.</span></p>
+      <div><div class="proj-meta-label"><span class="fr-only-inline">Objectif</span><span class="en-only-inline">Objective</span></div><div class="proj-meta-val"><span class="fr-only-inline">Développer une stratégie complète d'entrée sur le marché allemand.</span><span class="en-only-inline">Develop a complete entry strategy for the German market.</span></div></div>
+      <div><div class="proj-meta-label"><span class="fr-only-inline">Actions</span><span class="en-only-inline">Actions</span></div><div class="proj-meta-val"><span class="fr-only-inline">Analyse PESTEL · Segmentation STP · Marketing mix · Distribution via pharmacies et spas</span><span class="en-only-inline">PESTEL analysis · STP segmentation · Marketing mix · Distribution via pharmacies and spas</span></div></div>
+      <div><div class="proj-meta-label"><span class="fr-only-inline">Résultats</span><span class="en-only-inline">Results</span></div><div class="proj-meta-val"><span class="fr-only-inline">Plan d'internationalisation complet présenté en anglais à un jury.</span><span class="en-only-inline">Full plan presented in English to a professional jury.</span></div></div>
+      <div class="card-skills"><span class="chip">PESTEL</span><span class="chip">Marketing Mix</span><span class="chip">Canva</span></div>
+      <a href="SAE_S4_oral_2002__2_.pdf" class="btn btn-green" target="_blank" style="align-self:flex-start"><span class="fr-only-inline">Consulter →</span><span class="en-only-inline">View →</span></a>
+    </div>
+    <div class="proj-card cream fu">
+      <span class="card-tag"><span class="fr-only-inline">SAÉ · BUT3 · Compétences 1, 2 & 3</span><span class="en-only-inline">SAÉ · Year 3 · Skills 1, 2 & 3</span></span>
+      <div class="card-title">Extrem' Lingette</div>
+      <div class="card-ctx"><span class="fr-only-inline">Hygiène · Export · Allemagne</span><span class="en-only-inline">Hygiene · Export · Germany</span></div>
+      <p class="card-text"><span class="fr-only-inline">Projet complet de lancement d'un produit d'hygiène sur le marché allemand.</span><span class="en-only-inline">Full project to launch a hygiene product on the German market.</span></p>
+      <div><div class="proj-meta-label"><span class="fr-only-inline">Actions</span><span class="en-only-inline">Actions</span></div><div class="proj-meta-val"><span class="fr-only-inline">Étude de marché · Logistique export · Communication cross-culturelle</span><span class="en-only-inline">Market study · Export logistics · Cross-cultural communication</span></div></div>
+      <div class="card-skills"><span class="chip">Export</span><span class="chip">Logistics</span><span class="chip">Cross-cultural</span></div>
+      <a href="extrem-lingette.pdf" class="btn btn-green" target="_blank" style="align-self:flex-start"><span class="fr-only-inline">Consulter →</span><span class="en-only-inline">View →</span></a>
+    </div>
+    <div class="proj-card dark fu" style="grid-column:1/-1">
+      <span class="card-tag"><span class="fr-only-inline">Alternance · Depuis sept. 2025</span><span class="en-only-inline">Apprenticeship · Since Sept. 2025</span></span>
+      <div class="card-title" style="color:var(--blanc)">KNDS CBRN</div>
+      <div class="card-ctx" style="color:rgba(255,255,255,.35)">Defence B2G & B2B · Saint-Chamond</div>
+      <p class="card-text" style="color:rgba(255,255,255,.55)"><span class="fr-only-inline">Assistante commerciale dans une entreprise de défense exportant des équipements CBRN à l'international. Suivi ADV, lecture quotidienne d'offres en anglais, observation des procédures douanières export, préparation de salons professionnels internationaux et communication quotidienne en anglais avec clients et partenaires.</span><span class="en-only-inline">Commercial assistant in a defence company exporting CBRN equipment internationally. ADV follow-up, daily reading of proposals in English, observing export customs procedures, preparing international trade fairs and daily communication in English with clients and partners.</span></p>
+      <div class="card-skills">
+        <span class="chip" style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.6);background:rgba(255,255,255,.05)">ADV</span>
+        <span class="chip" style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.6);background:rgba(255,255,255,.05)">English B2G</span>
+        <span class="chip" style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.6);background:rgba(255,255,255,.05)">Export</span>
+      </div>
+    </div>
+  </div>
+  <div class="proj-block">
+    <h2><span class="fr-only-inline">Mes références</span><span class="en-only-inline">My references</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#111;margin-top:24px">
+      <div style="background:#1a1a1a;padding:32px;min-height:240px;position:relative">
+        <div style="font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#c1714f;margin-bottom:10px">Film · 2006</div>
+        <div style="font-family:'Libre Baskerville',serif;font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:6px"><span class="fr-only-inline">Le Diable s'habille en Prada</span><span class="en-only-inline">The Devil Wears Prada</span></div>
+        <div style="font-size:.7rem;color:rgba(255,255,255,.35);margin-bottom:14px">David Frankel</div>
+        <div style="font-family:'Libre Baskerville',serif;font-size:.78rem;font-style:italic;color:rgba(255,255,255,.5);border-left:2px solid #c1714f;padding-left:12px"><span class="fr-only-inline">"Un seul regard suffit à comprendre où se joue vraiment le pouvoir."</span><span class="en-only-inline">"A single glance is enough to understand where power truly lies."</span></div>
+      </div>
+      <div style="background:#1a1a1a;padding:32px;min-height:240px;position:relative">
+        <div style="font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#c1714f;margin-bottom:10px"><span class="fr-only-inline">Roman · 2006</span><span class="en-only-inline">Novel · 2006</span></div>
+        <div style="font-family:'Libre Baskerville',serif;font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:6px"><span class="fr-only-inline">L'Élégance du hérisson</span><span class="en-only-inline">The Elegance of the Hedgehog</span></div>
+        <div style="font-size:.7rem;color:rgba(255,255,255,.35);margin-bottom:14px">Muriel Barbery</div>
+        <div style="font-family:'Libre Baskerville',serif;font-size:.78rem;font-style:italic;color:rgba(255,255,255,.5);border-left:2px solid #c1714f;padding-left:12px"><span class="fr-only-inline">"La beauté n'appartient à personne et appartient à tout le monde."</span><span class="en-only-inline">"Beauty belongs to no one and to everyone."</span></div>
+      </div>
+      <div style="background:#1a1a1a;padding:32px;min-height:240px;position:relative">
+        <div style="font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#c1714f;margin-bottom:10px">Film · 2003</div>
+        <div style="font-family:'Libre Baskerville',serif;font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:6px">Lost in Translation</div>
+        <div style="font-size:.7rem;color:rgba(255,255,255,.35);margin-bottom:14px">Sofia Coppola</div>
+        <div style="font-family:'Libre Baskerville',serif;font-size:.78rem;font-style:italic;color:rgba(255,255,255,.5);border-left:2px solid #c1714f;padding-left:12px"><span class="fr-only-inline">"Les mots manquent. Quelque chose passe quand même."</span><span class="en-only-inline">"Words fall short. Something still gets through."</span></div>
+      </div>
+      <div style="background:#1a1a1a;padding:32px;min-height:240px;position:relative">
+        <div style="font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#c1714f;margin-bottom:10px"><span class="fr-only-inline">Roman · 2013</span><span class="en-only-inline">Novel · 2013</span></div>
+        <div style="font-family:'Libre Baskerville',serif;font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:6px">Americanah</div>
+        <div style="font-size:.7rem;color:rgba(255,255,255,.35);margin-bottom:14px">Chimamanda Ngozi Adichie</div>
+        <div style="font-family:'Libre Baskerville',serif;font-size:.78rem;font-style:italic;color:rgba(255,255,255,.5);border-left:2px solid #c1714f;padding-left:12px">"Race is not biology. Race is sociology."</div>
+      </div>
+      <div style="background:#1a1a1a;padding:32px;min-height:240px;position:relative">
+        <div style="font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#c1714f;margin-bottom:10px"><span class="fr-only-inline">Série · 2020</span><span class="en-only-inline">Series · 2020</span></div>
+        <div style="font-family:'Libre Baskerville',serif;font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:6px">Emily in Paris</div>
+        <div style="font-size:.7rem;color:rgba(255,255,255,.35);margin-bottom:14px">Darren Star</div>
+        <div style="font-family:'Libre Baskerville',serif;font-size:.78rem;font-style:italic;color:rgba(255,255,255,.5);border-left:2px solid #c1714f;padding-left:12px"><span class="fr-only-inline">"S'adapter, c'est apprendre à penser autrement."</span><span class="en-only-inline">"Adapting means learning to think differently."</span></div>
+      </div>
+      <div style="background:#1a1a1a;padding:32px;min-height:240px;position:relative">
+        <div style="font-size:.6rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#c1714f;margin-bottom:10px"><span class="fr-only-inline">Roman · 1872</span><span class="en-only-inline">Novel · 1872</span></div>
+        <div style="font-family:'Libre Baskerville',serif;font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:6px"><span class="fr-only-inline">Le Tour du monde en 80 jours</span><span class="en-only-inline">Around the World in 80 Days</span></div>
+        <div style="font-size:.7rem;color:rgba(255,255,255,.35);margin-bottom:14px">Jules Verne</div>
+        <div style="font-family:'Libre Baskerville',serif;font-size:.78rem;font-style:italic;color:rgba(255,255,255,.5);border-left:2px solid #c1714f;padding-left:12px"><span class="fr-only-inline">"Le monde appartient à ceux qui le parcourent."</span><span class="en-only-inline">"The world belongs to those who explore it."</span></div>
+      </div>
+    </div>
+  </div>
+  <footer><p>© 2026 Enaé Bakour-Jacob · Portfolio BUT3 Business International</p><button class="btn btn-green" onclick="go('accueil')" style="font-size:.62rem;padding:8px 20px">↑ <span class="fr-only-inline">Accueil</span><span class="en-only-inline">Home</span></button></footer>
+</div>
+
+<!-- ENGLISH PAGE -->
+<div id="p-english" class="page">
+
+  <!-- HERO -->
+  <div class="en-hero">
+    <div class="en-hero-l">
+      <span class="eyebrow"><span class="fr-only-inline">Mon alternance</span><span class="en-only-inline">My Internship</span></span>
+      <h1><span class="fr-only-inline">Le monde comme terrain,<br><em style="font-style:italic;color:var(--terra)">les mots comme vocation.</em></span><span class="en-only-inline">The world as a playground,<br><em style="font-style:italic;color:var(--terra)">words as a calling.</em></span></h1>
+      <p><span class="fr-only-inline">« Chaque marché est une nouvelle langue. Je suis là pour toutes les apprendre. »</span><span class="en-only-inline">"Every market is a new language. I'm here to learn them all."</span></p>
+    </div>
+    <div class="en-hero-r">
+      <div class="lang-row"><span class="lang-n"><span class="fr-only-inline">Français</span><span class="en-only-inline">French</span></span><span class="lang-l">C2 : <span class="fr-only-inline">Langue maternelle</span><span class="en-only-inline">Native</span></span></div>
+      <div class="lang-row"><span class="lang-n"><span class="fr-only-inline">Anglais</span><span class="en-only-inline">English</span></span><span class="lang-l">C1 : TOEIC</span></div>
+      <div class="lang-row"><span class="lang-n"><span class="fr-only-inline">Allemand</span><span class="en-only-inline">German</span></span><span class="lang-l">A2 : ESB</span></div>
+      <div style="margin-top:32px"><a href="cv-en.pdf" target="_blank" style="display:inline-block;background:var(--blanc);color:var(--vert);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:12px 28px;border-radius:50px;text-decoration:none;font-family:'DM Sans',sans-serif">Consult my CV →</a></div>
+    </div>
+  </div>
+
+  <!-- 1. COMPANY + HOW I GOT HERE deux colonnes -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;background:var(--blanc);border-bottom:1px solid var(--border)">
+    <div style="padding:64px;border-right:1px solid var(--border)">
+      <span class="section-label"><span class="fr-only-inline">L'entreprise</span><span class="en-only-inline">The company</span></span>
+      <h2 style="font-family:'Libre Baskerville',serif;font-size:1.5rem;font-weight:700;margin:12px 0 20px;line-height:1.2"><span class="fr-only-inline">KNDS CBRN protéger contre les menaces invisibles.</span><span class="en-only-inline">KNDS CBRN defending people from invisible threats.</span></h2>
+      <p style="font-size:.85rem;line-height:1.9;color:#555;font-weight:300;margin-bottom:12px"><span class="fr-only-inline">Entreprise française de défense basée à Saint-Chamond, spécialisée dans la protection NRBC (nucléaire, radiologique, biologique, chimique). Filiale du groupe KNDS, environ 100 salariés, exportations vers des gouvernements et clients industriels en Europe et au Moyen-Orient.</span><span class="en-only-inline">French defence company based in Saint-Chamond, specialising in CBRN protection. Subsidiary of the KNDS Group, around 100 employees, exporting to governments and industrial clients across Europe and the Middle East.</span></p>
+      <p style="font-size:.85rem;line-height:1.9;color:#555;font-weight:300"><span class="fr-only-inline">Sa gamme couvre toute la chaîne NRBC : détection, protection individuelle et collective, décontamination. Produits phares : masque FRGM 48, cagoule EVATOX, véhicules de décontamination. Marché mondial en croissance de près de 6% par an.</span><span class="en-only-inline">Its range covers the full CBRN chain: detection, protection, decontamination. Flagship products: FRGM 48 gas mask, EVATOX hood, decontamination vehicles. Global market growing at nearly 6% per year.</span></p>
+    </div>
+    <div style="padding:64px;background:var(--creme)">
+      <span class="section-label"><span class="fr-only-inline">Comment j'y suis arrivée</span><span class="en-only-inline">How I got here</span></span>
+      <h2 style="font-family:'Libre Baskerville',serif;font-size:1.5rem;font-weight:700;margin:12px 0 20px;line-height:1.2"><span class="fr-only-inline">Un secteur que je n'avais pas prévu d'aimer.</span><span class="en-only-inline">A sector I never expected to love.</span></h2>
+      <p style="font-size:.85rem;line-height:1.9;color:#555;font-weight:300;margin-bottom:12px"><span class="fr-only-inline">J'ai trouvé cette alternance via une annonce en ligne, avec l'aide d'une amie pour entrer en contact, ce qui est assez courant dans ce milieu. J'ai postulé au poste d'assistante commerciale et commencé en septembre 2024.</span><span class="en-only-inline">I found this apprenticeship through an online job posting, with a friend's help to get in contact, which is fairly common in this industry. I applied for the commercial assistant role and started in September 2024.</span></p>
+      <p style="font-size:.85rem;line-height:1.9;color:#555;font-weight:300"><span class="fr-only-inline">Je ne connaissais pas du tout le secteur. Ce que j'ai découvert est bien plus rigoureux et fascinant que ce que j'imaginais. Ce que j'aime le plus : la combinaison entre précision et enjeux réels, une équipe chaleureuse et une tutrice adorable.</span><span class="en-only-inline">I knew nothing about this sector. What I found was far more rigorous and fascinating than expected. What I love most: the combination of precision and real stakes, a warm team and a brilliant tutor.</span></p>
+      <blockquote style="font-family:'Libre Baskerville',serif;font-size:.95rem;font-style:italic;color:var(--terra);border-left:3px solid var(--terra);padding-left:16px;margin-top:20px"><span class="fr-only-inline">« Je n'avais jamais touché un masque à gaz avant. Maintenant j'en expédie aux gouvernements. »</span><span class="en-only-inline">"I had never touched a gas mask before. Now I ship them to governments."</span></blockquote>
+    </div>
+  </div>
+
+  <!-- CITATION FOND NOIR -->
+  <div style="background:var(--noir);padding:48px 64px;text-align:center">
+    <blockquote style="font-family:'Libre Baskerville',serif;font-size:clamp(1.2rem,2.5vw,1.7rem);font-style:italic;color:var(--blanc);line-height:1.5"><span class="fr-only-inline">« Derrière chaque équipement, il y a un soldat, un pompier, un intervenant en crise. Ça change la façon de travailler. »</span><span class="en-only-inline">"Behind every piece of equipment is a soldier, a firefighter, a crisis responder. That changes the way you work."</span></blockquote>
+  </div>
+
+  <!-- 2. MISSIONS cartes -->
+  <div style="padding:64px;background:var(--blanc);border-bottom:1px solid var(--border)">
+    <span class="section-label"><span class="fr-only-inline">Mes missions principales</span><span class="en-only-inline">My major missions</span></span>
+    <h2 style="font-family:'Libre Baskerville',serif;font-size:1.6rem;font-weight:700;margin:12px 0 36px"><span class="fr-only-inline">Suivi commercial, salons et soutien au quotidien.</span><span class="en-only-inline">Commercial tracking, trade fairs and daily support.</span></h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border)">
+      <div style="background:var(--blanc);padding:32px">
+        <div style="font-size:1.8rem;margin-bottom:12px">📊</div>
+        <h3 style="font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:700;margin-bottom:10px"><span class="fr-only-inline">Tableaux de suivi</span><span class="en-only-inline">Commercial tracking</span></h3>
+        <p style="font-size:.82rem;color:#555;line-height:1.8;font-weight:300"><span class="fr-only-inline">Attribution des numéros de référence internes aux offres et commandes, mise à jour et vérification quotidiennes. Une vue en temps réel sur toute l'activité commerciale de l'entreprise.</span><span class="en-only-inline">Assigning internal reference numbers to offers and orders, daily verification and updates. A real-time view of the company's entire commercial activity.</span></p>
+      </div>
+      <div style="background:var(--creme);padding:32px">
+        <div style="font-size:1.8rem;margin-bottom:12px">✉️</div>
+        <h3 style="font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:700;margin-bottom:10px"><span class="fr-only-inline">Offres en anglais</span><span class="en-only-inline">Proposals in English</span></h3>
+        <p style="font-size:.82rem;color:#555;line-height:1.8;font-weight:300"><span class="fr-only-inline">Rédaction et suivi d'offres commerciales en anglais pour des clients B2G et B2B internationaux dans le secteur défense. Communication quotidienne avec clients et partenaires.</span><span class="en-only-inline">Drafting and following up on commercial proposals in English for international B2G and B2B defence clients. Daily communication with clients and partners.</span></p>
+      </div>
+      <div style="background:var(--blanc);padding:32px">
+        <div style="font-size:1.8rem;margin-bottom:12px">🌍</div>
+        <h3 style="font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:700;margin-bottom:10px"><span class="fr-only-inline">Salons internationaux</span><span class="en-only-inline">International trade fairs</span></h3>
+        <p style="font-size:.82rem;color:#555;line-height:1.8;font-weight:300"><span class="fr-only-inline">Coordination logistique pour la participation aux salons professionnels : gestion du matériel, documentation, transport. Participation à Eurosatory (juin 2025, 1 semaine sur le stand).</span><span class="en-only-inline">Logistics coordination for trade fair participation: material management, documentation, transport. Participated in Eurosatory (June 2025, one full week on the stand).</span></p>
+      </div>
+      <div style="background:var(--creme);padding:32px">
+        <div style="font-size:1.8rem;margin-bottom:12px">📋</div>
+        <h3 style="font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:700;margin-bottom:10px"><span class="fr-only-inline">Conformité export</span><span class="en-only-inline">Export compliance</span></h3>
+        <p style="font-size:.82rem;color:#555;line-height:1.8;font-weight:300"><span class="fr-only-inline">Observation et soutien aux procédures de contrôle export pour les matériels de guerre et biens à double usage dans le cadre réglementaire SBDU/DGA.</span><span class="en-only-inline">Observing and supporting export control procedures for military equipment and dual-use goods within the SBDU/DGA regulatory framework.</span></p>
+      </div>
+      <div style="background:var(--blanc);padding:32px;grid-column:span 2">
+        <div style="font-size:1.8rem;margin-bottom:12px">🤝</div>
+        <h3 style="font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:700;margin-bottom:10px"><span class="fr-only-inline">Soutien à ma tutrice</span><span class="en-only-inline">Supporting my tutor</span></h3>
+        <p style="font-size:.82rem;color:#555;line-height:1.8;font-weight:300"><span class="fr-only-inline">Soutien quotidien à ma tutrice sur une grande variété de tâches, avec une forte capacité d'adaptation aux priorités mouvantes dans un environnement professionnel exigeant.</span><span class="en-only-inline">Daily support to my tutor across a wide range of tasks, adapting quickly to shifting priorities in a demanding professional environment.</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. KEY MISSION -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)">
+    <div style="background:var(--vert);padding:64px;display:flex;flex-direction:column;justify-content:center">
+      <span class="section-label" style="color:rgba(255,255,255,.6)"><span class="fr-only-inline">Mission clé</span><span class="en-only-inline">Key mission</span></span>
+      <h2 style="font-family:'Libre Baskerville',serif;font-size:1.6rem;font-weight:700;color:var(--blanc);margin:12px 0 20px;line-height:1.2"><span class="fr-only-inline">Expédier du matériel militaire pour un salon, ce n'est pas comme envoyer des brochures.</span><span class="en-only-inline">Shipping military equipment to a trade fair is nothing like shipping a brochure.</span></h2>
+      <p style="font-size:.85rem;color:rgba(255,255,255,.75);line-height:1.9;font-weight:300;margin-bottom:16px"><span class="fr-only-inline">Eurosatory, BSDA, NCT, Milipol, CBRN Summit... La préparation de ces salons est la mission qui m'a le plus marquée. Elle soulève une vraie problématique :</span><span class="en-only-inline">Eurosatory, BSDA, NCT, Milipol, CBRN Summit... Preparing these shows is the mission that marked me most. It raises a real question:</span></p>
+      <blockquote style="font-family:'Libre Baskerville',serif;font-size:1rem;font-style:italic;color:var(--blanc);border-left:3px solid var(--terra);padding-left:16px;line-height:1.7"><span class="fr-only-inline">Comment préparer et expédier du matériel militaire et NRBC pour des salons internationaux, dans le respect des contraintes réglementaires spécifiques au secteur défense ?</span><span class="en-only-inline">How do you prepare and ship military and CBRN equipment to international trade fairs, within the specific export control constraints of the defence sector?</span></blockquote>
+    </div>
+    <div style="background:var(--blanc);padding:64px">
+      <span class="section-label"><span class="fr-only-inline">Ce qui m'a surprise</span><span class="en-only-inline">What surprised me</span></span>
+      <p style="font-size:.85rem;line-height:1.9;color:#555;font-weight:300;margin:16px 0"><span class="fr-only-inline">Envoyer un masque à gaz à l'étranger, même pour une démonstration, nécessite des licences d'exportation, une autorisation CIEEMG et le respect du cadre DGA/SBDU. Le matériel est soumis aux mêmes contraintes réglementaires que les équipements vendus aux gouvernements.</span><span class="en-only-inline">Sending a gas mask abroad, even for a demonstration, requires export licences, CIEEMG authorisation and compliance with the DGA/SBDU framework. The material is subject to the same regulatory constraints as equipment sold to governments.</span></p>
+      <span class="section-label" style="margin-top:24px;display:block"><span class="fr-only-inline">Les solutions</span><span class="en-only-inline">The solutions</span></span>
+      <p style="font-size:.85rem;line-height:1.9;color:#555;font-weight:300;margin:16px 0"><span class="fr-only-inline">Checklists documentaires rigoureuses, coordination étroite avec les équipes juridiques et conformité, vérification systématique des autorisations export. Cette expérience a directement alimenté mon mémoire, dans lequel j'ai proposé une grille d'évaluation du risque pays et une checklist de conformité documentaire.</span><span class="en-only-inline">Rigorous documentary checklists, close coordination with legal and compliance teams, systematic verification of export authorisations. This experience directly informed my dissertation, in which I proposed a country risk assessment grid and a documentary compliance checklist.</span></p>
+      <blockquote style="font-family:'Libre Baskerville',serif;font-size:.95rem;font-style:italic;color:var(--terra);border-left:3px solid var(--terra);padding-left:16px;margin-top:20px"><span class="fr-only-inline">« La réglementation n'est pas de la bureaucratie. C'est ce qui garantit que l'équipement arrive aux bonnes personnes, dans les bonnes conditions. »</span><span class="en-only-inline">"The regulation is not bureaucracy. It is the reason the equipment reaches the right people, in the right conditions."</span></blockquote>
+    </div>
+  </div>
+
+  <!-- 4. WHAT IT MEANT -->
+  <div style="background:var(--creme);padding:64px;border-bottom:1px solid var(--border)">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+      <div>
+        <span class="section-label"><span class="fr-only-inline">Ce que cette expérience m'a apporté</span><span class="en-only-inline">What this experience meant to me</span></span>
+        <h2 style="font-family:'Libre Baskerville',serif;font-size:1.6rem;font-weight:700;margin:12px 0 20px;line-height:1.2"><span class="fr-only-inline">Plus assurée. Plus curieuse. Plus prête.</span><span class="en-only-inline">More confident. More curious. More prepared.</span></h2>
+        <p style="font-size:.85rem;line-height:1.9;color:#555;font-weight:300;margin-bottom:12px"><span class="fr-only-inline">J'ai commencé cette alternance en étant assez timide en contexte professionnel. Un an plus tard, j'ai quelque chose que je n'avais pas avant : une assurance professionnelle réelle. La capacité à gérer un document difficile, à répondre à une demande urgente, sans être intimidée.</span><span class="en-only-inline">I started this apprenticeship quite shy in professional settings. A year later, I have something I did not have before: real professional confidence. The ability to manage a difficult document, respond to an urgent request, without being intimidated.</span></p>
+        <p style="font-size:.85rem;line-height:1.9;color:#555;font-weight:300"><span class="fr-only-inline">J'ai découvert un secteur que je n'avais pas prévu d'intégrer, et je l'ai trouvé passionnant. Cela dit quelque chose sur l'importance de rester ouvert à l'inattendu.</span><span class="en-only-inline">I discovered a sector I had no intention of entering, and found it genuinely fascinating. That says something about staying open to the unexpected.</span></p>
+      </div>
+      <div>
+        <blockquote style="font-family:'Libre Baskerville',serif;font-size:1.2rem;font-style:italic;color:var(--noir);line-height:1.6;margin-bottom:24px"><span class="fr-only-inline">« Je suis arrivée sans rien connaître à la défense. Je repars en sachant exactement pourquoi ça compte et ce que ça demande. »</span><span class="en-only-inline">"I came in knowing nothing about defence. I leave knowing exactly why it matters and what it takes."</span></blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. MASTER -->
+  <div style="background:var(--noir);padding:64px;text-align:center">
+    <span class="section-label" style="color:var(--terra);display:block;margin-bottom:12px"><span class="fr-only-inline">Et après ?</span><span class="en-only-inline">What's next</span></span>
+    <h2 style="font-family:'Libre Baskerville',serif;font-size:2rem;font-weight:700;color:var(--blanc);margin-bottom:16px"><span class="fr-only-inline">Cette expérience a confirmé ma voie.</span><span class="en-only-inline">This experience confirmed my path.</span></h2>
+    <p style="font-size:.87rem;color:rgba(255,255,255,.55);max-width:560px;margin:0 auto 32px;line-height:1.9;font-weight:300"><span class="fr-only-inline">Mon alternance chez KNDS CBRN m'a confortée dans ce qui m'attire vraiment : l'intersection entre le commerce international, les langues et la communication. En septembre, je commence un Master en Stratégie de Communication Internationale à Dijon un programme qui prolonge naturellement ce que j'ai construit ici.</span><span class="en-only-inline">My apprenticeship at KNDS CBRN confirmed what truly draws me: the intersection of international business, languages and communication. In September, I am starting a Master's in International Communication Strategy in Dijon a programme that naturally builds on what I have developed here.</span></p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <button onclick="go('parcours')" class="btn btn-green"><span class="fr-only-inline">Mon projet professionnel →</span><span class="en-only-inline">My professional project →</span></button>
+      <a href="https://masci.u-bourgogne.fr" target="_blank" class="btn" style="background:rgba(255,255,255,.1);color:var(--blanc);border:1px solid rgba(255,255,255,.3);border-radius:50px"><span class="fr-only-inline">Découvrir le Master MASCI →</span><span class="en-only-inline">Discover the MASCI Master's →</span></a>
+    </div>
+  </div>
+
+  <footer style="background:var(--noir);border-top:1px solid rgba(255,255,255,.1)"><p style="color:rgba(255,255,255,.3)">© 2026 Enaé Bakour-Jacob · Portfolio BUT3 Business International</p><button class="btn btn-green" onclick="go('accueil')" style="font-size:.62rem;padding:8px 20px">↑ <span class="fr-only-inline">Accueil</span><span class="en-only-inline">Home</span></button></footer>
+</div>
+
+<!-- CONTACT -->
+<div id="p-contact" class="page">
+  <div class="page-hdr">
+    <span class="section-label">Contact</span>
+    <h1><span class="fr-only-inline">Écrivez-moi,<br><em style="font-style:italic">parlons du monde.</em></span><span class="en-only-inline">Write to me,<br><em style="font-style:italic">let's talk about the world.</em></span></h1>
+  </div>
+  <div class="contact-page">
+    <div class="contact-grid">
+      <div style="background:var(--vert);padding:48px;border-radius:4px">
+        <h2 style="font-family:'Libre Baskerville',serif;font-size:1.5rem;margin-bottom:12px;color:var(--blanc)"><span class="fr-only-inline">Restons en contact.</span><span class="en-only-inline">Let's stay in touch.</span></h2>
+        <p style="font-size:.85rem;color:rgba(255,255,255,.75);font-weight:300;margin-bottom:32px;line-height:1.8"><span class="fr-only-inline">N'hésitez pas à me contacter pour toute opportunité ou collaboration.</span><span class="en-only-inline">Feel free to reach out for any opportunity or collaboration.</span></p>
+        <div style="margin-top:24px">
+          <div style="display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.15);font-size:.83rem;color:var(--blanc)"><span style="font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.6);min-width:70px">Email</span>enaebakj42@gmail.com</div>
+          <div style="display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.15);font-size:.83rem;color:var(--blanc)"><span style="font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.6);min-width:70px"><span class="fr-only-inline">Tél.</span><span class="en-only-inline">Phone</span></span>06 15 12 47 70</div>
+          <div style="display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.15);font-size:.83rem;color:var(--blanc)"><span style="font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.6);min-width:70px">LinkedIn</span><a href="https://www.linkedin.com/in/enae-bakour-jacob-6865982b1/" target="_blank" style="color:rgba(255,255,255,.8);text-decoration:none">enae-bakour-jacob</a></div>
+          <div style="display:flex;align-items:center;gap:16px;padding:14px 0;font-size:.83rem;color:var(--blanc)"><span style="font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.6);min-width:70px"><span class="fr-only-inline">Lieu</span><span class="en-only-inline">Location</span></span>Saint-Étienne / Riorges</div>
+        </div>
+      </div>
+      <div class="form">
+        <div class="fg"><label><span class="fr-only-inline">Prénom *</span><span class="en-only-inline">First name *</span></label><input type="text"></div>
+        <div class="fg"><label><span class="fr-only-inline">Nom *</span><span class="en-only-inline">Last name *</span></label><input type="text"></div>
+        <div class="fg"><label>E-mail *</label><input type="email"></div>
+        <div class="fg"><label>Message</label><textarea></textarea></div>
+        <button class="btn btn-green" style="align-self:flex-start"><span class="fr-only-inline">Envoyer →</span><span class="en-only-inline">Send →</span></button>
+      </div>
+    </div>
+  </div>
+  <footer><p>© 2026 Enaé Bakour-Jacob · Portfolio BUT3 Business International</p><button class="btn btn-green" onclick="go('accueil')" style="font-size:.62rem;padding:8px 20px">↑ <span class="fr-only-inline">Accueil</span><span class="en-only-inline">Home</span></button></footer>
+</div>
+
+<script>
+function go(id){
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
+  document.querySelectorAll('.nav-links a').forEach(function(a){a.classList.remove('active')});
+  document.getElementById('p-'+id).classList.add('active');
+  document.getElementById('n-'+id).classList.add('active');
+  window.scrollTo(0,0);
+  setTimeout(anim,100);
+}
+function toggleLang(){
+  var btn=document.getElementById('lang-btn');
+  if(document.body.classList.contains('en')){
+    document.body.classList.remove('en');
+    btn.textContent='EN';
+    document.documentElement.lang='fr';
+  } else {
+    document.body.classList.add('en');
+    btn.textContent='FR';
+    document.documentElement.lang='en';
+  }
+}
+function anim(){
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e,i){if(e.isIntersecting)setTimeout(function(){e.target.classList.add('vis')},i*80)});
+  },{threshold:.1});
+  document.querySelectorAll('.fu:not(.vis)').forEach(function(el){obs.observe(el)});
+}
+document.addEventListener('DOMContentLoaded',anim);
+</script>
+
+</body>
+</html>

@@ -64,12 +64,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .btn-bordeaux{background:var(--bordeaux);color:var(--blanc);border-radius:50px}.btn-bordeaux:hover{background:var(--bordeaux-clair);transform:translateY(-2px);box-shadow:0 8px 20px rgba(141,47,72,.3)}
 .btn-cream{background:var(--blanc);color:var(--bordeaux);border-radius:50px;font-weight:600}.btn-cream:hover{background:var(--creme)}
 
-.quote-band{background:linear-gradient(118deg,#7d2740 0%,var(--bordeaux) 42%,var(--terra) 128%);padding:76px 64px 72px;text-align:center;position:relative;overflow:hidden;border-top:3px solid var(--ocre);border-bottom:3px solid var(--ocre)}
+.quote-band{background:linear-gradient(118deg,#7d2740 0%,var(--bordeaux) 42%,var(--terra) 128%);padding:38px 64px 36px;text-align:center;position:relative;overflow:hidden;border-top:2px solid var(--ocre);border-bottom:2px solid var(--ocre)}
 .quote-band::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(126deg,rgba(255,253,248,.055) 0 2px,transparent 2px 22px);pointer-events:none}
-.quote-band::after{content:'';position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(219,169,76,.28) 0%,transparent 68%);top:-210px;right:-110px;pointer-events:none}
-.qb-mark{position:relative;font-family:'Libre Baskerville',serif;font-size:3.4rem;line-height:.6;color:var(--ocre);display:block;margin-bottom:22px}
-.quote-band blockquote{position:relative;font-family:'Libre Baskerville',serif;font-size:clamp(1.45rem,3.1vw,2.3rem);font-weight:400;font-style:italic;color:var(--blanc);line-height:1.45;max-width:900px;margin:0 auto;text-wrap:balance}
-.quote-band cite{position:relative;display:inline-flex;align-items:center;gap:12px;margin-top:26px;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,253,248,.72);font-style:normal}
+.quote-band::after{content:'';position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(219,169,76,.3) 0%,transparent 68%);top:-160px;right:-80px;pointer-events:none}
+.qb-mark{position:relative;font-family:'Libre Baskerville',serif;font-size:2rem;line-height:.5;color:var(--ocre);display:block;margin-bottom:14px}
+.quote-band blockquote{position:relative;font-family:'Libre Baskerville',serif;font-size:clamp(1.25rem,2.5vw,1.8rem);font-weight:400;font-style:italic;color:var(--blanc);line-height:1.4;max-width:860px;margin:0 auto;text-wrap:balance}
+.quote-band cite{position:relative;display:inline-flex;align-items:center;gap:12px;margin-top:16px;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,253,248,.72);font-style:normal}
 .quote-band cite::before,.quote-band cite::after{content:'';width:32px;height:2px;background:var(--ocre);border-radius:2px}
 
 .section-label{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bordeaux);margin-bottom:8px;display:block}
@@ -132,13 +132,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .tl-date{font-size:.69rem;letter-spacing:.1em;text-transform:uppercase;color:var(--bordeaux);padding-top:3px;font-weight:500;position:relative}
 .tl-title{font-family:'Libre Baskerville',serif;font-size:1.05rem;font-weight:700;margin-bottom:4px}
 .tl-sub{font-size:.77rem;color:var(--gris);margin-bottom:10px}
-.tl-text{font-size:.83rem;line-height:1.85;color:#5f554d;font-weight:300}
+.tl-text{font-size:.84rem;line-height:1.9;color:#5f554d;font-weight:300}
 .tl-list{list-style:none;margin-top:8px}
 .tl-list li{font-size:.82rem;color:#5f554d;font-weight:300;padding:4px 0 4px 16px;position:relative;line-height:1.7}
 .tl-list li::before{content:'';position:absolute;left:3px;top:13px;width:6px;height:6px;border-radius:50%;background:var(--ocre)}
 
 .skills-block{display:grid;grid-template-columns:1fr 1fr;background:var(--creme);border-top:1px solid var(--border)}
 .skills-l{padding:64px}
+.lead-quote{font-family:'Libre Baskerville',serif;font-size:1.1rem;font-style:italic;line-height:1.6;color:var(--bordeaux);padding-left:22px;border-left:3px solid var(--ocre);margin-bottom:24px}
+.p-court{font-size:.85rem;color:#5f554d;line-height:1.85;font-weight:300;margin-bottom:14px;max-width:46ch}
+.mini-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.mini-chips span{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;background:var(--blanc);color:var(--marron);padding:6px 14px;border-radius:50px;border:1px solid var(--border)}
 .skills-r{padding:64px;border-left:1px solid var(--border)}
 .skills-r h3{font-family:'Libre Baskerville',serif;font-size:1.3rem;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:3px solid var(--ocre);display:inline-block}
 .s2col{display:grid;grid-template-columns:1fr 1fr;gap:32px}
@@ -214,7 +218,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .alt-sec{padding:64px;border-bottom:1px solid var(--border)}
 .alt-sec.alt{background:var(--creme)}
 .alt-sec h2{font-family:'Libre Baskerville',serif;font-size:1.65rem;font-weight:700;margin-bottom:18px;letter-spacing:-.02em;margin-top:10px;line-height:1.25}
-.alt-sec p{font-size:.86rem;line-height:1.9;color:#5f554d;font-weight:300;margin-bottom:13px}
+.alt-sec p{font-size:.86rem;line-height:1.95;color:#5f554d;font-weight:300;margin-bottom:15px}
 .alt-quote{font-family:'Libre Baskerville',serif;font-size:1.05rem;font-style:italic;color:var(--bordeaux);border-left:3px solid var(--ocre);padding:4px 0 4px 20px;margin:24px 0;line-height:1.75}
 .mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:32px}
 .mission-card{background:var(--blanc);padding:30px;transition:transform .3s,box-shadow .3s;position:relative;z-index:1}
@@ -224,6 +228,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .mission-card p{font-size:.81rem;color:#5f554d;line-height:1.8;font-weight:300;margin:0}
 .mission-icon{font-size:1.5rem;margin-bottom:14px;width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(140deg,rgba(219,169,76,.3),rgba(200,112,69,.22))}
 
+.tl-text{max-width:62ch}
+.alt-sec p{max-width:62ch}
+.cap-text{max-width:64ch}
+.card-text{max-width:46ch}
+.bx p{max-width:34ch}
+.hero-sub{max-width:40ch}
+.c-sub{max-width:44ch}
 footer{background:var(--creme);border-top:1px solid var(--border);padding:24px 64px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 footer p{font-size:.61rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gris)}
 
@@ -260,6 +271,7 @@ body.en .en-only-inline{display:inline}
   .cap-wrap,.comp-detail-hdr{padding-left:22px;padding-right:22px}
   footer{padding:20px 22px;flex-direction:column;text-align:center}
   .skills-r{border-left:none;border-top:1px solid var(--border)}
+  .tl-text,.alt-sec p,.cap-text,.card-text,.bx p,.hero-sub,.c-sub,.p-court{max-width:100%}
   .hero-left{border-right:none;border-bottom:1px solid var(--border)}
 }
 </style>
@@ -476,8 +488,8 @@ body.en .en-only-inline{display:inline}
         <div class="tl-title"><span class="fr-only-inline">Master Stratégie de Communication Internationale (MASCI)</span><span class="en-only-inline">Master's in International Communication Strategy (MASCI)</span></div>
         <div class="tl-sub">Université Bourgogne Europe · Dijon</div>
         <p class="tl-text">
-          <span class="fr-only-inline">Formation bilingue français-anglais en communication. Le programme couvre la communication commerciale, la communication interculturelle et les médias internationaux. Il correspond exactement à ce que je cherchais : garder la dimension internationale qui me plaît et développer le versant rédactionnel et stratégique.</span>
-          <span class="en-only-inline">Bilingual French-English communication programme covering marketing communication, intercultural communication and international media. It matches exactly what I was looking for: keeping the international dimension I enjoy while developing the writing and strategic side.</span>
+          <span class="fr-only-inline">Formation bilingue français-anglais : communication commerciale, communication interculturelle, médias internationaux.</span>
+          <span class="en-only-inline">Bilingual French-English programme: marketing communication, intercultural communication, international media.</span>
         </p>
         <ul class="tl-list">
           <li><span class="fr-only-inline">Curious Lab, l'agence de communication junior du Master : référente d'une mission en stratégie de communication agroalimentaire</span><span class="en-only-inline">Curious Lab, the Master's junior communication agency: lead on a food industry communication strategy assignment</span></li>
@@ -581,19 +593,29 @@ body.en .en-only-inline{display:inline}
   <div class="skills-block fu">
     <div class="skills-l">
       <span class="section-label"><span class="fr-only-inline">Ce qui me définit</span><span class="en-only-inline">What defines me</span></span>
-      <h2 class="section-title" style="font-size:1.7rem;margin:8px 0 20px"><span class="fr-only-inline">Au-delà des études.</span><span class="en-only-inline">Beyond studies.</span></h2>
-      <p style="font-size:.85rem;color:#5f554d;line-height:1.9;font-weight:300;margin-bottom:14px">
-        <span class="fr-only-inline">Je consacre une grande partie de mon temps libre à la lecture, avec une préférence nette pour les romans et la littérature contemporaine. Au-delà du plaisir, les langues me fascinent parce que chacune propose une façon différente de penser et de percevoir le monde. C'est cette curiosité qui m'a naturellement portée vers la communication, où il faut comprendre un public avant de lui parler.</span>
-        <span class="en-only-inline">I spend a lot of my free time reading, with a clear preference for novels and contemporary fiction. Beyond the pleasure of it, languages fascinate me because each one offers a different way of thinking and perceiving the world. That curiosity is what naturally carried me towards communication, where you have to understand an audience before speaking to it.</span>
+      <h2 class="section-title" style="font-size:1.7rem;margin:8px 0 22px"><span class="fr-only-inline">Au-delà des études.</span><span class="en-only-inline">Beyond studies.</span></h2>
+      <p class="lead-quote">
+        <span class="fr-only-inline">Comprendre un public avant de lui parler. C'est la lecture qui me l'a appris en premier.</span>
+        <span class="en-only-inline">Understanding an audience before speaking to it. Reading taught me that first.</span>
       </p>
-      <p style="font-size:.85rem;color:#5f554d;line-height:1.9;font-weight:300;margin-bottom:14px">
-        <span class="fr-only-inline">J'écris aussi, et c'est probablement là que je suis la plus moi-même. Mettre une idée au bon endroit, trouver le mot juste, faire tenir un texte : c'est exactement le même plaisir que celui que je trouve dans un dossier bien construit.</span>
-        <span class="en-only-inline">I also write, and that is probably where I am most myself. Putting an idea in the right place, finding the right word, making a text hold together: it is exactly the same pleasure I find in a well-built file.</span>
+      <p class="p-court">
+        <span class="fr-only-inline">Les langues me fascinent parce que chacune propose une autre façon de penser le monde.</span>
+        <span class="en-only-inline">Languages fascinate me because each one offers another way of thinking about the world.</span>
       </p>
-      <p style="font-size:.85rem;color:#5f554d;line-height:1.9;font-weight:300">
-        <span class="fr-only-inline">Mon engagement a commencé au lycée, comme bénévole pour l'UNICEF : actions de sensibilisation, mobilisation et participation à la communication associative. Cette expérience m'a appris à m'investir pour des causes qui comptent, et reste un moteur aujourd'hui. Je danse également, ce qui est ma façon de m'aérer la tête.</span>
-        <span class="en-only-inline">My commitment began in high school, volunteering for UNICEF: awareness campaigns, mobilisation and contributing to the association's communications. That experience taught me to invest myself in causes that matter, and it still drives me today. I also dance, which is how I clear my head.</span>
+      <p class="p-court">
+        <span class="fr-only-inline">J'écris, et c'est là que je suis la plus moi-même. Trouver le mot juste, faire tenir un texte : le même plaisir qu'un dossier bien construit.</span>
+        <span class="en-only-inline">I write, and that is where I am most myself. Finding the right word, making a text hold together: the same pleasure as a well-built file.</span>
       </p>
+      <p class="p-court">
+        <span class="fr-only-inline">Bénévole à l'UNICEF au lycée, sur la sensibilisation et la communication de l'association. Ça compte encore dans ce que je choisis de faire.</span>
+        <span class="en-only-inline">A UNICEF volunteer in high school, on awareness work and the association's communications. It still counts in what I choose to do.</span>
+      </p>
+      <div class="mini-chips">
+        <span><span class="fr-only-inline">Lecture</span><span class="en-only-inline">Reading</span></span>
+        <span><span class="fr-only-inline">Écriture</span><span class="en-only-inline">Writing</span></span>
+        <span><span class="fr-only-inline">Danse</span><span class="en-only-inline">Dance</span></span>
+        <span>UNICEF</span>
+      </div>
     </div>
     <div class="skills-r">
       <h3><span class="fr-only-inline">Compétences &amp; Langues</span><span class="en-only-inline">Skills &amp; Languages</span></h3>
@@ -640,8 +662,8 @@ body.en .en-only-inline{display:inline}
       <span class="en-only-inline">My work placement confirmed something important: business in the strict sense is not what I want to do, but the international dimension absolutely is. I love learning languages, I love writing, and I wanted to find a career that combines the two. That is exactly what the MASCI Master's offers me.</span>
     </p>
     <p style="font-size:.87rem;color:#5f554d;line-height:1.9;font-weight:300;max-width:680px;margin-top:14px">
-      <span class="fr-only-inline">À court terme : un stage de 4 à 6 mois à partir du 22 février 2027, dans un poste de communication généraliste avec une dimension internationale. Je cherche un environnement où l'on touche à plusieurs choses à la fois, stratégie, contenus, événementiel, relation avec des interlocuteurs étrangers, plutôt qu'un rôle enfermé dans une seule spécialité.</span>
-      <span class="en-only-inline">Short term: a 4 to 6 month internship from 22 February 2027, in a generalist communication role with an international dimension. I am looking for an environment where you touch several things at once, strategy, content, events, working with international contacts, rather than a role confined to a single specialism.</span>
+      <span class="fr-only-inline">À court terme : un stage de 4 à 6 mois à partir du 22 février 2027, dans un poste de communication généraliste à dimension internationale.</span>
+      <span class="en-only-inline">Short term: a 4 to 6 month internship from 22 February 2027, in a generalist communication role with an international dimension.</span>
     </p>
     <div style="margin-top:24px"><button class="btn btn-bordeaux" onclick="go('contact')"><span class="fr-only-inline">Discutons-en →</span><span class="en-only-inline">Let's talk →</span></button></div>
   </div>
@@ -903,7 +925,7 @@ body.en .en-only-inline{display:inline}
       <span class="card-tag"><span class="fr-only-inline">Alternance · Sept. 2025 – Août 2026</span><span class="en-only-inline">Placement · Sept. 2025 – Aug. 2026</span></span>
       <div class="card-title">KNDS CBRN</div>
       <div class="card-ctx"><span class="fr-only-inline">Défense NRBC · Saint-Chamond</span><span class="en-only-inline">NRBC defence · Saint-Chamond</span></div>
-      <p class="card-text"><span class="fr-only-inline">Une année comme assistante commerciale dans une entreprise de défense exportant vers des gouvernements et des clients industriels en Europe et au Moyen-Orient. Suivi des commandes internationales, appui aux démarches douanières, préparation de cinq salons professionnels et communication quotidienne en anglais.</span><span class="en-only-inline">A year as a sales assistant in a defence company exporting to governments and industrial clients across Europe and the Middle East. International order follow-up, support on customs procedures, preparation of five trade shows and daily communication in English.</span></p>
+      <p class="card-text"><span class="fr-only-inline">Une année comme assistante commerciale dans une entreprise de défense qui exporte vers des gouvernements et des industriels, en Europe et au Moyen-Orient.</span><span class="en-only-inline">A year as a sales assistant in a defence company exporting to governments and industrial clients across Europe and the Middle East.</span></p>
       <button class="btn btn-cream" onclick="go('alternance')" style="align-self:flex-start"><span class="fr-only-inline">Découvrir mon alternance →</span><span class="en-only-inline">Explore my placement →</span></button>
     </div>
   </div>
@@ -974,7 +996,7 @@ body.en .en-only-inline{display:inline}
     <div style="padding:60px;border-right:1px solid var(--border);background:var(--blanc)">
       <span class="section-label"><span class="fr-only-inline">L'entreprise</span><span class="en-only-inline">The company</span></span>
       <h2 style="font-family:'Libre Baskerville',serif;font-size:1.45rem;font-weight:700;margin:12px 0 18px;line-height:1.25"><span class="fr-only-inline">Protéger contre ce qu'on ne voit pas.</span><span class="en-only-inline">Protecting against what you cannot see.</span></h2>
-      <p style="font-size:.85rem;line-height:1.9;color:#5f554d;font-weight:300;margin-bottom:13px"><span class="fr-only-inline">KNDS CBRN est une entreprise française de défense installée à Saint-Chamond, dans la Loire. Elle est spécialisée dans la protection NRBC, c'est-à-dire contre les menaces nucléaires, radiologiques, biologiques et chimiques. Elle fait partie du groupe KNDS, l'un des principaux acteurs européens de la défense terrestre.</span><span class="en-only-inline">KNDS CBRN is a French defence company based in Saint-Chamond, in the Loire. It specialises in NRBC protection, meaning nuclear, radiological, biological and chemical threats. It is part of the KNDS Group, one of Europe's leading land defence players.</span></p>
+      <p style="font-size:.85rem;line-height:1.9;color:#5f554d;font-weight:300;margin-bottom:13px"><span class="fr-only-inline">Entreprise française de défense installée à Saint-Chamond, spécialisée dans la protection NRBC : nucléaire, radiologique, biologique, chimique. Elle fait partie du groupe KNDS.</span><span class="en-only-inline">A French defence company in Saint-Chamond, specialising in NRBC protection: nuclear, radiological, biological, chemical. It is part of the KNDS Group.</span></p>
       <p style="font-size:.85rem;line-height:1.9;color:#5f554d;font-weight:300"><span class="fr-only-inline">Concrètement, elle conçoit et vend des masques à gaz et des filtres, des systèmes de filtration d'air pour véhicules et abris, des équipements de détection et des unités de décontamination. Tout est conçu, produit et suivi en interne : c'est une entreprise qui va au bout de ses projets.</span><span class="en-only-inline">In practice, it designs and sells gas masks and filters, air filtration systems for vehicles and shelters, detection equipment and decontamination units. Everything is designed, produced and supported in-house: it is a company that sees its projects through.</span></p>
     </div>
     <div style="padding:60px;background:var(--creme)">
@@ -1061,7 +1083,7 @@ body.en .en-only-inline{display:inline}
   <div style="background:linear-gradient(135deg,var(--marron) 0%,var(--bordeaux) 100%);padding:64px;text-align:center">
     <span class="section-label" style="color:var(--terra);display:block;margin-bottom:12px"><span class="fr-only-inline">Et après ?</span><span class="en-only-inline">What's next?</span></span>
     <h2 style="font-family:'Libre Baskerville',serif;font-size:1.9rem;font-weight:700;color:var(--blanc);margin-bottom:16px;line-height:1.25"><span class="fr-only-inline">Cette année a confirmé ma direction.</span><span class="en-only-inline">This year confirmed my direction.</span></h2>
-    <p style="font-size:.87rem;color:rgba(255,253,250,.58);max-width:600px;margin:0 auto 32px;line-height:1.9;font-weight:300"><span class="fr-only-inline">Mon alternance m'a appris que le commerce au sens strict n'est pas ce que je veux faire, mais que la dimension internationale, elle, me correspond complètement. J'aime les langues, j'aime écrire, et je voulais en faire un métier. C'est ce qui m'a menée au Master Stratégie de Communication Internationale, à Dijon.</span><span class="en-only-inline">My placement taught me that business in the strict sense is not what I want to do, but that the international dimension suits me completely. I love languages, I love writing, and I wanted to make that a career. That is what led me to the Master's in International Communication Strategy, in Dijon.</span></p>
+    <p style="font-size:.87rem;color:rgba(255,253,250,.58);max-width:600px;margin:0 auto 32px;line-height:1.9;font-weight:300"><span class="fr-only-inline">Le commerce au sens strict n'est pas ce que je veux faire. La dimension internationale, elle, me correspond complètement. C'est ce qui m'a menée au Master Stratégie de Communication Internationale, à Dijon.</span><span class="en-only-inline">Business in the strict sense is not what I want to do. The international dimension, on the other hand, suits me completely. That is what led me to the Master's in International Communication Strategy, in Dijon.</span></p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
       <button onclick="go('parcours')" class="btn btn-cream"><span class="fr-only-inline">Mon projet professionnel →</span><span class="en-only-inline">My professional project →</span></button>
       <button onclick="go('contact')" class="btn" style="background:rgba(255,253,250,.1);color:var(--blanc);border:1px solid rgba(255,253,250,.3);border-radius:50px"><span class="fr-only-inline">Me contacter →</span><span class="en-only-inline">Contact me →</span></button>

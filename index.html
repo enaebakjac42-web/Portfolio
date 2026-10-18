@@ -64,11 +64,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .btn-bordeaux{background:var(--bordeaux);color:var(--blanc);border-radius:50px}.btn-bordeaux:hover{background:var(--bordeaux-clair);transform:translateY(-2px);box-shadow:0 8px 20px rgba(141,47,72,.3)}
 .btn-cream{background:var(--blanc);color:var(--bordeaux);border-radius:50px;font-weight:600}.btn-cream:hover{background:var(--creme)}
 
-.quote-band{background:linear-gradient(135deg,var(--bordeaux) 0%,var(--marron) 100%);padding:58px 64px;text-align:center;position:relative;overflow:hidden}
-.quote-band::before{content:'\201C';position:absolute;top:-34px;left:32px;font-family:'Libre Baskerville',serif;font-size:11rem;color:rgba(255,253,248,.11);line-height:1;pointer-events:none}
-.quote-band blockquote{position:relative}
-.quote-band blockquote{font-family:'Libre Baskerville',serif;font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:400;font-style:italic;color:var(--blanc);line-height:1.5}
-.quote-band cite{display:block;margin-top:14px;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--terra);font-style:normal}
+.quote-band{background:linear-gradient(118deg,#7d2740 0%,var(--bordeaux) 42%,var(--terra) 128%);padding:76px 64px 72px;text-align:center;position:relative;overflow:hidden;border-top:3px solid var(--ocre);border-bottom:3px solid var(--ocre)}
+.quote-band::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(126deg,rgba(255,253,248,.055) 0 2px,transparent 2px 22px);pointer-events:none}
+.quote-band::after{content:'';position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(219,169,76,.28) 0%,transparent 68%);top:-210px;right:-110px;pointer-events:none}
+.qb-mark{position:relative;font-family:'Libre Baskerville',serif;font-size:3.4rem;line-height:.6;color:var(--ocre);display:block;margin-bottom:22px}
+.quote-band blockquote{position:relative;font-family:'Libre Baskerville',serif;font-size:clamp(1.45rem,3.1vw,2.3rem);font-weight:400;font-style:italic;color:var(--blanc);line-height:1.45;max-width:900px;margin:0 auto;text-wrap:balance}
+.quote-band cite{position:relative;display:inline-flex;align-items:center;gap:12px;margin-top:26px;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,253,248,.72);font-style:normal}
+.quote-band cite::before,.quote-band cite::after{content:'';width:32px;height:2px;background:var(--ocre);border-radius:2px}
 
 .section-label{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bordeaux);margin-bottom:8px;display:block}
 .section-title{font-family:'Libre Baskerville',serif;font-size:clamp(1.8rem,4vw,2.7rem);font-weight:700;line-height:1.15;letter-spacing:-.02em}
@@ -89,28 +91,42 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .card-skills{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
 .chip{font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;background:var(--creme2);color:var(--marron);padding:4px 11px;border:1px solid var(--border);border-radius:50px}
 
-.about-band{display:grid;grid-template-columns:1fr 1fr;background:var(--creme)}
-.about-band-l{padding:68px 64px}
-.about-band-r{padding:68px 64px;border-left:1px solid var(--border)}
-.about-band-r p{font-size:.86rem;line-height:1.9;color:#5f554d;font-weight:300;margin-bottom:14px}
+.beyond{background:linear-gradient(170deg,var(--creme) 0%,var(--creme2) 100%);padding:76px 64px 68px;position:relative;overflow:hidden}
+.beyond::before{content:'';position:absolute;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(219,169,76,.22) 0%,transparent 70%);top:-160px;left:-90px;pointer-events:none}
+.beyond-head{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end;position:relative;margin-bottom:46px}
+.beyond-title{font-family:'Libre Baskerville',serif;font-size:clamp(2rem,4.2vw,3rem);font-weight:700;line-height:1.08;letter-spacing:-.03em;margin-top:10px}
+.beyond-title em{font-style:italic;color:var(--bordeaux);background:linear-gradient(transparent 70%,rgba(219,169,76,.45) 70%)}
+.beyond-lead{font-family:'Libre Baskerville',serif;font-size:1.02rem;font-style:italic;line-height:1.75;color:var(--marron);padding-left:24px;border-left:3px solid var(--ocre)}
+.beyond-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);position:relative}
+.bx{background:var(--blanc);padding:34px 28px 32px;transition:transform .3s,box-shadow .3s;position:relative;z-index:1}
+.bx:hover{transform:translateY(-6px);box-shadow:0 16px 36px rgba(51,38,31,.15);z-index:3}
+.bx-n{font-family:'Libre Baskerville',serif;font-size:2.1rem;font-weight:700;color:var(--ocre);line-height:1;display:block;margin-bottom:12px}
+.bx h3{font-family:'Libre Baskerville',serif;font-size:1.12rem;font-weight:700;margin-bottom:10px;color:var(--noir)}
+.bx p{font-size:.82rem;line-height:1.85;color:#5f554d;font-weight:300}
+.beyond-cta{margin-top:38px;position:relative}
 
-.contact-strip{padding:64px;background:var(--blanc);display:grid;grid-template-columns:1fr 1fr;gap:64px;border-top:1px solid var(--border)}
-.c-title{font-family:'Libre Baskerville',serif;font-size:1.9rem;font-weight:700;letter-spacing:-.02em;margin-bottom:12px}
+.contact-strip{padding:72px 64px;background:linear-gradient(175deg,var(--blanc) 0%,var(--creme) 100%);display:grid;grid-template-columns:1fr 1fr;gap:64px;border-top:1px solid var(--border);position:relative;overflow:hidden}
+.contact-strip::before{content:'';position:absolute;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(200,112,69,.18) 0%,transparent 70%);bottom:-200px;left:-120px;pointer-events:none}
+.contact-strip>*{position:relative}
+.c-title{font-family:'Libre Baskerville',serif;font-size:2.1rem;font-weight:700;letter-spacing:-.02em;margin-bottom:12px;line-height:1.15}
 .c-sub{font-size:.85rem;color:var(--gris);font-weight:300;margin-bottom:28px;line-height:1.8}
 .c-items{display:flex;flex-direction:column}
-.c-item{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--border);font-size:.83rem}
+.c-item{display:flex;align-items:center;gap:16px;padding:15px 0;border-bottom:1px solid var(--border);font-size:.83rem;transition:padding-left .25s,color .25s}
+.c-item:hover{padding-left:10px;color:var(--bordeaux)}
 .c-label{font-size:.59rem;letter-spacing:.15em;text-transform:uppercase;color:var(--bordeaux);min-width:78px}
 
-.page-hdr{padding:72px 64px 44px;border-bottom:1px solid var(--border)}
+.page-hdr{padding:76px 64px 52px;border-bottom:1px solid var(--border);background:linear-gradient(165deg,var(--blanc) 0%,var(--creme) 100%);position:relative;overflow:hidden}
+.page-hdr::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(219,169,76,.25) 0%,transparent 68%);top:-180px;right:-100px;pointer-events:none}
+.page-hdr>*{position:relative}
 .page-hdr h1{font-family:'Libre Baskerville',serif;font-size:clamp(2rem,4.8vw,3.4rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-top:8px}
 .page-hdr h1 em{font-style:italic;color:var(--bordeaux);position:relative;background:linear-gradient(transparent 72%,rgba(219,169,76,.42) 72%)}
 
-.cv-bar{padding:34px 64px;background:var(--creme);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:16px}
+.cv-bar{padding:34px 64px;background:var(--creme2);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);flex-wrap:wrap;gap:16px}
 .cv-bar p{font-size:.85rem;color:var(--gris);font-weight:300}
 .cv-bar-btns{display:flex;gap:12px;flex-wrap:wrap}
 
 .tl{padding:64px}
-.tl h2{font-family:'Libre Baskerville',serif;font-size:1.4rem;font-weight:700;margin-bottom:38px;letter-spacing:-.02em}
+.tl h2{font-family:'Libre Baskerville',serif;font-size:1.55rem;font-weight:700;margin-bottom:38px;letter-spacing:-.02em;padding-bottom:14px;border-bottom:3px solid var(--ocre);display:inline-block}
 .tl-item{display:grid;grid-template-columns:190px 1fr;gap:32px;margin-bottom:38px;padding-bottom:38px;border-bottom:1px solid var(--border)}
 .tl-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
 .tl-date{font-size:.69rem;letter-spacing:.1em;text-transform:uppercase;color:var(--bordeaux);padding-top:3px;font-weight:500;position:relative}
@@ -124,14 +140,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .skills-block{display:grid;grid-template-columns:1fr 1fr;background:var(--creme);border-top:1px solid var(--border)}
 .skills-l{padding:64px}
 .skills-r{padding:64px;border-left:1px solid var(--border)}
-.skills-r h3{font-family:'Libre Baskerville',serif;font-size:1.2rem;font-weight:700;margin-bottom:24px}
+.skills-r h3{font-family:'Libre Baskerville',serif;font-size:1.3rem;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:3px solid var(--ocre);display:inline-block}
 .s2col{display:grid;grid-template-columns:1fr 1fr;gap:32px}
 .sg h4{font-size:.61rem;letter-spacing:.15em;text-transform:uppercase;color:var(--bordeaux);margin-bottom:10px;font-weight:500}
 .sg ul{list-style:none}
-.sg ul li{font-size:.79rem;color:#5f554d;font-weight:300;padding:5px 0;border-bottom:1px solid var(--border);line-height:1.5}
+.sg ul li{font-size:.79rem;color:#5f554d;font-weight:300;padding:6px 0 6px 16px;border-bottom:1px solid var(--border);line-height:1.5;position:relative;transition:color .2s,padding-left .2s}
+.sg ul li::before{content:'';position:absolute;left:0;top:14px;width:6px;height:6px;border-radius:50%;background:var(--ocre);transition:transform .2s}
+.sg ul li:hover{color:var(--bordeaux);padding-left:20px}
 
-.comp-intro{padding:40px 64px;background:var(--creme);border-bottom:1px solid var(--border)}
-.comp-intro p{font-size:.87rem;line-height:1.9;color:#5f554d;font-weight:300;max-width:680px}
+.comp-intro{padding:44px 64px;background:var(--blanc);border-bottom:1px solid var(--border)}
+.comp-intro p{font-family:'Libre Baskerville',serif;font-size:1.02rem;font-style:italic;line-height:1.8;color:var(--marron);max-width:720px;padding-left:24px;border-left:3px solid var(--ocre)}
 .comp-cards{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--noir)}
 .comp-card{padding:46px 40px;cursor:pointer;transition:transform .3s,box-shadow .3s;position:relative;z-index:1}
 .comp-card:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(51,38,31,.16);z-index:3}
@@ -178,7 +196,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .proj-card.dark .card-ctx,.proj-card.bordeaux .card-ctx{color:rgba(255,253,250,.4)}
 .proj-card.dark .card-tag,.proj-card.bordeaux .card-tag{color:var(--terra)}
 .proj-block{padding:56px 64px 64px}
-.proj-block h2{font-family:'Libre Baskerville',serif;font-size:1.3rem;margin-bottom:12px}
+.proj-block h2{font-family:'Libre Baskerville',serif;font-size:1.55rem;font-weight:700;margin-bottom:12px;padding-bottom:14px;border-bottom:3px solid var(--ocre);display:inline-block}
 .proj-meta-label{font-size:.59rem;letter-spacing:.15em;text-transform:uppercase;color:var(--bordeaux);margin-bottom:4px;font-weight:500}
 .proj-meta-val{font-size:.81rem;color:#5f554d;font-weight:300;line-height:1.7}
 .proj-card.dark .proj-meta-label,.proj-card.bordeaux .proj-meta-label{color:var(--terra)}
@@ -195,16 +213,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .lang-l{font-family:'Libre Baskerville',serif;font-size:.95rem;font-style:italic;color:var(--blanc);text-align:right}
 .alt-sec{padding:64px;border-bottom:1px solid var(--border)}
 .alt-sec.alt{background:var(--creme)}
-.alt-sec h2{font-family:'Libre Baskerville',serif;font-size:1.55rem;font-weight:700;margin-bottom:18px;letter-spacing:-.02em;margin-top:8px;line-height:1.25}
+.alt-sec h2{font-family:'Libre Baskerville',serif;font-size:1.65rem;font-weight:700;margin-bottom:18px;letter-spacing:-.02em;margin-top:10px;line-height:1.25}
 .alt-sec p{font-size:.86rem;line-height:1.9;color:#5f554d;font-weight:300;margin-bottom:13px}
-.alt-quote{font-family:'Libre Baskerville',serif;font-size:1rem;font-style:italic;color:var(--bordeaux);border-left:3px solid var(--bordeaux);padding-left:18px;margin:22px 0;line-height:1.7}
+.alt-quote{font-family:'Libre Baskerville',serif;font-size:1.05rem;font-style:italic;color:var(--bordeaux);border-left:3px solid var(--ocre);padding:4px 0 4px 20px;margin:24px 0;line-height:1.75}
 .mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:32px}
 .mission-card{background:var(--blanc);padding:30px;transition:transform .3s,box-shadow .3s;position:relative;z-index:1}
 .mission-card:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(51,38,31,.14);z-index:3}
 .mission-card.cream{background:var(--creme2)}
 .mission-card h3{font-family:'Libre Baskerville',serif;font-size:1rem;font-weight:700;margin-bottom:10px}
 .mission-card p{font-size:.81rem;color:#5f554d;line-height:1.8;font-weight:300;margin:0}
-.mission-icon{font-size:1.7rem;margin-bottom:12px}
+.mission-icon{font-size:1.5rem;margin-bottom:14px;width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(140deg,rgba(219,169,76,.3),rgba(200,112,69,.22))}
 
 footer{background:var(--creme);border-top:1px solid var(--border);padding:24px 64px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 footer p{font-size:.61rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gris)}
@@ -230,15 +248,18 @@ body.en .en-only-inline{display:inline}
   nav{padding:10px 18px;height:auto;flex-wrap:wrap;gap:10px}
   .nav-links{gap:12px;flex-wrap:wrap}
   .page{padding-top:110px}
-  .hero,.about-band,.skills-block,.alt-hero,.contact-grid,.contact-strip{grid-template-columns:1fr}
-  .hero-left,.hero-right,.about-band-l,.about-band-r,.skills-l,.skills-r,.alt-hero-l,.alt-hero-r{padding:44px 22px}
+  .hero,.skills-block,.alt-hero,.contact-grid,.contact-strip,.beyond-head{grid-template-columns:1fr}
+  .beyond-grid{grid-template-columns:1fr}
+  .beyond{padding:48px 22px}
+  .beyond-lead{padding-left:18px;font-size:.95rem}
+  .hero-left,.hero-right,.skills-l,.skills-r,.alt-hero-l,.alt-hero-r{padding:44px 22px}
   .cards-grid,.proj-grid,.mission-grid,.comp-cards{grid-template-columns:1fr}
   .s2col{grid-template-columns:1fr}
   .tl-item{grid-template-columns:1fr;gap:6px}
   .tl,.home-section,.proj-grid,.proj-block,.alt-sec,.contact-page,.page-hdr,.cv-bar,.comp-intro,.quote-band{padding-left:22px;padding-right:22px}
   .cap-wrap,.comp-detail-hdr{padding-left:22px;padding-right:22px}
   footer{padding:20px 22px;flex-direction:column;text-align:center}
-  .about-band-r,.skills-r{border-left:none;border-top:1px solid var(--border)}
+  .skills-r{border-left:none;border-top:1px solid var(--border)}
   .hero-left{border-right:none;border-bottom:1px solid var(--border)}
 }
 </style>
@@ -320,6 +341,7 @@ body.en .en-only-inline{display:inline}
   </div>
 
   <div class="quote-band">
+    <span class="qb-mark">“</span>
     <blockquote>
       <span class="fr-only-inline">« Toujours à chercher le fil qui relie les idées entre elles. »</span>
       <span class="en-only-inline">"Always looking for the thread that connects ideas."</span>
@@ -369,27 +391,49 @@ body.en .en-only-inline{display:inline}
     </div>
   </div>
 
-  <div class="about-band fu">
-    <div class="about-band-l">
-      <span class="eyebrow"><span class="fr-only-inline">Ce qui me définit</span><span class="en-only-inline">What defines me</span></span>
-      <h2 class="section-title" style="font-size:1.8rem;margin-top:8px"><span class="fr-only-inline">Au-delà des études.</span><span class="en-only-inline">Beyond studies.</span></h2>
+  <div class="beyond fu">
+    <div class="beyond-head">
+      <div>
+        <span class="eyebrow"><span class="fr-only-inline">Ce qui me définit</span><span class="en-only-inline">What defines me</span></span>
+        <h2 class="beyond-title"><span class="fr-only-inline">Au-delà<br>des <em>études.</em></span><span class="en-only-inline">Beyond<br>the <em>studies.</em></span></h2>
+      </div>
+      <p class="beyond-lead">
+        <span class="fr-only-inline">On ne se résume pas à un diplôme. Quatre choses expliquent assez bien comment je travaille et pourquoi la communication m'attire.</span>
+        <span class="en-only-inline">Nobody is just a degree. Four things explain fairly well how I work and why communication appeals to me.</span>
+      </p>
     </div>
-    <div class="about-band-r">
-      <p>
-        <span class="fr-only-inline">Je lis beaucoup, surtout des romans et de la littérature contemporaine. J'écris aussi, parce que c'est là que je pense le mieux. Et je danse, parce qu'il faut bien sortir de sa tête de temps en temps.</span>
-        <span class="en-only-inline">I read a lot, mostly novels and contemporary fiction. I write too, because that is where I think best. And I dance, because you have to get out of your own head sometimes.</span>
-      </p>
-      <p>
-        <span class="fr-only-inline">J'ai aussi été bénévole à l'UNICEF, une expérience qui compte encore dans ma façon de voir l'engagement.</span>
-        <span class="en-only-inline">I also volunteered with UNICEF, an experience that still shapes how I see commitment.</span>
-      </p>
-      <button class="btn btn-outline" onclick="go('parcours')" style="margin-top:8px"><span class="fr-only-inline">Mon parcours complet</span><span class="en-only-inline">My full background</span></button>
+
+    <div class="beyond-grid">
+      <article class="bx">
+        <span class="bx-n">01</span>
+        <h3><span class="fr-only-inline">Lire</span><span class="en-only-inline">Reading</span></h3>
+        <p><span class="fr-only-inline">Des romans, de la littérature contemporaine, beaucoup. C'est là que j'ai appris à repérer ce qu'un texte dit vraiment, sous ce qu'il raconte.</span><span class="en-only-inline">Novels, contemporary fiction, a lot of it. That is where I learned to spot what a text actually says, underneath what it tells.</span></p>
+      </article>
+      <article class="bx">
+        <span class="bx-n">02</span>
+        <h3><span class="fr-only-inline">Écrire</span><span class="en-only-inline">Writing</span></h3>
+        <p><span class="fr-only-inline">Parce que c'est là que je pense le mieux. Une idée mal écrite est souvent une idée pas encore claire, et je trouve ça plutôt utile à savoir.</span><span class="en-only-inline">Because that is where I think best. A badly written idea is usually an idea that is not clear yet, and I find that rather useful to know.</span></p>
+      </article>
+      <article class="bx">
+        <span class="bx-n">03</span>
+        <h3><span class="fr-only-inline">Danser</span><span class="en-only-inline">Dancing</span></h3>
+        <p><span class="fr-only-inline">Il faut bien sortir de sa tête de temps en temps. C'est aussi ce qui m'a appris à répéter une chose jusqu'à ce qu'elle tombe juste.</span><span class="en-only-inline">You have to get out of your own head sometimes. It also taught me to repeat something until it finally lands right.</span></p>
+      </article>
+      <article class="bx">
+        <span class="bx-n">04</span>
+        <h3><span class="fr-only-inline">M'engager</span><span class="en-only-inline">Getting involved</span></h3>
+        <p><span class="fr-only-inline">Bénévole à l'UNICEF, sur des actions de sensibilisation et la communication de l'association. Une expérience qui pèse encore dans ce que je choisis de faire.</span><span class="en-only-inline">A UNICEF volunteer, on awareness campaigns and the association's communications. An experience that still weighs on what I choose to do.</span></p>
+      </article>
+    </div>
+
+    <div class="beyond-cta">
+      <button class="btn btn-outline" onclick="go('parcours')"><span class="fr-only-inline">Mon parcours complet →</span><span class="en-only-inline">My full background →</span></button>
     </div>
   </div>
 
   <div class="contact-strip">
     <div>
-      <h2 class="c-title"><span class="fr-only-inline">Envie d'échanger ?</span><span class="en-only-inline">Want to connect?</span></h2>
+      <h2 class="c-title"><span class="fr-only-inline">Et si on<br><em style="font-style:italic;color:var(--bordeaux);background:linear-gradient(transparent 70%,rgba(219,169,76,.45) 70%)">se parlait ?</em></span><span class="en-only-inline">How about<br><em style="font-style:italic;color:var(--bordeaux);background:linear-gradient(transparent 70%,rgba(219,169,76,.45) 70%)">a conversation?</em></span></h2>
       <p class="c-sub"><span class="fr-only-inline">Je suis disponible pour un stage à partir du 22 février 2027, et toujours ouverte à une conversation.</span><span class="en-only-inline">I am available for an internship from 22 February 2027, and always open to a conversation.</span></p>
       <button class="btn btn-bordeaux" onclick="go('contact')"><span class="fr-only-inline">Me contacter</span><span class="en-only-inline">Get in touch</span></button>
     </div>
@@ -472,6 +516,7 @@ body.en .en-only-inline{display:inline}
   </div>
 
   <div class="quote-band">
+    <span class="qb-mark">“</span>
     <blockquote><span class="fr-only-inline">« Des frontières à franchir, des pages à écrire. »</span><span class="en-only-inline">"Borders to cross, pages to write."</span></blockquote>
   </div>
 
@@ -942,6 +987,7 @@ body.en .en-only-inline{display:inline}
   </div>
 
   <div class="quote-band">
+    <span class="qb-mark">“</span>
     <blockquote><span class="fr-only-inline">« Derrière chaque équipement, il y a un soldat, un pompier, un intervenant en crise. Ça change la façon de travailler. »</span><span class="en-only-inline">"Behind every piece of equipment is a soldier, a firefighter, a crisis responder. That changes the way you work."</span></blockquote>
   </div>
 

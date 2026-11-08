@@ -178,11 +178,9 @@ body.intro .hero-act{animation-delay:2.3s}
 .btn-ghost:hover{color:var(--wine)}
 
 /* ---------- bandeau defilant ---------- */
-.ticker{background:var(--wine);color:var(--paper);padding:15px 0;overflow:hidden;white-space:nowrap;border-top:2px solid var(--gold);border-bottom:2px solid var(--gold)}
-.ticker-run{display:inline-flex;animation:slide 38s linear infinite}
+.ticker{overflow:hidden;white-space:nowrap}
+.ticker-run{display:inline-flex;align-items:center;animation:slide 58s linear infinite}
 .ticker:hover .ticker-run{animation-play-state:paused}
-.ticker-run>span{font-family:var(--display);font-size:1.05rem;padding-right:34px;font-weight:400}
-.ticker-run>span i{font-style:normal;color:var(--gold);font-size:.8em;margin-left:6px}
 @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ---------- titres de section ---------- */
@@ -479,13 +477,18 @@ body.intro .chat .b1{animation-delay:2.2s,2.8s}
 body.intro .chat .b2{animation-delay:2.45s,3.6s}
 body.intro .chat .b3{animation-delay:2.7s,4.4s}
 
-/* ---------- deux bandeaux croises ---------- */
-.marquees{position:relative;padding:0;overflow:hidden}
-.marquees .ticker{width:100%;margin-left:0;transform:none;position:relative;z-index:2;box-shadow:none}
-.marquees .ticker.t2{background:var(--sable);color:var(--wine);margin-top:0;border-top:0;z-index:1;border-bottom-color:var(--gold)}
-.ticker.t2 .ticker-run{animation-direction:reverse;animation-duration:44s}
-.ticker.t2 .ticker-run>span{font-style:italic}
-.ticker.t2 .ticker-run>span i{color:var(--wine)}
+/* ---------- deux lignes qui défilent, sur papier, comme les bannières ---------- */
+.marquees{position:relative;overflow:hidden;background:var(--paper);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:clamp(24px,3.6vh,36px) 0 clamp(22px,3.2vh,32px)}
+.marquees .t1 .ticker-run>span{display:inline-flex;align-items:center;font-family:var(--name);font-weight:300;font-size:clamp(1.65rem,3.1vw,2.6rem);line-height:1.2;color:var(--ink);letter-spacing:-.005em}
+.marquees .t1 .ticker-run>span:nth-child(even){font-style:italic;color:var(--wine)}
+.marquees .spk{display:inline-block;width:15px;height:15px;margin:0 clamp(24px,2.8vw,42px);background:var(--rouge);-webkit-mask:var(--spark) center/contain no-repeat;mask:var(--spark) center/contain no-repeat}
+.marquees .t2{margin-top:clamp(12px,2vh,18px)}
+.marquees .t2 .ticker-run{animation-direction:reverse;animation-duration:70s}
+.marquees .t2 .ticker-run>span{display:inline-flex;align-items:center;font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--wine)}
+.marquees .trail{display:inline-flex;align-items:center;gap:7px;margin:0 clamp(18px,2vw,28px);color:var(--rouge)}
+.marquees .trail::before{content:'';width:46px;height:4px;background:radial-gradient(circle,var(--rouge) 1.3px,transparent 1.8px) 0 50%/9px 4px repeat-x}
+.marquees .trail svg{width:19px;height:15px;display:block}
+@media(max-width:640px){.marquees .t2 .ticker-run>span{font-size:.64rem;letter-spacing:.18em}.marquees .trail::before{width:30px}}
 
 /* ---------- tuiles de couleur ---------- */
 .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(12px,1.6vw,20px)}
@@ -776,9 +779,9 @@ span.en{display:none}
     </svg>
   </section>
 
-  <!-- deux bandeaux croises -->
+  <!-- deux lignes qui défilent -->
   <div class="marquees" aria-hidden="true">
-    <div class="ticker" id="tick"></div>
+    <div class="ticker t1" id="tick"></div>
     <div class="ticker t2" id="tick2"></div>
   </div>
 
@@ -1711,19 +1714,22 @@ function flip(){
 /* ---- bandeau defilant ---- */
 function buildTicker(){
   var en=document.body.classList.contains('lang-en');
+  /* ligne 1 : ce que j'ai vraiment fait, en quelques mots */
   var bits=en
-    ? ['Available from March 2027','Four to six month internship','Dijon, Loire region or Europe','Communication and versatile roles','Open to a conversation']
-    : ['Disponible à partir de mars 2027','Stage de quatre à six mois','Dijon, Loire ou Europe','Communication et postes polyvalents','Ouverte à la discussion'];
+    ? ['A year in a defence company','Five international trade shows prepared','A dissertation on export risk','Leading an assignment for a real client','A campaign on AI in film and television','A benchmark on careers in farming and nature']
+    : ["Un an dans une entreprise de défense",'Cinq salons internationaux préparés',"Un mémoire sur le risque à l'export",'Référente d\'une mission pour un vrai client',"Une campagne sur l'IA dans l'audiovisuel",'Un benchmark sur les métiers du vivant'];
   var seq='';
-  bits.forEach(function(t){seq+='<span>'+t+' <i>\u2726</i></span>';});
+  bits.forEach(function(t){seq+='<span>'+t+'<i class="spk"></i></span>';});
   document.getElementById('tick').innerHTML='<div class="ticker-run">'+seq+seq+'</div>';
+  /* ligne 2 : le trajet, ville par ville, comme l'avion en papier de la bannière */
   var t2=document.getElementById('tick2');
   if(t2){
+    var plane='<svg viewBox="-2 -15 38 30" aria-hidden="true"><path d="M0 -13 L34 0 L0 13 L7 0 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M7 0 L34 0" stroke="currentColor" stroke-width="2"/></svg>';
     var w2=en
-      ? ['Communication strategy','Writing','Social media','Monitoring and benchmarking','Bonjour','Hello','Hallo']
-      : ['Stratégie de communication','Rédaction','Réseaux sociaux','Veille et benchmark','Bonjour','Hello','Hallo'];
+      ? ['Saint-Étienne, IUT Jean Monnet','Lyon, Silk in Lyon','Reutlingen, ESB Business School','Saint-Chamond, KNDS CBRN','Paris, Eurosatory',"Dijon, master's degree"]
+      : ['Saint-Étienne, IUT Jean Monnet','Lyon, Silk in Lyon','Reutlingen, ESB Business School','Saint-Chamond, KNDS CBRN','Paris, Eurosatory','Dijon, master MASCI'];
     var q2='';
-    w2.forEach(function(t){q2+='<span>'+t+' <i>\u2726</i></span>';});
+    w2.forEach(function(t){q2+='<span>'+t+'<i class="trail">'+plane+'</i></span>';});
     t2.innerHTML='<div class="ticker-run">'+q2+q2+'</div>';
   }
 }

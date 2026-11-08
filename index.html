@@ -337,7 +337,7 @@ footer{padding:26px clamp(20px,5vw,80px);display:flex;justify-content:space-betw
 .acc-btn{width:100%;background:none;border:0;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:clamp(16px,3vw,40px);align-items:center;padding:clamp(22px,3.4vh,34px) 0;text-align:left;font-family:inherit;transition:padding-left .4s cubic-bezier(.19,1,.22,1)}
 .acc-btn:hover{padding-left:12px}
 .acc-fig{font-family:var(--display);font-size:clamp(1.4rem,2.2vw,1.9rem);color:var(--gold);font-weight:700;transition:color .3s}
-.acc-btn:hover .acc-fig,.acc-item.open .acc-fig{color:var(--wine)}
+.acc-btn:hover .acc-fig,.acc-item.open .acc-fig{color:var(--rouge)}
 .acc-ttl{font-family:var(--display);font-size:clamp(1.3rem,2.6vw,2rem);font-weight:400;line-height:1.14;color:var(--ink)}
 .acc-sub{display:block;font-family:var(--sans);font-size:.82rem;color:var(--mute);margin-top:7px;font-weight:400;max-width:52ch;line-height:1.55}
 .acc-sign{position:relative;width:19px;height:19px;flex-shrink:0}
@@ -392,10 +392,10 @@ footer{padding:26px clamp(20px,5vw,80px);display:flex;justify-content:space-betw
 .fld{display:flex;flex-direction:column;gap:6px}
 .fld label{font-size:.68rem;font-weight:700;color:var(--wine);letter-spacing:.06em;text-transform:uppercase}
 .fld input,.fld textarea{border:0;border-bottom:1px solid var(--rule);background:transparent;padding:10px 0;font-family:var(--sans);font-size:.92rem;color:var(--ink);outline:none;transition:border-color .3s}
-.fld input:focus,.fld textarea:focus{border-color:var(--gold);border-bottom-width:2px}
+.fld input:focus,.fld textarea:focus{border-color:var(--rouge);border-bottom-width:2px}
 .fld textarea{resize:vertical;min-height:110px}
 
-.sent{display:none;font-size:.84rem;color:var(--wine);border-left:2px solid var(--wine);padding:8px 0 8px 14px;max-width:46ch}
+.sent{display:none;font-size:.84rem;color:var(--wine);border-left:2px solid var(--rouge);padding:8px 0 8px 14px;max-width:46ch}
 .sent.show{display:block}
 
 /* ---------- citation pleine largeur ---------- */
@@ -431,7 +431,7 @@ footer{padding:26px clamp(20px,5vw,80px);display:flex;justify-content:space-betw
 .acc-item{transition:background .35s}
 .acc-item:hover{background:var(--paper-2)}
 .acc-item.open{background:var(--paper-2)}
-.acc-item:nth-child(even) .acc-fig{color:var(--wine)}
+.acc-item:nth-child(even) .acc-fig{color:var(--rouge)}
 .acc-item.open .proofs li{background:rgba(255,253,248,.7)}
 
 /* blocs de mission et colonnes */
@@ -575,11 +575,81 @@ body.intro .chat .b3{animation-delay:2.7s,4.4s}
 /* chaque page s'ouvre sur un soleil de couleur */
 .pg>section:first-of-type:not(.hero):not(.hero2):not(.dark){position:relative;overflow-x:clip}
 .pg>section:first-of-type:not(.hero):not(.hero2):not(.dark)::before{content:'';position:absolute;z-index:-1;width:clamp(240px,32vw,460px);aspect-ratio:1;border-radius:50%;background:var(--sun,var(--rouge));opacity:.85;right:-7vw;top:-9vw}
-#p-parcours{--sun:var(--sable)}
+#p-parcours{--sun:var(--rouge)}
 #p-savoirfaire{--sun:var(--rouge)}
 #p-travaux{--sun:var(--sable)}
 #p-contact{--sun:var(--rouge)}
 @media(max-width:640px){.pg>section:first-of-type:not(.hero):not(.hero2):not(.dark)::before{width:150px;right:-60px;top:-70px}}
+
+/* ---------- touches de rouge clair, dosées page par page ---------- */
+.menu button.on::after{background:var(--rouge)}
+.btn-fill::before{background:var(--rouge)}
+.btn-warm{background:var(--rouge);color:var(--paper)}
+.btn-warm::before{background:var(--wine)}
+.pull.warm{background:var(--rouge);color:var(--paper)}
+.pull.warm .pull-in{border-color:rgba(255,253,248,.55)}
+.pull.warm .pull-in::before{background:var(--rouge);color:var(--paper)}
+.tl-item.now::before{background:var(--rouge);box-shadow:inset 0 0 0 3px var(--wine),0 0 0 5px rgba(201,76,67,.2)}
+#p-parcours .facts-band .fact-n{border-bottom-color:var(--rouge)}
+.kv li::before{background:var(--rouge)}
+.pills>span:hover{background:var(--rouge);border-color:var(--rouge);color:var(--paper)}
+.acc-item{transition:background .35s,box-shadow .35s}
+.acc-item.open{box-shadow:inset 3px 0 0 var(--rouge)}
+.acc-item.open .acc-btn,.acc-item.open .acc-pad{padding-left:20px;padding-right:20px}
+.acc-item.open .acc-sign::before,.acc-item.open .acc-sign::after{background:var(--rouge)}
+.ref:nth-child(even):hover{background:var(--rouge)}
+.ref:nth-child(even):hover .ref-k{color:var(--paper)}
+#p-alternance>section.dark:first-of-type{position:relative;isolation:isolate;overflow-x:clip}
+#p-alternance>section.dark:first-of-type::before{content:'';position:absolute;z-index:-1;width:clamp(220px,28vw,420px);aspect-ratio:1;border-radius:50%;background:var(--rouge);right:-6vw;top:-8vw}
+@media(max-width:640px){#p-alternance>section.dark:first-of-type::before{width:140px;right:-56px;top:-64px}}
+
+/* ---------- le mémoire, en preuve ---------- */
+.memo{display:grid;grid-template-columns:minmax(250px,.7fr) 1.3fr;gap:clamp(40px,6vw,96px);align-items:start}
+.memo-cover{position:relative;aspect-ratio:1/1.414;background:var(--paper);border:1px solid var(--rule);padding:clamp(26px,3vw,40px) clamp(22px,2.6vw,34px) clamp(24px,3vw,34px) clamp(36px,3.8vw,50px);display:flex;flex-direction:column;box-shadow:9px 9px 0 -1px var(--paper-3),9px 9px 0 0 var(--rule),18px 18px 0 -1px var(--sable),0 40px 60px -36px rgba(109,34,56,.5);max-width:400px}
+.memo-cover::before{content:'';position:absolute;left:0;top:0;bottom:0;width:12px;background:var(--rouge)}
+.memo-cover::after{content:'';position:absolute;inset:14px 14px 14px 26px;border:1px solid var(--gold-soft);pointer-events:none}
+.mc-k{font-size:.64rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--wine)}
+.mc-s{font-size:.74rem;color:var(--mute);line-height:1.5;margin-top:8px;max-width:30ch}
+.mc-t{font-family:var(--display);font-weight:700;font-size:clamp(1.02rem,1.45vw,1.28rem);line-height:1.34;letter-spacing:-.01em;color:var(--ink);margin:auto 0}
+.mc-t:before{content:'';display:block;width:34px;height:3px;background:var(--gold);margin-bottom:16px;border-radius:2px}
+.mc-f{display:flex;justify-content:space-between;gap:12px;border-top:2px solid var(--gold);padding-top:12px;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--wine)}
+.memo-seal{position:absolute;top:-22px;right:-18px;width:98px;height:98px;border-radius:50%;background:var(--rouge);color:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center;font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;box-shadow:0 0 0 6px var(--paper),0 14px 26px -12px rgba(109,34,56,.55);z-index:2}
+.memo-seal svg{width:16px;height:16px}
+.memo-cover.in .memo-seal{animation:seal .8s .45s cubic-bezier(.19,1,.22,1) both}
+@keyframes seal{from{transform:scale(.4);opacity:0}to{transform:none;opacity:1}}
+.memo-q{font-family:var(--display);font-style:italic;font-size:clamp(1.12rem,1.9vw,1.42rem);line-height:1.5;color:var(--ink);border-left:3px solid var(--rouge);padding-left:22px;margin:14px 0 22px;max-width:46ch}
+.memo-body>p{max-width:60ch}
+.memo-cases{list-style:none;margin-top:28px;border-top:1px solid var(--rule)}
+.memo-cases li{display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:start;padding:17px 0;border-bottom:1px solid var(--rule);font-size:.88rem;line-height:1.6}
+.memo-cases .ml{font-family:var(--name);font-style:italic;font-weight:400;font-size:2.5rem;line-height:.8;color:var(--rouge)}
+.memo-cases b{display:block;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--wine);margin-bottom:4px}
+.memo-shows{margin-top:24px;font-size:.88rem;max-width:60ch}
+.memo-shows b{display:block;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--wine);margin-bottom:6px}
+.tools-top{display:flex;align-items:baseline;gap:22px;flex-wrap:wrap;margin:clamp(56px,9vh,96px) 0 clamp(22px,3vh,32px)}
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,24px)}
+.tools>div{display:flex;flex-direction:column;min-height:240px;padding:clamp(26px,3vw,38px)}
+.tool-n{font-family:var(--name);font-style:italic;font-weight:300;font-size:3.4rem;line-height:.8;margin-bottom:auto;font-variant-numeric:lining-nums}
+.tools h4{font-family:var(--display);font-size:1.22rem;font-weight:400;line-height:1.2;margin:26px 0 10px}
+.tools p{font-size:.86rem;line-height:1.62}
+.tool1{background:var(--wine);color:var(--paper)}
+.tool1 .tool-n{color:var(--gold)}
+.tool1 p{color:rgba(255,253,248,.82)}
+.tool2{background:var(--rouge);color:var(--paper)}
+.tool2 .tool-n{color:var(--sable)}
+.tool2 p{color:rgba(255,253,248,.92)}
+.tool3{background:var(--sable)}
+.tool3 .tool-n{color:var(--wine)}
+.tool3 p{color:#5d4d47}
+.memo-note{display:flex;gap:12px;align-items:flex-start;margin-top:26px;font-size:.8rem;color:var(--mute);line-height:1.6;max-width:74ch}
+.memo-note svg{flex:0 0 16px;width:16px;height:16px;margin-top:2px;color:var(--rouge)}
+.memo-note b{color:var(--ink);font-weight:600}
+@media(max-width:900px){
+  .memo{grid-template-columns:1fr}
+  .memo-cover{max-width:330px}
+  .mc-s{padding-right:58px}
+  .tools{grid-template-columns:1fr}
+  .tools>div{min-height:0}
+}
 
 /* ---------- accessibilite ---------- */
 button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--wine);outline-offset:3px}
@@ -880,6 +950,7 @@ span.en{display:none}
             <li><span class="fr">Semestre d'échange à l'ESB Business School de Reutlingen, en Allemagne, de septembre à décembre 2024</span><span class="en">Exchange semester at ESB Business School, Reutlingen, Germany, September to December 2024</span></li>
             <li><span class="fr">Mémoire sur la gestion des risques commerciaux et géopolitiques dans l'exportation de solutions de défense</span><span class="en">Dissertation on managing commercial and geopolitical risk in the export of defence solutions</span></li>
           </ul>
+          <div style="margin-top:18px"><button class="btn btn-line" onclick="go('alternance','memoire')"><span class="fr">Voir le mémoire</span><span class="en">See the dissertation</span></button></div>
         </div>
 
         <div class="tl-item">
@@ -892,7 +963,7 @@ span.en{display:none}
     </div>
   </section>
 
-  <div class="dark pull wrap">
+  <div class="pull warm wrap">
     <div class="pull-in">
       <q><span class="fr">Des frontières à franchir, des pages à écrire.</span><span class="en">Borders to cross, pages to write.</span></q>
     </div>
@@ -967,7 +1038,7 @@ span.en{display:none}
       <div>
         <span class="kicker"><span class="fr">Hors des cours</span><span class="en">Outside class</span></span>
         <h2 class="disp h-md" style="margin:8px 0 22px"><span class="fr">Ce qui m'a menée là.</span><span class="en">What brought me here.</span></h2>
-        <p class="lede" style="border-left:2px solid var(--wine);padding-left:20px;margin-bottom:22px"><span class="fr">Comprendre un public avant de lui parler. C'est la lecture qui me l'a appris en premier.</span><span class="en">Understanding an audience before speaking to it. Reading taught me that first.</span></p>
+        <p class="lede" style="border-left:2px solid var(--rouge);padding-left:20px;margin-bottom:22px"><span class="fr">Comprendre un public avant de lui parler. C'est la lecture qui me l'a appris en premier.</span><span class="en">Understanding an audience before speaking to it. Reading taught me that first.</span></p>
         <p style="margin-bottom:14px"><span class="fr">Les langues me fascinent parce que chacune propose une autre façon de penser le monde.</span><span class="en">Languages fascinate me because each one offers another way of thinking about the world.</span></p>
         <p style="margin-bottom:14px"><span class="fr">J'écris, et c'est là que je suis la plus moi-même. Trouver le mot juste, faire tenir un texte : le même plaisir qu'un dossier bien construit.</span><span class="en">I write, and that is where I am most myself. Finding the right word, making a text hold together: the same pleasure as a well-built file.</span></p>
         <div class="pills">
@@ -1278,11 +1349,12 @@ span.en{display:none}
     </div>
     <div class="feat">
 
-      <div class="fcard deep sp7" style="cursor:default">
+      <a class="fcard deep sp7" onclick="go('alternance','memoire')">
         <span class="f-meta"><span class="fr">Mémoire de fin d'études, 2026</span><span class="en">Final dissertation, 2026</span></span>
         <h3><span class="fr">Exporter sous contrainte</span><span class="en">Exporting under constraint</span></h3>
         <p><span class="fr">Comment intégrer le risque géopolitique, réglementaire et contractuel dans une stratégie commerciale internationale. Un an d'observation de terrain, trois cas analysés, trois outils proposés à l'entreprise.</span><span class="en">How to build geopolitical, regulatory and contractual risk into an international commercial strategy. A year of field observation, three cases analysed, three tools proposed to the company.</span></p>
-      </div>
+        <span class="cue"><span class="fr">Voir la démarche</span><span class="en">See the approach</span></span>
+      </a>
 
       <div class="fcard rose sp5" style="cursor:default">
         <span class="f-meta"><span class="fr">Master, oral de groupe, 2026</span><span class="en">Master's, group presentation, 2026</span></span>
@@ -1412,7 +1484,7 @@ span.en{display:none}
     </div>
   </section>
 
-  <div class="dark pull wrap">
+  <div class="pull warm wrap">
     <div class="pull-in">
       <q><span class="fr">Je n'avais jamais touché un masque à gaz. Un an plus tard, j'organisais leur expédition vers des salons internationaux.</span><span class="en">I had never touched a gas mask. A year later, I was organising their shipment to international trade shows.</span></q>
     </div>
@@ -1445,7 +1517,7 @@ span.en{display:none}
         <span class="kicker"><span class="fr">La mission qui m'a marquée</span><span class="en">The one that stayed with me</span></span>
         <h2 class="disp h-md" style="margin:8px 0 18px"><span class="fr">Expédier du matériel militaire, ce n'est pas envoyer des brochures.</span><span class="en">Shipping military equipment is nothing like sending brochures.</span></h2>
         <p style="margin-bottom:14px"><span class="fr">Préparer un salon dans la défense, c'est gérer l'envoi de masques à gaz, de kits de détection et de matériel de décontamination. Même pour une démonstration, ces équipements relèvent du contrôle des exportations.</span><span class="en">Preparing a defence trade show means shipping gas masks, detection kits and decontamination equipment. Even for a demonstration, this material falls under export control.</span></p>
-        <p class="lede" style="border-left:2px solid var(--wine);padding-left:20px"><span class="fr">Comment expédier du matériel de défense vers des salons internationaux dans un cadre réglementaire qui ne tolère aucune approximation ?</span><span class="en">How do you ship defence equipment to international trade shows within a regulatory framework that tolerates no approximation?</span></p>
+        <p class="lede" style="border-left:2px solid var(--rouge);padding-left:20px"><span class="fr">Comment expédier du matériel de défense vers des salons internationaux dans un cadre réglementaire qui ne tolère aucune approximation ?</span><span class="en">How do you ship defence equipment to international trade shows within a regulatory framework that tolerates no approximation?</span></p>
       </div>
       <div>
         <span class="kicker"><span class="fr">La difficulté réelle</span><span class="en">The real difficulty</span></span>
@@ -1454,6 +1526,58 @@ span.en{display:none}
         <p style="margin-top:14px"><span class="fr">Une méthode : vérifier en amont plutôt que corriger en urgence, s'appuyer sur des check-lists, travailler main dans la main avec le juridique. C'est de là qu'est né mon mémoire, et les trois outils que j'y propose.</span><span class="en">A method: check upstream rather than fix in a rush, rely on checklists, work hand in hand with the legal team. That is where my dissertation came from, and the three tools I propose in it.</span></p>
       </div>
     </div>
+  </section>
+
+  <section class="sec wrap" id="memoire">
+    <div class="sec-top reveal">
+      <span class="kicker"><span class="fr">Le mémoire</span><span class="en">The dissertation</span></span>
+      <h2 class="disp h-lg"><span class="fr">Trois risques,<br><em class="it">trois outils.</em></span><span class="en">Three risks,<br><em class="it">three tools.</em></span></h2>
+    </div>
+
+    <div class="memo">
+      <div class="memo-cover" aria-label="Mémoire de fin d'études">
+        <span class="memo-seal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span class="fr">Confidentiel</span><span class="en">Confidential</span></span>
+        <span class="mc-k"><span class="fr">Mémoire de fin d'études</span><span class="en">Final dissertation</span></span>
+        <span class="mc-s"><span class="fr">BUT techniques de commercialisation, parcours business international</span><span class="en">BUT business techniques, international business track</span></span>
+        <span class="mc-t"><span class="fr">La gestion des risques commerciaux et géopolitiques dans l'exportation de solutions de défense NRBC</span><span class="en">Managing commercial and geopolitical risk in exporting NRBC defence solutions</span></span>
+        <span class="mc-f"><span><span class="fr">Juin 2026</span><span class="en">June 2026</span></span><span>37 pages</span></span>
+      </div>
+
+      <div class="memo-body">
+        <span class="kicker"><span class="fr">La question de départ</span><span class="en">The starting question</span></span>
+        <p class="memo-q"><span class="fr">« Comment intégrer les risques géopolitiques, réglementaires et contractuels dans la stratégie commerciale d'une entreprise de défense, pour sécuriser ses exportations ? »</span><span class="en">"How can a defence company build geopolitical, regulatory and contractual risk into its commercial strategy, to secure its exports?"</span></p>
+        <p><span class="fr">Ma réponse tient en trois temps : repérer les risques pays par pays, les anticiper grâce à une veille, puis les verrouiller dans le contrat. Pour ne rien dévoiler des dossiers internes, chaque partie s'appuie sur un cas public.</span><span class="en">My answer comes in three steps: map the risks country by country, anticipate them through monitoring, then lock them into the contract. To keep internal files private, each part rests on a public case.</span></p>
+        <ol class="memo-cases">
+          <li><span class="ml">A</span><span><b><span class="fr">Le risque géopolitique</span><span class="en">Geopolitical risk</span></b><span class="fr">L'embargo européen de 2022 sur la Russie : des contrats signés, des livraisons arrêtées du jour au lendemain.</span><span class="en">The 2022 EU embargo on Russia: signed contracts, deliveries stopped overnight.</span></span></li>
+          <li><span class="ml">B</span><span><b><span class="fr">Le risque réglementaire</span><span class="en">Regulatory risk</span></b><span class="fr">Les ventes d'armement françaises à l'Égypte : une licence d'export n'est jamais une simple formalité technique.</span><span class="en">French arms sales to Egypt: an export licence is never a mere technical formality.</span></span></li>
+          <li><span class="ml">C</span><span><b><span class="fr">Le risque contractuel</span><span class="en">Contractual risk</span></b><span class="fr">Une livraison bloquée en douane par une erreur de document et un Incoterm mal choisi.</span><span class="en">A shipment held at customs over one document error and the wrong Incoterm.</span></span></li>
+        </ol>
+        <p class="memo-shows"><b><span class="fr">Ce que ça montre</span><span class="en">What it shows</span></b><span class="fr">Tenir un raisonnement sur la durée, vérifier chaque source et transformer une analyse en outils que l'on peut vraiment utiliser.</span><span class="en">Holding an argument over the long run, checking every source and turning an analysis into tools people can actually use.</span></p>
+      </div>
+    </div>
+
+    <div class="tools-top">
+      <span class="kicker"><span class="fr">Mes recommandations</span><span class="en">My recommendations</span></span>
+      <h3 class="disp h-md"><span class="fr">Ce que j'ai proposé à l'entreprise.</span><span class="en">What I proposed to the company.</span></h3>
+    </div>
+    <div class="tools">
+      <div class="tool1">
+        <span class="tool-n">01</span>
+        <h4><span class="fr">Une grille du risque pays</span><span class="en">A country risk grid</span></h4>
+        <p><span class="fr">Pour trier les prospects dès le départ : stabilité politique, embargos, historique des licences, relations avec la France.</span><span class="en">To sort prospects from the start: political stability, embargoes, licence history, relations with France.</span></p>
+      </div>
+      <div class="tool2">
+        <span class="tool-n">02</span>
+        <h4><span class="fr">Une check-list documentaire</span><span class="en">A paperwork checklist</span></h4>
+        <p><span class="fr">Pour chaque dossier export, les pièces à réunir selon la destination. On vérifie avant l'expédition, pas à la douane.</span><span class="en">For each export file, the documents needed for that destination. You check before shipping, not at customs.</span></p>
+      </div>
+      <div class="tool3">
+        <span class="tool-n">03</span>
+        <h4><span class="fr">Un guide Incoterms et paiement</span><span class="en">An Incoterms and payment guide</span></h4>
+        <p><span class="fr">Pour chaque niveau de risque, les conditions de livraison et de paiement à proposer, les mêmes pour toute l'équipe.</span><span class="en">For each level of risk, the delivery and payment terms to offer, the same for the whole team.</span></p>
+      </div>
+    </div>
+    <p class="memo-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span><b><span class="fr">Document confidentiel.</span><span class="en">Confidential document.</span></b> <span class="fr">Le mémoire contient des informations sur l'entreprise, il n'est donc pas diffusé en ligne. J'en présente volontiers la démarche en entretien.</span><span class="en">The dissertation contains company information, so it is not published online. I am happy to walk you through it in an interview.</span></span></p>
   </section>
 
   <section class="sec wrap">
@@ -1510,7 +1634,7 @@ span.en{display:none}
         <div class="fld"><label for="f2"><span class="fr">Nom</span><span class="en">Last name</span></label><input id="f2" type="text" autocomplete="family-name" required></div>
         <div class="fld"><label for="f3">Email</label><input id="f3" type="email" autocomplete="email" required></div>
         <div class="fld"><label for="f4">Message</label><textarea id="f4" required></textarea></div>
-        <button class="btn btn-fill" style="align-self:flex-start" type="submit"><span class="fr">Envoyer le message</span><span class="en">Send the message</span></button>
+        <button class="btn btn-warm" style="align-self:flex-start" type="submit"><span class="fr">Envoyer le message</span><span class="en">Send the message</span></button>
         <p class="sent" id="sent" role="status">
           <span class="fr">Votre logiciel de messagerie s'ouvre avec le message prêt à partir. S'il ne s'ouvre pas, écrivez directement à enaebakj42@gmail.com.</span>
           <span class="en">Your email app is opening with the message ready to send. If nothing opens, write directly to enaebakj42@gmail.com.</span>
@@ -1531,8 +1655,14 @@ var current='accueil';
 var slow=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---- navigation avec volet ---- */
-function go(id){
-  if(id===current){window.scrollTo({top:0,behavior:'smooth'});return;}
+function jump(a,smooth){
+  var t=document.getElementById(a);
+  if(!t)return;
+  var y=t.getBoundingClientRect().top+window.scrollY-84;
+  window.scrollTo({top:Math.max(0,y),behavior:smooth?'smooth':'instant'});
+}
+function go(id,anchor){
+  if(id===current){if(anchor)jump(anchor,true);else window.scrollTo({top:0,behavior:'smooth'});return;}
   var w=document.getElementById('wipe');
   function swap(){
     PAGES.forEach(function(p){
@@ -1542,8 +1672,9 @@ function go(id){
     document.getElementById('p-'+id).classList.add('live');
     document.getElementById('t-'+id).classList.add('on');
     current=id;
-    window.scrollTo(0,0);
+    window.scrollTo({top:0,behavior:'instant'});
     armReveals();
+    if(anchor)jump(anchor,false);
   }
   if(slow){swap();return;}
   w.classList.remove('go');
@@ -1644,7 +1775,7 @@ function send(e){
 
 /* ---- reveals des titres de section ---- */
 var io=null,io2=null;
-var ANIM='.trio>div,.fcard,.case,.bx,.ref,.tl-item,.facets>div,.facts>div,.kv,.pills,.acc-item,.rows,.form,.portrait-side,.pull q';
+var ANIM='.trio>div,.fcard,.case,.bx,.ref,.tl-item,.facets>div,.facts>div,.kv,.pills,.acc-item,.rows,.form,.portrait-side,.pull q,.memo-cover,.memo-body,.tools>div';
 
 function armReveals(){
   var page=document.querySelector('.pg.live');

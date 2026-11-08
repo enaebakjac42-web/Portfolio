@@ -15,7 +15,7 @@
 <meta name="theme-color" content="#6b0f2b">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
@@ -30,15 +30,20 @@
   --paper-2:#f9f1e4;
   --paper-3:#f2e4d1;
   --blush:#f7e9dc;
-  --rose:#e8b9a6;
+  --rose:#c94c43;
   --rule:#e6d9c6;
   --mute:#8d8178;
+  --rouge:#c94c43;       /* rouge clair */
+  --sable:#ecd9c3;       /* sable chaud */
+  --deep:#5a1a2c;        /* bordeaux profond */
   --display:'Libre Baskerville',Georgia,serif;
   --sans:'DM Sans',system-ui,sans-serif;
+  --name:'Cormorant Garamond',Georgia,serif;
+  --spark:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0c.6 7 4.4 10.8 12 12-7.6 1.2-11.4 5-12 12-.6-7-4.4-10.8-12-12C7.6 10.8 11.4 7 12 0z'/%3E%3C/svg%3E");
 }
 
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{font-family:var(--sans);background:var(--paper);color:var(--ink);overflow-x:hidden;font-weight:400;line-height:1.6;font-size:16px}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);overflow-x:clip;font-weight:400;line-height:1.6;font-size:16px}
 img{display:block;max-width:100%}
 ::selection{background:var(--wine);color:var(--paper)}
 
@@ -46,10 +51,10 @@ img{display:block;max-width:100%}
 #prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--gold);z-index:300;transition:width .1s linear}
 
 /* ---------- navigation ---------- */
-header{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(249,241,228,.96);backdrop-filter:blur(14px);border-bottom:2px solid var(--gold)}
+header{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(245,231,210,.97);backdrop-filter:blur(14px);border-bottom:2px solid var(--gold);box-shadow:0 6px 24px -14px rgba(109,34,56,.35)}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 clamp(20px,4vw,56px);height:66px}
-.mark{font-family:var(--display);font-size:1.5rem;font-weight:500;letter-spacing:-.01em;cursor:pointer;background:none;border:0;color:var(--ink);padding:0}
-.mark i{font-style:italic;color:var(--wine)}
+.mark{font-family:var(--name);font-style:italic;font-size:1.9rem;font-weight:500;letter-spacing:-.01em;cursor:pointer;background:none;border:0;color:var(--wine);padding:0;line-height:1}
+.mark i{font-style:italic;color:var(--gold)}
 .menu{display:flex;gap:clamp(14px,2vw,30px);list-style:none;align-items:center}
 .menu button{background:none;border:0;cursor:pointer;font-family:var(--sans);font-size:.8rem;font-weight:500;color:var(--mute);padding:6px 0;position:relative;letter-spacing:.01em;transition:color .25s}
 .menu button::after{content:'';position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .35s cubic-bezier(.19,1,.22,1)}
@@ -70,7 +75,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(249,241,2
 }
 
 /* ---------- pages ---------- */
-.pg{display:none;padding-top:66px}
+.pg{display:none;padding-top:66px;overflow-x:clip}
 .pg.live{display:block}
 .wrap{padding-left:clamp(20px,5vw,80px);padding-right:clamp(20px,5vw,80px)}
 
@@ -88,12 +93,17 @@ p{font-size:.95rem;line-height:1.72;color:#4a434c;max-width:64ch}
 
 /* ---------- hero ---------- */
 .hero{min-height:calc(100vh - 66px);display:grid;grid-template-columns:1.45fr .85fr;gap:clamp(30px,5vw,70px);align-items:center;padding-top:clamp(30px,6vh,70px);padding-bottom:clamp(40px,7vh,80px)}
-.hero-name{margin-bottom:26px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.72rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--wine);margin-bottom:18px;opacity:0;animation:fadeIn .7s .2s forwards}
+.eyebrow::before{content:'';width:14px;height:14px;background:var(--gold);-webkit-mask:var(--spark) center/contain no-repeat;mask:var(--spark) center/contain no-repeat}
+.hero-name{margin-bottom:26px;font-family:var(--name);font-weight:300;letter-spacing:-.01em;line-height:.98}
+.hero-name.h-xl{font-size:clamp(3.2rem,9vw,7.3rem)}
+.hero-name span:nth-child(1) b{font-size:1.16em;line-height:.92}
+.hero-name span:nth-child(2) b{font-size:.72em;margin-left:.6em;font-weight:400;padding-bottom:.08em}
 .hero-name span{display:block;overflow:hidden}
 .hero-name b{display:block;font-weight:400;transform:translateY(102%);animation:rise 1s cubic-bezier(.19,1,.22,1) forwards}
 .hero-name span:nth-child(2) b{animation-delay:.1s}
 @keyframes rise{to{transform:translateY(0)}}
-.hero-name i{font-style:italic;color:var(--wine)}
+.hero-name i{font-style:italic;color:var(--wine);font-weight:300}
 
 .switcher{height:2.1em;overflow:hidden;position:relative;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);display:flex;align-items:center;margin-bottom:30px;max-width:30ch;opacity:0;animation:fadeIn .7s .75s forwards}
 @keyframes fadeIn{to{opacity:1}}
@@ -104,11 +114,53 @@ p{font-size:.95rem;line-height:1.72;color:#4a434c;max-width:64ch}
 .hero-txt{opacity:0;animation:fadeIn .7s .95s forwards}
 .hero-act{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px;opacity:0;animation:fadeIn .7s 1.1s forwards}
 
-.portrait{opacity:0;animation:fadeIn .9s .5s forwards;display:flex;flex-direction:column;align-items:center;text-align:center}
-.portrait img{width:clamp(180px,20vw,290px);height:clamp(180px,20vw,290px);border-radius:50%;object-fit:cover;object-position:50% 8%;border:4px solid var(--wine);box-shadow:0 0 0 10px var(--gold-soft);transition:transform .5s cubic-bezier(.19,1,.22,1),box-shadow .5s}
+.portrait{--ps:clamp(180px,20vw,290px);position:relative;opacity:0;animation:fadeIn .9s .5s forwards;display:flex;flex-direction:column;align-items:center;text-align:center}
+.ph{position:relative;display:inline-block}
+.orbit{position:absolute;left:50%;top:50%;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%)}
+.orbit.o1{width:calc(var(--ps) + 64px);height:calc(var(--ps) + 64px);border:1px solid rgba(219,169,76,.6);animation:orbit 26s linear infinite}
+.orbit.o1::after{content:'';position:absolute;top:-5px;left:50%;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(219,169,76,.22)}
+.orbit.o2{width:calc(var(--ps) + 124px);height:calc(var(--ps) + 124px);border:1px dashed rgba(141,47,72,.22);animation:orbit 70s linear infinite reverse}
+@keyframes orbit{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.portrait img{position:relative;z-index:1;width:var(--ps);height:var(--ps);border-radius:50%;object-fit:cover;object-position:50% 8%;border:4px solid var(--wine);box-shadow:0 0 0 10px var(--gold-soft);transition:transform .5s cubic-bezier(.19,1,.22,1),box-shadow .5s}
 .portrait:hover img{transform:scale(1.03);box-shadow:0 0 0 14px var(--gold-soft)}
-.portrait figcaption{font-family:var(--display);font-style:italic;font-size:.95rem;line-height:1.5;color:var(--wine);margin-top:26px;padding-top:20px;max-width:min(34ch,340px);position:relative;text-wrap:balance}
+.portrait figcaption{font-family:var(--name);font-style:italic;font-size:1.22rem;line-height:1.4;color:var(--wine);margin-top:clamp(56px,7vh,74px);padding-top:20px;max-width:min(34ch,340px);position:relative;text-wrap:balance}
 .portrait figcaption::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:40px;height:2px;background:var(--gold);border-radius:2px}
+
+/* ---------- bulles, etincelles et tampon ---------- */
+.bub{position:absolute;z-index:3;font-family:var(--name);font-style:italic;font-weight:500;font-size:clamp(1rem,1.35vw,1.2rem);padding:8px 20px 9px;border-radius:30px;white-space:nowrap;box-shadow:0 10px 24px -8px rgba(42,31,34,.28);animation:bob 5.6s ease-in-out infinite}
+.bub::after{content:'';position:absolute;top:100%;width:0;height:0;border:8px solid transparent;border-bottom:0}
+.bub.b1{background:var(--ink);color:var(--paper);top:2%;left:-16%}
+.bub.b1::after{left:22px;border-top-color:var(--ink)}
+.bub.b2{background:var(--paper);color:var(--wine);top:44%;right:-22%;animation-delay:.9s;box-shadow:0 10px 24px -8px rgba(42,31,34,.28),inset 0 0 0 1px rgba(219,169,76,.5)}
+.bub.b2::after{right:24px;border-top-color:var(--paper)}
+.bub.b3{background:var(--rose);color:var(--paper);bottom:4%;left:-20%;animation-delay:1.8s}
+.bub.b3::after{left:26px;border-top-color:var(--rose)}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.sp{position:absolute;display:block;background:var(--gold);pointer-events:none;z-index:2;-webkit-mask:var(--spark) center/contain no-repeat;mask:var(--spark) center/contain no-repeat;animation:twinkle 4.6s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.4;transform:scale(.8) rotate(0)}50%{opacity:1;transform:scale(1) rotate(12deg)}}
+.hero{position:relative;overflow-x:clip}
+.hero::before{content:'';position:absolute;z-index:-1;width:min(36vw,520px);aspect-ratio:1;border-radius:50%;background:var(--rouge);opacity:.88;right:-8vw;top:-11vw}
+.hero::after{content:'';position:absolute;z-index:-1;width:min(16vw,230px);aspect-ratio:1;border-radius:50%;background:var(--sable);left:-6vw;bottom:-6vw}
+@media(max-width:640px){.hero::before{width:220px;right:-90px;top:-80px}.hero::after{width:120px}}
+.stamp{position:absolute;top:clamp(14px,4vh,48px);right:clamp(22px,3vw,48px);width:clamp(84px,7.4vw,112px);height:auto;z-index:3;pointer-events:none;animation:stamp 32s linear infinite}
+@keyframes stamp{to{transform:rotate(360deg)}}
+
+/* ---------- le rideau d'ouverture ---------- */
+#curtain{position:fixed;inset:0;z-index:600;background:var(--wine);display:flex;align-items:center;justify-content:center;pointer-events:none;animation:curtainUp .85s cubic-bezier(.76,0,.24,1) 1.05s forwards}
+#curtain::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--gold)}
+.c-in{text-align:center;animation:cIn .8s cubic-bezier(.19,1,.22,1) both}
+.c-name{display:block;font-family:var(--name);font-style:italic;font-weight:300;font-size:clamp(3.6rem,11vw,8rem);line-height:1;color:var(--gold)}
+.c-sub{display:block;font-size:.7rem;font-weight:500;letter-spacing:.34em;text-transform:uppercase;margin-top:16px;color:rgba(255,253,248,.82)}
+@keyframes curtainUp{to{transform:translateY(-101%)}}
+@keyframes cIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+/* pendant le rideau, l'accueil attend son tour */
+body.intro .eyebrow{animation-delay:1.35s}
+body.intro .hero-name b{animation-delay:1.45s}
+body.intro .hero-name span:nth-child(2) b{animation-delay:1.55s}
+body.intro .portrait{animation-delay:1.7s}
+body.intro .switcher{animation-delay:2s}
+body.intro .hero-txt{animation-delay:2.15s}
+body.intro .hero-act{animation-delay:2.3s}
 
 /* ---------- boutons ---------- */
 .btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-size:.78rem;font-weight:600;padding:14px 26px;border:0;cursor:pointer;text-decoration:none;position:relative;overflow:hidden;transition:color .3s;letter-spacing:.01em}
@@ -119,7 +171,7 @@ p{font-size:.95rem;line-height:1.72;color:#4a434c;max-width:64ch}
 .btn-line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
 .btn-line:hover{color:var(--paper)}
 .btn-pale{background:var(--paper);color:var(--wine)}
-.btn-pale::before{background:var(--rose)}
+.btn-pale::before{background:var(--sable)}
 .btn-pale:hover{color:var(--wine-deep)}
 .btn-ghost{background:transparent;color:var(--paper);box-shadow:inset 0 0 0 1px rgba(248,246,243,.5)}
 .btn-ghost::before{background:var(--paper)}
@@ -130,13 +182,15 @@ p{font-size:.95rem;line-height:1.72;color:#4a434c;max-width:64ch}
 .ticker-run{display:inline-flex;animation:slide 38s linear infinite}
 .ticker:hover .ticker-run{animation-play-state:paused}
 .ticker-run>span{font-family:var(--display);font-size:1.05rem;padding-right:34px;font-weight:400}
-.ticker-run>span i{font-style:italic;color:var(--gold)}
+.ticker-run>span i{font-style:normal;color:var(--gold);font-size:.8em;margin-left:6px}
 @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* ---------- titres de section ---------- */
 .sec{padding-top:clamp(60px,9vh,110px);padding-bottom:clamp(60px,9vh,110px)}
 .sec-top{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:baseline;margin-bottom:clamp(32px,5vh,58px);border-bottom:2px solid var(--gold);padding-bottom:20px}
 .sec-top .kicker{white-space:nowrap}
+.sec-top{position:relative}
+.sec-top::after{content:'';position:absolute;right:0;bottom:-10px;width:18px;height:18px;background:var(--gold);-webkit-mask:var(--spark) center/contain no-repeat;mask:var(--spark) center/contain no-repeat}
 .reveal{clip-path:inset(0 100% 0 0);transition:clip-path 1.05s cubic-bezier(.19,1,.22,1)}
 .reveal.seen{clip-path:inset(0 0 0 0)}
 
@@ -173,6 +227,7 @@ p{font-size:.95rem;line-height:1.72;color:#4a434c;max-width:64ch}
 .sp12 .f-meta{margin-bottom:8px}
 .sp12 p{max-width:52ch}
 .sp12>div{position:relative;z-index:1}
+.sp12 .cue{grid-column:2;margin-top:0}
 .fcard.deep{background:var(--wine);color:var(--paper)}
 .fcard.deep .f-meta{color:var(--gold)}
 .fcard.deep p{color:rgba(248,246,243,.76)}
@@ -183,6 +238,49 @@ p{font-size:.95rem;line-height:1.72;color:#4a434c;max-width:64ch}
 .fcard:hover .cue{color:var(--paper)}
 .fcard:hover .cue::after{transform:scaleX(1)}
 .fcard.deep .cue{color:var(--gold)}
+
+/* ---------- etudes de cas ---------- */
+.cases{display:flex;flex-direction:column;gap:clamp(22px,3vh,34px)}
+.case{position:relative;padding:clamp(28px,4vw,56px);background:var(--paper);box-shadow:inset 0 0 0 1px var(--rule);transition:transform .5s cubic-bezier(.19,1,.22,1),box-shadow .5s}
+.case:hover{transform:translateY(-4px);box-shadow:inset 0 0 0 1px var(--gold),0 24px 46px -28px rgba(109,34,56,.4)}
+.case.deep{background:var(--wine);color:var(--paper);box-shadow:none}
+.case.deep:hover{box-shadow:0 24px 46px -26px rgba(109,34,56,.6)}
+.case.soft{background:var(--sable);box-shadow:none}
+.case.rose{background:var(--rouge);color:var(--paper);box-shadow:none}
+.case.rose p{color:rgba(255,253,248,.9)}
+.case.rose .case-lead,.case.rose .case-grid h4{color:var(--paper)}
+.case.rose .case-grid h4::before{background:var(--paper)}
+.case.soft .case-head{border-bottom-color:rgba(141,47,72,.2)}
+.case.rose .case-head{border-bottom-color:rgba(255,253,248,.3)}
+.case.soft .case-grid>div{border-left-color:rgba(141,47,72,.18)}
+.case.rose .case-grid>div{border-left-color:rgba(255,253,248,.28)}
+.case.soft .case-n{color:var(--wine)}
+.case.rose .case-n{color:var(--paper)}
+.case-head{display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,3vw,42px);align-items:start;padding-bottom:clamp(22px,3vh,30px);border-bottom:1px solid var(--rule);margin-bottom:clamp(22px,3vh,30px)}
+.case.deep .case-head{border-bottom-color:rgba(248,246,243,.25)}
+.case-n{font-family:var(--name);font-style:italic;font-weight:300;font-size:clamp(3.6rem,6.4vw,5.6rem);line-height:.78;color:var(--gold)}
+.case .f-meta{font-size:.67rem;font-weight:700;color:var(--wine);letter-spacing:.06em;text-transform:uppercase}
+.case.deep .f-meta{color:var(--gold)}
+.case-t{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,3vw,2.4rem);letter-spacing:-.02em;line-height:1.1;margin:8px 0 10px}
+.case-lead{font-family:var(--display);font-style:italic;font-size:clamp(1rem,1.4vw,1.16rem);line-height:1.55;color:var(--wine);max-width:56ch}
+.case.deep .case-lead{color:var(--gold)}
+.case-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.case-grid>div{padding:0 clamp(16px,2vw,28px);border-left:1px solid var(--rule)}
+.case-grid>div:first-child{padding-left:0;border-left:0}
+.case.deep .case-grid>div{border-left-color:rgba(248,246,243,.2)}
+.case-grid h4{display:flex;align-items:center;gap:8px;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--wine);margin-bottom:10px}
+.case-grid h4::before{content:'';flex:0 0 10px;height:10px;background:var(--gold);-webkit-mask:var(--spark) center/contain no-repeat;mask:var(--spark) center/contain no-repeat}
+.case.deep .case-grid h4{color:var(--gold)}
+.case-grid p{font-size:.88rem;line-height:1.66}
+.case.deep p{color:rgba(248,246,243,.84)}
+.fcard.soft{background:var(--sable);box-shadow:none}
+.fcard.rose{background:var(--rouge);color:var(--paper);box-shadow:none}
+.fcard.rose p{color:rgba(255,253,248,.9)}
+.fcard.rose .f-meta{color:var(--paper)}
+.fcard.rose::after{background:var(--wine)}
+.stamp .st-en{display:none}
+body.lang-en .stamp .st-fr{display:none}
+body.lang-en .stamp .st-en{display:inline}
 
 /* ---------- au-dela : liste horizontale ---------- */
 .facets{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(248,246,243,.28)}
@@ -277,6 +375,13 @@ footer{padding:26px clamp(20px,5vw,80px);display:flex;justify-content:space-betw
 .facts>div:last-child{border-right:0}
 .fact-n{font-family:var(--display);font-size:clamp(1.6rem,2.6vw,2.2rem);color:var(--wine);line-height:1;margin-bottom:9px;font-weight:700;display:inline-block;padding-bottom:5px;border-bottom:3px solid var(--gold)}
 .fact-l{font-size:.78rem;color:var(--mute);line-height:1.45;max-width:22ch}
+.facts-band{background:var(--sable);border-top:0;padding:0 clamp(20px,3vw,40px)}
+.facts-band>div{border-right-color:rgba(141,47,72,.18)}
+.facts-band .fact-l{color:#6b5a52}
+.facts-band .fact-n{border-bottom-color:var(--wine)}
+.case.soft .case-grid h4::before{background:var(--wine)}
+.case.soft .f-meta{color:var(--wine)}
+.case.rose .f-meta{color:var(--paper)}
 .dark .facts{border-top-color:rgba(248,246,243,.28)}
 .dark .facts>div{border-right-color:rgba(248,246,243,.18)}
 .dark .fact-n{color:var(--paper);border-bottom-color:var(--gold)}
@@ -326,10 +431,155 @@ footer{padding:26px clamp(20px,5vw,80px);display:flex;justify-content:space-betw
 .acc-item{transition:background .35s}
 .acc-item:hover{background:var(--paper-2)}
 .acc-item.open{background:var(--paper-2)}
+.acc-item:nth-child(even) .acc-fig{color:var(--wine)}
+.acc-item.open .proofs li{background:rgba(255,253,248,.7)}
 
 /* blocs de mission et colonnes */
 .facets>div,.facts>div{transition:transform .4s cubic-bezier(.19,1,.22,1)}
 .facets>div:hover,.facts>div:hover{transform:translateY(-4px)}
+
+
+/* =========================================================
+   ACCUEIL, VERSION PORTFOLIO
+   ========================================================= */
+/* ---------- hero : le nom en tres grand ---------- */
+.hero2{position:relative;overflow-x:clip;min-height:calc(100vh - 66px);display:flex;flex-direction:column;justify-content:center;gap:clamp(20px,3.6vh,38px);padding-top:clamp(30px,5vh,64px);padding-bottom:clamp(34px,6vh,64px)}
+.hero2::before{content:'';position:absolute;z-index:-1;width:min(46vw,640px);aspect-ratio:1;border-radius:50%;background:var(--rouge);right:-9vw;top:-12vw;opacity:.7}
+.hero2::after{content:'';position:absolute;z-index:-1;width:min(20vw,260px);aspect-ratio:1;border-radius:50%;background:var(--sable);left:-7vw;bottom:-10vw;opacity:.75}
+.giant{font-family:var(--name);font-weight:300;font-size:clamp(3.5rem,12.6vw,12.4rem);line-height:.86;letter-spacing:-.03em;margin:0;color:var(--ink)}
+.g-line{display:block}
+.g-line.l2{text-align:right;margin-top:.02em}
+.mask{display:inline-block;overflow:hidden;vertical-align:bottom;padding:0 .1em .22em 0;margin-bottom:-.14em}
+.mask b{display:inline-block;font-weight:300;transform:translateY(106%);animation:rise 1.1s cubic-bezier(.19,1,.22,1) .1s forwards}
+.l2 .mask b{animation-delay:.24s;font-weight:400}
+.l1 i{font-style:italic;color:var(--wine)}
+.g-photo{position:relative;display:inline-block;vertical-align:middle;width:1.06em;height:1.06em;margin-left:.14em;margin-top:-.12em;opacity:0;animation:popIn 1s cubic-bezier(.19,1,.22,1) .5s forwards}
+.g-photo img{position:relative;z-index:1;width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 8%;border:4px solid var(--wine);box-shadow:0 0 0 8px var(--gold-soft);transition:transform .6s cubic-bezier(.19,1,.22,1),box-shadow .6s}
+.g-photo:hover img{transform:scale(1.04) rotate(-2deg);box-shadow:0 0 0 13px var(--gold-soft)}
+@keyframes popIn{from{opacity:0;transform:scale(.7) rotate(-10deg)}to{opacity:1;transform:none}}
+.g-photo .orbit{position:absolute;left:50%;top:50%;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);width:132%;height:132%;border:1px solid rgba(219,169,76,.65);animation:orbit 22s linear infinite}
+.g-photo .orbit::after{content:'';position:absolute;top:-5px;left:50%;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(219,169,76,.25)}
+/* les bulles, comme une conversation qui part de la photo */
+.chat{position:absolute;left:118%;top:-8%;display:flex;flex-direction:column;align-items:flex-start;gap:.08em;font-size:.16em;letter-spacing:0}
+.chat .bub{position:relative;top:auto;left:auto;right:auto;bottom:auto;opacity:0;animation:bubIn .6s cubic-bezier(.19,1,.22,1) forwards,bob 5.6s ease-in-out infinite;font-size:1em;padding:.36em 1em .42em}
+.chat .b1{animation-delay:1s,1.6s}
+.chat .b2{margin-left:1.6em;animation-delay:1.25s,2.4s}
+.chat .b3{margin-left:.5em;animation-delay:1.5s,3.2s}
+@keyframes bubIn{from{opacity:0;transform:translateY(12px) scale(.8)}to{opacity:1;transform:none}}
+.h2-top{display:flex;justify-content:space-between;align-items:center;gap:20px}
+.hero2 .eyebrow{margin-bottom:0}
+.hero2 .stamp{position:relative;top:auto;right:auto;flex:0 0 auto;margin-right:clamp(6px,1vw,14px)}
+.h2-foot{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(24px,5vw,80px);align-items:end}
+.h2-foot .switcher{margin-bottom:18px}
+.h2-foot .hero-act{justify-content:flex-end;margin-top:0}
+body.intro .mask b{animation-delay:1.3s}
+body.intro .l2 .mask b{animation-delay:1.44s}
+body.intro .g-photo{animation-delay:1.7s}
+body.intro .chat .b1{animation-delay:2.2s,2.8s}
+body.intro .chat .b2{animation-delay:2.45s,3.6s}
+body.intro .chat .b3{animation-delay:2.7s,4.4s}
+
+/* ---------- deux bandeaux croises ---------- */
+.marquees{position:relative;padding:0;overflow:hidden}
+.marquees .ticker{width:100%;margin-left:0;transform:none;position:relative;z-index:2;box-shadow:none}
+.marquees .ticker.t2{background:var(--sable);color:var(--wine);margin-top:0;border-top:0;z-index:1;border-bottom-color:var(--gold)}
+.ticker.t2 .ticker-run{animation-direction:reverse;animation-duration:44s}
+.ticker.t2 .ticker-run>span{font-style:italic}
+.ticker.t2 .ticker-run>span i{color:var(--wine)}
+
+/* ---------- tuiles de couleur ---------- */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(12px,1.6vw,20px)}
+.bx{position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:clamp(200px,24vh,250px);padding:clamp(24px,2.6vw,38px);transition:transform .55s cubic-bezier(.19,1,.22,1),opacity .7s cubic-bezier(.19,1,.22,1)}
+.bx:hover{transform:translateY(-6px) rotate(-.35deg)}
+.bx-n{font-family:var(--name);font-style:italic;font-weight:300;font-size:clamp(3rem,5vw,4.6rem);line-height:.8;color:var(--gold)}
+.bx h3{font-family:var(--display);font-weight:700;font-size:clamp(1.3rem,2vw,1.75rem);letter-spacing:-.015em;line-height:1.15;margin:auto 0 10px;padding-top:22px}
+.bx p{font-size:.9rem;max-width:40ch}
+.b-1{grid-column:span 7;grid-row:span 2;background:var(--wine);color:var(--paper)}
+.b-1 p{color:rgba(255,253,248,.84)}
+.b-1 h3{font-size:clamp(1.6rem,2.8vw,2.4rem)}
+.b-1 .bx-n{font-size:clamp(4rem,7vw,6.4rem)}
+.b-1::after{content:'';position:absolute;right:-40px;top:-40px;width:220px;height:220px;background:var(--gold);opacity:.16;-webkit-mask:var(--spark) center/contain no-repeat;mask:var(--spark) center/contain no-repeat;animation:spinSlow 40s linear infinite}
+@keyframes spinSlow{to{transform:rotate(360deg)}}
+.b-2{grid-column:span 5;background:var(--sable)}
+.b-2 .bx-n{color:var(--wine)}
+.b-3 .bx-n{color:var(--paper)}
+.b-3{grid-column:span 5;background:var(--rouge);color:var(--paper)}
+.b-3 p{color:rgba(255,253,248,.9)}
+.b-4{grid-column:span 12;min-height:0;background:var(--deep);color:var(--paper);flex-direction:row;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap}
+.b-4 .lbl{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:block}
+.b-4 p{color:rgba(255,253,248,.86);max-width:52ch;font-size:.95rem}
+.b-4 .row3{display:flex;gap:14px;flex-wrap:wrap}
+.b-4 .bub{position:relative;top:auto;left:auto;right:auto;bottom:auto;font-size:clamp(1.1rem,1.6vw,1.45rem)}
+.b-4 .bub.b2{background:var(--paper);color:var(--wine)}
+
+/* ---------- projets en cartes qui s'empilent ---------- */
+.stack{display:flex;flex-direction:column;gap:clamp(18px,3vh,30px)}
+.scard{position:sticky;top:calc(88px + var(--i,0) * 82px);min-height:clamp(300px,50vh,440px);display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,4vw,64px);align-items:start;padding:24px clamp(30px,4.4vw,64px) clamp(30px,4.4vw,64px);text-decoration:none;color:var(--ink);cursor:pointer;box-shadow:0 -20px 44px -26px rgba(42,31,34,.45);transition:transform .5s cubic-bezier(.19,1,.22,1)}
+.scard:hover{transform:translateY(-6px)}
+.scard.s1{background:var(--wine);color:var(--paper)}
+.scard.s2{background:var(--sable)}
+.scard.s3{background:var(--rouge);color:var(--paper)}
+.scard.s3 p{color:rgba(255,253,248,.9)}
+.scard.s3 .sc-meta{color:var(--paper)}
+.sc-n{font-family:var(--name);font-style:italic;font-weight:300;font-size:clamp(5rem,11vw,10rem);line-height:.74;color:var(--gold)}
+.scard.s2 .sc-n{color:var(--wine)}
+.scard.s3 .sc-n{color:var(--paper)}
+.sc-meta{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--wine)}
+.scard.s1 .sc-meta{color:var(--gold)}
+.sc-t{font-family:var(--display);font-weight:700;font-size:clamp(2rem,4.6vw,3.8rem);letter-spacing:-.025em;line-height:1.02;margin:10px 0 clamp(40px,8vh,90px)}
+.scard p{max-width:50ch;font-size:.98rem}
+.scard.s1 p{color:rgba(255,253,248,.85)}
+.sc-go{display:inline-flex;align-items:center;gap:10px;margin-top:20px;font-size:.78rem;font-weight:700;letter-spacing:.04em}
+.sc-go::after{content:'';width:34px;height:1.5px;background:currentColor;transition:width .45s cubic-bezier(.19,1,.22,1)}
+.scard:hover .sc-go::after{width:64px}
+
+/* ---------- grand appel final ---------- */
+.cta{background:var(--sable);position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;width:min(40vw,520px);aspect-ratio:1;border-radius:50%;background:var(--rouge);right:-8vw;bottom:-14vw;opacity:.8}
+.cta-in{position:relative;display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(30px,6vw,90px);align-items:end}
+.cta-t{font-family:var(--name);font-weight:300;font-size:clamp(3rem,8vw,7.2rem);line-height:.92;letter-spacing:-.025em;margin:10px 0 22px;color:var(--ink)}
+.cta-t em{font-style:italic;color:var(--wine)}
+.cta-mail{display:inline-block;font-family:var(--name);font-style:italic;font-size:clamp(1.5rem,3vw,2.5rem);color:var(--wine);text-decoration:none;border-bottom:2px solid var(--wine);padding-bottom:4px;transition:color .3s,border-color .3s,letter-spacing .4s}
+.cta-mail:hover{color:var(--ink);border-color:var(--gold);letter-spacing:.01em}
+.cta .rows{border-top-color:rgba(141,47,72,.3)}
+.cta .row{border-bottom-color:rgba(141,47,72,.22)}
+
+/* ---------- curseur ---------- */
+#cur{position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border:1.5px solid var(--gold);border-radius:50%;pointer-events:none;z-index:700;display:none;transition:width .28s,height .28s,margin .28s,background .28s}
+#cur i{position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:var(--wine)}
+#cur.big{width:66px;height:66px;margin:-33px 0 0 -33px;background:rgba(219,169,76,.2)}
+@media (hover:hover) and (pointer:fine){#cur{display:block}}
+
+@media(max-width:1000px){
+  .h2-foot,.cta-in{grid-template-columns:1fr}
+  .h2-foot .hero-act{justify-content:flex-start}
+  .b-1,.b-2,.b-3{grid-column:span 12;grid-row:auto}
+  .scard{grid-template-columns:1fr;align-items:start}
+}
+@media(max-width:640px){
+  .giant{font-size:clamp(3rem,15vw,4.4rem)}
+  .g-line.l2{text-align:left;padding-left:.5em}
+  .g-photo{display:block;width:190px;height:190px;margin:34px 0 24px 18px;font-size:16px}
+  .chat{left:calc(100% + 12px);top:4px;font-size:14px}
+  .h2-top{align-items:flex-start}
+  .hero2 .stamp{width:70px}
+  .scard{top:calc(112px + var(--i,0) * 40px);min-height:0}
+  .sc-t{margin-bottom:16px}
+}
+@media (prefers-reduced-motion:reduce){
+  .mask b{transform:none}
+  .g-photo,.chat .bub{opacity:1}
+  #cur{display:none}
+}
+
+/* chaque page s'ouvre sur un soleil de couleur */
+.pg>section:first-of-type:not(.hero):not(.hero2):not(.dark){position:relative;overflow-x:clip}
+.pg>section:first-of-type:not(.hero):not(.hero2):not(.dark)::before{content:'';position:absolute;z-index:-1;width:clamp(240px,32vw,460px);aspect-ratio:1;border-radius:50%;background:var(--sun,var(--rouge));opacity:.85;right:-7vw;top:-9vw}
+#p-parcours{--sun:var(--sable)}
+#p-savoirfaire{--sun:var(--rouge)}
+#p-travaux{--sun:var(--sable)}
+#p-contact{--sun:var(--rouge)}
+@media(max-width:640px){.pg>section:first-of-type:not(.hero):not(.hero2):not(.dark)::before{width:150px;right:-60px;top:-70px}}
 
 /* ---------- accessibilite ---------- */
 button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--wine);outline-offset:3px}
@@ -340,6 +590,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
   .reveal{clip-path:none}
   .up{opacity:1;transform:none}
   .tl::after{transform:scaleY(1)}
+  #curtain{display:none}
+  .eyebrow{opacity:1}
 }
 
 /* ---------- langues ---------- */
@@ -353,8 +605,11 @@ span.en{display:none}
   .trio,.facets,.facts,.acc-pad,.refs{grid-template-columns:1fr 1fr}
   .duo,.duo-tight,.reach{grid-template-columns:1fr}
   .sp7,.sp5,.sp6,.sp4{grid-column:span 12}
+  .sp12 .cue{grid-column:auto}
   .hero{grid-template-columns:1fr}
-  .portrait{margin-top:10px}
+  .portrait{margin-top:44px}
+  .case-grid{grid-template-columns:1fr 1fr;row-gap:24px}
+  .case-grid>div:nth-child(3){padding-left:0;border-left:0}
 }
 @media(max-width:640px){
   .bar{height:auto;padding-top:10px;padding-bottom:10px;flex-wrap:wrap}
@@ -366,15 +621,23 @@ span.en{display:none}
   .facets>div,.facets>div:first-child{border-right:0;border-bottom:1px solid rgba(248,246,243,.18);padding-left:0;padding-right:0}
   .facts>div,.facts>div:first-child{border-right:0;border-bottom:1px solid var(--rule);padding-left:0;padding-right:0}
   .sec-top{grid-template-columns:1fr;gap:10px}
+  .case-grid{grid-template-columns:1fr}
+  .case-grid>div{padding-left:0;padding-right:0;border-left:0}
+  .case-head{grid-template-columns:1fr;gap:10px}
+  .bub{font-size:.86rem;padding:6px 14px 7px}
+  .bub.b1{left:-26%;top:-4%}.bub.b2{right:-30%}.bub.b3{left:-24%}
+  .stamp{top:auto;bottom:10px;right:20px;width:76px}
   .acc-btn{grid-template-columns:auto 1fr;gap:14px}
   .acc-sign{grid-column:2;justify-self:end;margin-top:10px}
   p,.tl-item li,.proofs li{max-width:100%}
 }
 </style>
 </head>
-<body>
+<body class="intro">
 
+<div id="curtain" aria-hidden="true"><div class="c-in"><span class="c-name">Enaé</span><span class="c-sub">Portfolio</span></div></div>
 <div id="prog"></div>
+<div id="cur" aria-hidden="true"><i></i></div>
 <div id="wipe"></div>
 
 <header>
@@ -397,9 +660,10 @@ span.en{display:none}
 
   <section class="hero wrap">
     <div>
+      <div class="eyebrow"><span class="fr">Étudiante en master</span><span class="en">Master's student</span></div>
       <h1 class="disp h-xl hero-name">
-        <span><b>Enaé</b></span>
-        <span><b><i>Bakour-Jacob</i></b></span>
+        <span><b><i>Enaé</i></b></span>
+        <span><b>Bakour-Jacob</b></span>
       </h1>
 
       <div class="switcher"><b id="sw">Communication internationale</b></div>
@@ -418,60 +682,101 @@ span.en{display:none}
     </div>
 
     <figure class="portrait">
-      <img src="Photo_Moi.png" alt="Enaé Bakour-Jacob">
+      <span class="ph">
+        <span class="orbit o2" aria-hidden="true"></span>
+        <span class="orbit o1" aria-hidden="true"></span>
+        <img src="Photo_Moi.png" alt="Enaé Bakour-Jacob">
+        <span class="bub b1">Bonjour</span>
+        <span class="bub b2">Hello</span>
+        <span class="bub b3">Hallo</span>
+        <i class="sp" aria-hidden="true" style="width:20px;height:20px;top:-14%;right:-6%"></i>
+        <i class="sp" aria-hidden="true" style="width:13px;height:13px;bottom:16%;right:-14%;animation-delay:1.6s"></i>
+        <i class="sp" aria-hidden="true" style="width:11px;height:11px;top:34%;left:-24%;animation-delay:2.7s"></i>
+      </span>
       <figcaption><span class="fr">Master stratégie de communication internationale, Dijon</span><span class="en">Master's in international communication strategy, Dijon</span></figcaption>
     </figure>
+
+    <svg class="stamp" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+      <circle cx="60" cy="60" r="58" fill="#fffdf8" stroke="#dba94c" stroke-width="1.5"/>
+      <circle cx="60" cy="60" r="43" fill="none" stroke="#dba94c" stroke-width="1"/>
+      <path id="stamp-arc" d="M60,60 m0,-50.5 a50.5,50.5 0 1,1 0,101 a50.5,50.5 0 1,1 0,-101" fill="none"/>
+      <text class="st-fr" font-family="DM Sans,sans-serif" font-size="9.2" font-weight="700" letter-spacing="2.3" fill="#8d2f48"><textPath href="#stamp-arc" startOffset="1%">STAGE · MARS 2027 · DISPONIBLE · </textPath></text>
+      <text class="st-en" font-family="DM Sans,sans-serif" font-size="8.6" font-weight="700" letter-spacing="1.6" fill="#8d2f48"><textPath href="#stamp-arc" startOffset="1%">INTERNSHIP · MARCH 2027 · AVAILABLE · </textPath></text>
+      <path d="M60 48c.5 6 3.6 9.1 10 10-6.4.9-9.5 4-10 10-.5-6-3.6-9.1-10-10 6.4-.9 9.5-4 10-10z" fill="#dba94c"/>
+    </svg>
   </section>
 
-  <div class="ticker" id="tick"></div>
+  <!-- deux bandeaux croises -->
+  <div class="marquees" aria-hidden="true">
+    <div class="ticker" id="tick"></div>
+    <div class="ticker t2" id="tick2"></div>
+  </div>
 
-  <!-- ce que je fais -->
+  <!-- ce que je fais, en tuiles -->
   <section class="sec wrap">
     <div class="sec-top reveal">
       <span class="kicker"><span class="fr">Ce que je fais</span><span class="en">What I do</span></span>
       <h2 class="disp h-lg"><span class="fr">Faire passer un message,<br><em class="it">d'une langue à l'autre.</em></span><span class="en">Carrying a message<br><em class="it">from one language to another.</em></span></h2>
     </div>
-
-    <div class="trio">
-      <div>
+    <div class="bento">
+      <div class="bx b-1">
+        <span class="bx-n">01</span>
         <h3><span class="fr">Construire la stratégie</span><span class="en">Building the strategy</span></h3>
         <p><span class="fr">Cadrer un besoin avec un commanditaire, comprendre son marché et sa cible, puis décider quoi dire et où le dire.</span><span class="en">Framing a brief with a client, understanding their market and their audience, then deciding what to say and where to say it.</span></p>
       </div>
-      <div>
+      <div class="bx b-2">
+        <span class="bx-n">02</span>
         <h3><span class="fr">Écrire et produire</span><span class="en">Writing and producing</span></h3>
         <p><span class="fr">Rédiger, relire, fabriquer les supports. En français et en anglais, avec le même niveau d'exigence sur chaque mot.</span><span class="en">Writing, proofreading, producing the materials. In French and English, with the same demand on every word.</span></p>
       </div>
-      <div>
+      <div class="bx b-3">
+        <span class="bx-n">03</span>
         <h3><span class="fr">Tenir le dossier</span><span class="en">Running the file</span></h3>
         <p><span class="fr">Suivre, coordonner, livrer dans les temps. Un an dans la défense m'a appris qu'un détail oublié coûte toujours plus cher que prévu.</span><span class="en">Following up, coordinating, delivering on time. A year in defence taught me that a missed detail always costs more than expected.</span></p>
+      </div>
+      <div class="bx b-4">
+        <div>
+          <span class="lbl"><span class="fr">Langues</span><span class="en">Languages</span></span>
+          <p><span class="fr">Le français et l'anglais au quotidien, l'allemand depuis mon semestre à Reutlingen.</span><span class="en">French and English every day, German since my semester in Reutlingen.</span></p>
+        </div>
+        <div class="row3" aria-hidden="true"><span class="bub b1">Bonjour</span><span class="bub b2">Hello</span><span class="bub b3">Hallo</span></div>
       </div>
     </div>
   </section>
 
-  <!-- travaux en vedette -->
-  <section class="sec wrap tint">
+  <!-- trois projets, en cartes qui s'empilent -->
+  <section class="sec wrap" style="padding-top:clamp(20px,3vh,40px)">
     <div class="sec-top reveal">
       <span class="kicker"><span class="fr">Travaux</span><span class="en">Work</span></span>
       <h2 class="disp h-lg"><span class="fr">Trois projets qui disent<br><em class="it">comment je travaille.</em></span><span class="en">Three projects that show<br><em class="it">how I work.</em></span></h2>
     </div>
-
-    <div class="feat">
-      <a class="fcard deep sp7" onclick="go('travaux')">
-        <span class="f-meta"><span class="fr">Agence junior, en cours</span><span class="en">Junior agency, ongoing</span></span>
-        <h3>Curious Lab</h3>
-        <p><span class="fr">Référente d'une mission de stratégie de communication pour un acteur de l'agroalimentaire. Je pilote le dossier côté agence, du cadrage à la livraison.</span><span class="en">Lead on a communication strategy assignment for a food industry client. I run the project on the agency side, from brief to delivery.</span></p>
-      </a>
-      <a class="fcard sp5" onclick="go('alternance')">
-        <span class="f-meta"><span class="fr">Alternance, 2025 à 2026</span><span class="en">Placement, 2025 to 2026</span></span>
-        <h3>KNDS CBRN</h3>
-        <p><span class="fr">Un an d'assistanat commercial dans la défense. Cinq salons internationaux préparés, des commandes suivies jusqu'au bout.</span><span class="en">A year as a sales assistant in defence. Five international trade shows prepared, orders followed through to the end.</span></p>
-      </a>
-      <a class="fcard sp12" onclick="go('travaux')">
+    <div class="stack">
+      <a class="scard s1" style="--i:0" onclick="go('travaux')">
+        <span class="sc-n">01</span>
         <div>
-          <span class="f-meta"><span class="fr">Mémoire de fin d'études, 2026</span><span class="en">Final dissertation, 2026</span></span>
-          <h3><span class="fr">Exporter sous contrainte</span><span class="en">Exporting under constraint</span></h3>
+          <span class="sc-meta"><span class="fr">Agence junior, en cours</span><span class="en">Junior agency, ongoing</span></span>
+          <h3 class="sc-t">Curious Lab</h3>
+          <p><span class="fr">Référente d'une mission de stratégie de communication pour un acteur de l'agroalimentaire. Je pilote le dossier côté agence, du cadrage à la livraison.</span><span class="en">Lead on a communication strategy assignment for a food industry client. I run the project on the agency side, from brief to delivery.</span></p>
+          <span class="sc-go"><span class="fr">Voir l'étude de cas</span><span class="en">See the case study</span></span>
         </div>
-        <p><span class="fr">Comment intégrer le risque géopolitique et réglementaire dans une stratégie commerciale internationale. Un an d'observation de terrain, trois outils proposés à l'entreprise.</span><span class="en">How to build geopolitical and regulatory risk into an international commercial strategy. A year of field observation, three tools proposed to the company.</span></p>
+      </a>
+      <a class="scard s2" style="--i:1" onclick="go('travaux')">
+        <span class="sc-n">02</span>
+        <div>
+          <span class="sc-meta"><span class="fr">Master, cours de stratégie, 2026</span><span class="en">Master's, strategy course, 2026</span></span>
+          <h3 class="sc-t"><span class="fr">IA ou humain ?</span><span class="en">AI or human?</span></h3>
+          <p><span class="fr">Une campagne pour la sortie d'un documentaire : faire deviner au public si un contenu vient d'une IA ou d'une personne.</span><span class="en">A campaign for a documentary release: getting the public to guess whether content comes from an AI or a person.</span></p>
+          <span class="sc-go"><span class="fr">Voir l'étude de cas</span><span class="en">See the case study</span></span>
+        </div>
+      </a>
+      <a class="scard s3" style="--i:2" onclick="go('alternance')">
+        <span class="sc-n">03</span>
+        <div>
+          <span class="sc-meta"><span class="fr">Alternance, 2025 à 2026</span><span class="en">Placement, 2025 to 2026</span></span>
+          <h3 class="sc-t">KNDS CBRN</h3>
+          <p><span class="fr">Un an d'assistanat commercial dans la défense. Cinq salons internationaux préparés, des commandes suivies jusqu'au bout.</span><span class="en">A year as a sales assistant in defence. Five international trade shows prepared, orders followed through to the end.</span></p>
+          <span class="sc-go"><span class="fr">Lire l'histoire complète</span><span class="en">Read the full story</span></span>
+        </div>
       </a>
     </div>
   </section>
@@ -482,7 +787,6 @@ span.en{display:none}
       <span class="kicker"><span class="fr">Hors cadre</span><span class="en">Off the clock</span></span>
       <h2 class="disp h-lg"><span class="fr">On ne se résume pas<br><em class="it">à un diplôme.</em></span><span class="en">Nobody is just<br><em class="it">a degree.</em></span></h2>
     </div>
-
     <div class="facets">
       <div>
         <h3><span class="fr">Lire</span><span class="en">Reading</span></h3>
@@ -490,7 +794,7 @@ span.en{display:none}
       </div>
       <div>
         <h3><span class="fr">Écrire</span><span class="en">Writing</span></h3>
-        <p><span class="fr">Une idée mal écrite est souvent une idée pas encore claire. Plutôt utile à savoir quand on fait ce métier.</span><span class="en">A badly written idea is usually an idea that is not clear yet. Rather useful to know in this line of work.</span></p>
+        <p><span class="fr">Des lettres à la main, des récits que je garde pour moi. Une idée mal écrite est souvent une idée pas encore claire.</span><span class="en">Handwritten letters, stories I keep to myself. A badly written idea is usually an idea that is not clear yet.</span></p>
       </div>
       <div>
         <h3><span class="fr">Danser</span><span class="en">Dancing</span></h3>
@@ -498,18 +802,19 @@ span.en{display:none}
       </div>
       <div>
         <h3>UNICEF</h3>
-        <p><span class="fr">Bénévole au lycée, sur la sensibilisation et la communication de l'association. Ça compte encore dans ce que je choisis.</span><span class="en">A volunteer in high school, on awareness work and the association's communications. It still counts in what I choose.</span></p>
+        <p><span class="fr">Bénévole sur des stands de collecte de dons en magasin. Aller vers les gens pour une cause, c'est déjà communiquer.</span><span class="en">A volunteer on in-store donation stands. Reaching out to people for a cause is already communication.</span></p>
       </div>
     </div>
   </section>
 
-  <!-- contact -->
-  <section class="sec wrap">
-    <div class="reach">
+  <!-- grand appel final -->
+  <section class="sec wrap cta">
+    <div class="cta-in">
       <div>
-        <h2 class="disp h-lg"><span class="fr">Et si on<br><em class="it">se parlait ?</em></span><span class="en">How about<br><em class="it">a conversation?</em></span></h2>
-        <p style="margin-top:20px"><span class="fr">Je cherche un stage de quatre à six mois, à partir de mars 2027. Écrivez-moi, je réponds vite.</span><span class="en">I am looking for a four to six month internship, starting in March 2027. Write to me, I answer quickly.</span></p>
-        <div style="margin-top:26px"><button class="btn btn-fill" onclick="go('contact')"><span class="fr">Ouvrir la page contact</span><span class="en">Open the contact page</span></button></div>
+        <span class="kicker"><span class="fr">Et maintenant</span><span class="en">What now</span></span>
+        <h2 class="cta-t"><span class="fr">Et si on <em>se parlait ?</em></span><span class="en">How about <em>a conversation?</em></span></h2>
+        <a class="cta-mail" href="mailto:enaebakj42@gmail.com">enaebakj42@gmail.com</a>
+        <p style="margin-top:18px"><span class="fr">Je cherche un stage de quatre à six mois, à partir de mars 2027. Écrivez-moi, je réponds vite.</span><span class="en">I am looking for a four to six month internship, starting in March 2027. Write to me, I answer quickly.</span></p>
       </div>
       <div class="rows">
         <a class="row" href="mailto:enaebakj42@gmail.com"><b>Email</b>enaebakj42@gmail.com</a>
@@ -539,7 +844,7 @@ span.en{display:none}
   </section>
 
   <section class="wrap" style="padding-bottom:clamp(40px,6vh,70px)">
-    <div class="facts">
+    <div class="facts facts-band">
       <div><div class="fact-n">2028</div><div class="fact-l"><span class="fr">Fin du master MASCI à Dijon</span><span class="en">End of the MASCI master's in Dijon</span></div></div>
       <div><div class="fact-n">C1</div><div class="fact-l"><span class="fr">Anglais, certifié TOEIC</span><span class="en">English, TOEIC certified</span></div></div>
       <div><div class="fact-n">12</div><div class="fact-l"><span class="fr">Mois d'alternance en entreprise</span><span class="en">Months of work placement</span></div></div>
@@ -561,7 +866,7 @@ span.en{display:none}
           <div class="tl-where">Université Bourgogne Europe, Dijon</div>
           <p><span class="fr">Formation bilingue français-anglais : communication commerciale, communication interculturelle, médias internationaux.</span><span class="en">Bilingual French-English programme: marketing communication, intercultural communication, international media.</span></p>
           <ul>
-            <li><span class="fr">Curious Lab, l'agence junior du master, où je suis référente d'une mission en stratégie de communication agroalimentaire</span><span class="en">Curious Lab, the master's junior agency, where I lead a food industry communication strategy assignment</span></li>
+            <li><span class="fr">Au programme cette année : stratégie de communication, écriture journalistique, internationalisation des secteurs professionnels</span><span class="en">This year includes communication strategy, journalistic writing and the internationalisation of professional sectors</span></li>
             <li><span class="fr">Stage de quatre à six mois prévu à partir de mars 2027</span><span class="en">Four to six month internship planned from March 2027</span></li>
           </ul>
         </div>
@@ -602,6 +907,14 @@ span.en{display:none}
 
       <div class="tl">
         <div class="tl-item now">
+          <div class="tl-when"><span class="fr">Depuis septembre 2026</span><span class="en">Since September 2026</span></div>
+          <div class="tl-what"><span class="fr">Chargée de communication junior</span><span class="en">Junior communication officer</span></div>
+          <div class="tl-where"><span class="fr">Curious Lab, agence junior du master, Dijon</span><span class="en">Curious Lab, the master's junior agency, Dijon</span></div>
+          <ul><li><span class="fr">Référente d'une mission de stratégie de communication pour un client de l'agroalimentaire</span><span class="en">Lead on a communication strategy assignment for a food industry client</span></li></ul>
+          <div style="margin-top:18px"><button class="btn btn-line" onclick="go('travaux')"><span class="fr">Voir le projet</span><span class="en">See the project</span></button></div>
+        </div>
+
+        <div class="tl-item">
           <div class="tl-when"><span class="fr">Septembre 2025 à août 2026</span><span class="en">September 2025 to August 2026</span></div>
           <div class="tl-what"><span class="fr">Assistante commerciale, en alternance</span><span class="en">Sales assistant, work placement</span></div>
           <div class="tl-where">KNDS CBRN, Saint-Chamond</div>
@@ -624,12 +937,19 @@ span.en{display:none}
 
         <div class="tl-item">
           <div class="tl-when"><span class="fr">Avril à septembre 2024</span><span class="en">April to September 2024</span></div>
-          <div class="tl-what"><span class="fr">Employée polyvalente</span><span class="en">Sales associate</span></div>
+          <div class="tl-what"><span class="fr">Caissière</span><span class="en">Checkout assistant</span></div>
           <div class="tl-where">Carrefour, Mably</div>
           <ul>
             <li><span class="fr">Accueil, encaissement et résolution des litiges clients en flux continu</span><span class="en">Front desk, checkout and resolving customer disputes under continuous flow</span></li>
             <li><span class="fr">Fidélisation et application des procédures de sécurité et de service</span><span class="en">Customer loyalty work and applying safety and service procedures</span></li>
           </ul>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-when"><span class="fr">Mai à juin 2024</span><span class="en">May to June 2024</span></div>
+          <div class="tl-what"><span class="fr">Stage, réseaux sociaux</span><span class="en">Internship, social media</span></div>
+          <div class="tl-where"><span class="fr">Emotis, à distance</span><span class="en">Emotis, remote</span></div>
+          <ul><li><span class="fr">Animation des réseaux sociaux de la marque, en particulier son compte Pinterest</span><span class="en">Running the brand's social media, especially its Pinterest account</span></li></ul>
         </div>
 
         <div class="tl-item">
@@ -661,12 +981,14 @@ span.en{display:none}
       <div class="kv">
         <h4><span class="fr">Savoir-faire</span><span class="en">Hard skills</span></h4>
         <ul>
+          <li><span class="fr">Stratégie de communication</span><span class="en">Communication strategy</span></li>
           <li><span class="fr">Rédaction et relecture</span><span class="en">Writing and proofreading</span></li>
-          <li><span class="fr">Veille sectorielle et concurrentielle</span><span class="en">Sector and competitive monitoring</span></li>
+          <li><span class="fr">Réseaux sociaux</span><span class="en">Social media</span></li>
+          <li><span class="fr">Veille sectorielle et benchmark</span><span class="en">Sector monitoring and benchmarking</span></li>
           <li><span class="fr">Études de marché</span><span class="en">Market research</span></li>
           <li><span class="fr">Gestion de projet</span><span class="en">Project management</span></li>
           <li><span class="fr">Suivi administratif et logistique</span><span class="en">Administrative and logistics follow-up</span></li>
-          <li>Excel, PowerPoint et Word</li>
+          <li>Excel, PowerPoint, Word et Canva</li>
         </ul>
         <h4><span class="fr">Savoir-être</span><span class="en">Personal strengths</span></h4>
         <ul>
@@ -680,7 +1002,7 @@ span.en{display:none}
         <ul>
           <li><span class="fr">Français, langue maternelle</span><span class="en">French, native</span></li>
           <li><span class="fr">Anglais, C1 certifié TOEIC</span><span class="en">English, C1 TOEIC certified</span></li>
-          <li><span class="fr">Allemand, notions, un semestre vécu en Allemagne</span><span class="en">German, basic, one semester lived in Germany</span></li>
+          <li><span class="fr">Allemand, A2, un semestre vécu en Allemagne</span><span class="en">German, A2, one semester lived in Germany</span></li>
         </ul>
       </div>
     </div>
@@ -697,7 +1019,7 @@ span.en{display:none}
         <p><span class="fr">J'aime les langues, j'aime écrire, et je voulais un métier qui tienne les deux. La communication le fait.</span><span class="en">I love languages, I love writing, and I wanted a job that holds both. Communication does.</span></p>
       </div>
       <div>
-        <p style="margin-bottom:16px"><span class="fr">À court terme : un stage de quatre à six mois à partir de mars 2027, dans un poste de communication généraliste à dimension internationale.</span><span class="en">Short term: a four to six month internship from March 2027, in a generalist communication role with an international dimension.</span></p>
+        <p style="margin-bottom:16px"><span class="fr">À court terme : un stage de quatre à six mois à partir de mars 2027, sur un poste de communication.</span><span class="en">Short term: a four to six month internship from March 2027, in a communication role.</span></p>
         <p><span class="fr">Les postes où l'on touche à plusieurs choses à la fois m'intéressent plus qu'une spécialité unique. À Dijon, dans la Loire, ou ailleurs en Europe avec Erasmus+.</span><span class="en">Roles where you touch several things at once interest me more than a single specialism. In Dijon, the Loire region, or elsewhere in Europe through Erasmus+.</span></p>
         <div style="margin-top:22px"><button class="btn btn-fill" onclick="go('contact')"><span class="fr">Discutons-en</span><span class="en">Let's talk</span></button></div>
       </div>
@@ -739,6 +1061,7 @@ span.en{display:none}
             <ul class="proofs">
               <li><b>KNDS CBRN</b><span class="fr">Documents commerciaux en français et en anglais, dans un secteur où chaque mention a une portée réglementaire.</span><span class="en">Commercial documents in French and English, in a sector where every detail carries regulatory weight.</span></li>
               <li><b><span class="fr">Mémoire</span><span class="en">Dissertation</span></b><span class="fr">Un document complet en trois parties, avec cinq annexes opérationnelles.</span><span class="en">A full document in three parts, with five operational appendices.</span></li>
+              <li><b><span class="fr">Article</span><span class="en">Article</span></b><span class="fr">Un article en cours sur les mots qui n'existent que dans une langue.</span><span class="en">An article in progress on words that exist in only one language.</span></li>
             </ul>
           </div>
           <div class="skillblk">
@@ -746,15 +1069,16 @@ span.en{display:none}
             <p><span class="fr">Du brief à la production : définir la cible, choisir le canal, construire le message, fabriquer le support.</span><span class="en">From brief to production: defining the audience, choosing the channel, building the message, making the material.</span></p>
             <ul class="proofs">
               <li><b>Curious Lab</b><span class="fr">Mission de stratégie agroalimentaire, du cadrage du besoin à la production avec l'équipe.</span><span class="en">Food industry strategy assignment, from framing the brief to production with the team.</span></li>
+              <li><b><span class="fr">IA ou humain ?</span><span class="en">AI or human?</span></b><span class="fr">Le cahier des charges d'une campagne : cibles, plateformes, budget, calendrier, indicateurs.</span><span class="en">The specifications of a campaign: audiences, platforms, budget, timeline, indicators.</span></li>
               <li><b>Velavi, Extrem' Lingette</b><span class="fr">Plans de communication complets pour le marché allemand, fiches produit bilingues, supports visuels.</span><span class="en">Full communication plans for the German market, bilingual product sheets, visual materials.</span></li>
             </ul>
           </div>
           <div class="skillblk">
-            <h4><span class="fr">Parler en direct</span><span class="en">Speaking live</span></h4>
+            <h4><span class="fr">Parler à un public</span><span class="en">Speaking to an audience</span></h4>
             <p><span class="fr">Accueillir, expliquer, convaincre. Face à des visiteurs étrangers, face à un jury, face à des clients.</span><span class="en">Welcoming, explaining, convincing. Facing foreign visitors, a jury, customers.</span></p>
             <ul class="proofs">
               <li><b>Eurosatory</b><span class="fr">Une semaine sur le stand d'un des plus grands salons mondiaux de défense terrestre.</span><span class="en">A week on the booth at one of the world's largest land defence shows.</span></li>
-              <li><b>Emotis</b><span class="fr">Conseil et négociation au salon Silk in Lyon, public français et international.</span><span class="en">Advising and negotiating at the Silk in Lyon show, French and international visitors.</span></li>
+              <li><b>Emotis</b><span class="fr">Conseil au salon Silk in Lyon, puis animation du compte Pinterest de la marque pendant mon stage.</span><span class="en">Advising at the Silk in Lyon show, then running the brand's Pinterest account during my internship.</span></li>
             </ul>
           </div>
         </div></div></div>
@@ -776,6 +1100,7 @@ span.en{display:none}
             <p><span class="fr">Savoir où chercher, croiser les sources, se méfier de ce qui n'est pas vérifiable.</span><span class="en">Knowing where to look, cross-checking sources, being wary of what cannot be verified.</span></p>
             <ul class="proofs">
               <li><b><span class="fr">Mémoire</span><span class="en">Dissertation</span></b><span class="fr">Recherche sur le cadre réglementaire du contrôle des exportations, croisée avec un an d'observation de terrain.</span><span class="en">Research on the export control framework, cross-referenced with a year of field observation.</span></li>
+              <li><b>TER'Alim</b><span class="fr">Une veille sourcée sur l'attractivité des métiers du vivant, avec des données récentes et vérifiables.</span><span class="en">A sourced monitoring report on the appeal of agricultural careers, with recent and verifiable data.</span></li>
               <li><b><span class="fr">Études de marché</span><span class="en">Market research</span></b><span class="fr">Deux études complètes sur le marché allemand : consommateur, concurrence, réglementation.</span><span class="en">Two full studies on the German market: consumer, competition, regulation.</span></li>
             </ul>
           </div>
@@ -792,6 +1117,7 @@ span.en{display:none}
             <p><span class="fr">Une analyse qui ne débouche sur rien ne sert à personne. Je vais jusqu'à la proposition concrète.</span><span class="en">An analysis that leads nowhere is useless. I go as far as the concrete proposal.</span></p>
             <ul class="proofs">
               <li><b><span class="fr">Trois outils pour KNDS CBRN</span><span class="en">Three tools for KNDS CBRN</span></b><span class="fr">Grille de risque pays, check-list de conformité documentaire, guide de standardisation par zone.</span><span class="en">Country risk grid, documentary compliance checklist, standardisation guide by zone.</span></li>
+              <li><b>TER'Alim</b><span class="fr">Les forces et les limites de chaque campagne étudiée, puis des pistes à exploiter.</span><span class="en">The strengths and limits of each campaign studied, then ideas worth pursuing.</span></li>
             </ul>
           </div>
         </div></div></div>
@@ -821,6 +1147,7 @@ span.en{display:none}
             <p><span class="fr">Six mois en Allemagne m'ont appris ce qu'aucun cours ne transmet : les codes de travail changent d'un pays à l'autre.</span><span class="en">Six months in Germany taught me what no course conveys: working codes change from one country to the next.</span></p>
             <ul class="proofs">
               <li><b>Reutlingen</b><span class="fr">Immersion complète dans la culture d'affaires allemande, de septembre à décembre 2024.</span><span class="en">Full immersion in German business culture, September to December 2024.</span></li>
+              <li><b>Kinder</b><span class="fr">Analyse de la stratégie d'export de la marque, de Kinder Surprise à Kinder Joy.</span><span class="en">An analysis of the brand's export strategy, from Kinder Surprise to Kinder Joy.</span></li>
               <li><b><span class="fr">Supports adaptés</span><span class="en">Adapted materials</span></b><span class="fr">Des documents bilingues qui vont au-delà de la traduction : ton, visuels et arguments ajustés aux codes locaux.</span><span class="en">Bilingual materials that go beyond translation: tone, visuals and arguments adjusted to local codes.</span></li>
             </ul>
           </div>
@@ -854,8 +1181,8 @@ span.en{display:none}
             </ul>
           </div>
           <div class="skillblk">
-            <h4><span class="fr">Organiser un événement</span><span class="en">Organising an event</span></h4>
-            <p><span class="fr">Cinq salons internationaux en un an : le mobilier, les produits, les visuels, le transport et les autorisations.</span><span class="en">Five international shows in one year: furniture, products, visuals, transport and authorisations.</span></p>
+            <h4><span class="fr">Préparer en amont</span><span class="en">Preparing ahead</span></h4>
+            <p><span class="fr">Cinq salons internationaux en un an : mobilier, produits, visuels, transport et autorisations. Tout se joue avant le premier jour.</span><span class="en">Five international shows in one year: furniture, products, visuals, transport and authorisations. Everything is decided before day one.</span></p>
             <ul class="proofs">
               <li><b>Eurosatory, Milipol, BSDA, NCT, CBRN Summit</b><span class="fr">Préparation logistique complète, puis une semaine sur place.</span><span class="en">Full logistical preparation, then a week on site.</span></li>
               <li><b><span class="fr">Fête des Fleurs</span><span class="en">Flower Festival</span></b><span class="fr">Tenue de stands, animation et logistique pour la ville de Riorges.</span><span class="en">Staffing stands, activities and logistics for the town of Riorges.</span></li>
@@ -866,6 +1193,7 @@ span.en{display:none}
             <p><span class="fr">Une grande partie de mon travail se faisait à la demande. J'ai appris à basculer d'un dossier à l'autre sans perdre le fil.</span><span class="en">A large part of my work happened on request. I learned to switch between files without losing the thread.</span></p>
             <ul class="proofs">
               <li><b>Curious Lab</b><span class="fr">Pilotage d'une mission de bout en bout : coordination de l'équipe et relation avec le commanditaire.</span><span class="en">Running an assignment end to end: coordinating the team and managing the client relationship.</span></li>
+              <li><b><span class="fr">Travaux de groupe</span><span class="en">Group projects</span></b><span class="fr">Des oraux préparés à trois ou à quatre, avec ma propre partie à porter dans un ensemble qui tient.</span><span class="en">Presentations prepared in teams of three or four, with my own part to carry within a whole that holds together.</span></li>
               <li><b>Carrefour</b><span class="fr">Accueil et résolution de litiges en flux continu, sous pression.</span><span class="en">Front desk and dispute resolution under continuous flow and pressure.</span></li>
             </ul>
           </div>
@@ -887,21 +1215,91 @@ span.en{display:none}
   <section class="wrap" style="padding-top:clamp(50px,8vh,96px);padding-bottom:clamp(26px,4vh,40px)">
     <span class="kicker"><span class="fr">Travaux</span><span class="en">Work</span></span>
     <h1 class="disp h-lg" style="margin-top:10px;max-width:14ch"><span class="fr">Des projets réels, <em class="it">des livrables réels.</em></span><span class="en">Real projects, <em class="it">real deliverables.</em></span></h1>
+    <p class="lede" style="margin-top:22px"><span class="fr">D'abord trois projets de communication en détail : le contexte, mon rôle, ce que nous avons produit. Ensuite, le reste de mes travaux.</span><span class="en">First, three communication projects in detail: the context, my role, what we produced. Then the rest of my work.</span></p>
   </section>
 
-  <section class="wrap" style="padding-bottom:clamp(60px,9vh,110px)">
+  <section class="wrap" style="padding-bottom:clamp(50px,8vh,96px)">
+    <div class="cases">
+      <article class="case deep">
+        <div class="case-head">
+          <span class="case-n">01</span>
+          <div>
+            <span class="f-meta"><span class="fr">Agence junior du master, en cours</span><span class="en">The master's junior agency, ongoing</span></span>
+            <h2 class="case-t">Curious Lab</h2>
+            <p class="case-lead"><span class="fr">Une vraie mission pour un vrai client, dans l'agroalimentaire.</span><span class="en">A real assignment for a real client, in the food industry.</span></p>
+          </div>
+        </div>
+        <div class="case-grid">
+          <div><h4><span class="fr">Le contexte</span><span class="en">The context</span></h4><p><span class="fr">Curious Lab est l'agence de communication junior du master. Les étudiants y répondent aux demandes de commanditaires, comme le ferait une agence.</span><span class="en">Curious Lab is the master's junior communication agency. Students answer briefs from real clients, the way an agency would.</span></p></div>
+          <div><h4><span class="fr">Mon rôle</span><span class="en">My role</span></h4><p><span class="fr">Je suis référente de la mission : je fais le lien avec le commanditaire et je coordonne l'équipe, du cadrage du besoin jusqu'à la livraison.</span><span class="en">I lead the assignment: I am the link with the client and I coordinate the team, from framing the brief to delivery.</span></p></div>
+          <div><h4><span class="fr">Où en est le projet</span><span class="en">Where it stands</span></h4><p><span class="fr">La mission est en cours, sur l'année universitaire 2026 à 2027.</span><span class="en">The assignment is ongoing, over the 2026 to 2027 academic year.</span></p></div>
+          <div><h4><span class="fr">Ce que ça montre</span><span class="en">What it shows</span></h4><p><span class="fr">Cadrer une demande, construire une stratégie et faire avancer une équipe dans la durée.</span><span class="en">Framing a request, building a strategy and keeping a team moving over time.</span></p></div>
+        </div>
+      </article>
+      <article class="case soft">
+        <div class="case-head">
+          <span class="case-n">02</span>
+          <div>
+            <span class="f-meta"><span class="fr">Master, fondements stratégiques de la communication, 2026</span><span class="en">Master's, strategic foundations of communication, 2026</span></span>
+            <h2 class="case-t"><span class="fr">IA ou humain ?</span><span class="en">AI or human?</span></h2>
+            <p class="case-lead"><span class="fr">Une campagne pour la sortie d'un documentaire sur l'IA dans l'audiovisuel.</span><span class="en">A campaign for the release of a documentary on AI in film and television.</span></p>
+          </div>
+        </div>
+        <div class="case-grid">
+          <div><h4><span class="fr">Le contexte</span><span class="en">The context</span></h4><p><span class="fr">Un travail de groupe à quatre sur ce que le numérique et l'IA changent dans la communication audiovisuelle, de la création à la réception, avec un cas concret à construire.</span><span class="en">A group project of four on what digital tools and AI change in audiovisual communication, from creation to reception, with a real case to build.</span></p></div>
+          <div><h4><span class="fr">Mon rôle</span><span class="en">My role</span></h4><p><span class="fr">J'ai porté trois parties : ce que le numérique change dans la chaîne de communication, le cas concret, puis son cahier des charges.</span><span class="en">I carried three parts: what digital changes in the communication chain, the case itself, then its specifications.</span></p></div>
+          <div><h4><span class="fr">Ce que nous avons produit</span><span class="en">What we produced</span></h4><p><span class="fr">Un dossier écrit avec ses annexes et un oral appuyé sur un diaporama Canva. Le cas : une campagne où le public devine si un contenu a été créé par une IA ou par une personne.</span><span class="en">A written report with appendices and a presentation built on Canva. The case: a campaign where the public guesses whether content was made by an AI or a person.</span></p></div>
+          <div><h4><span class="fr">Ce que ça montre</span><span class="en">What it shows</span></h4><p><span class="fr">Penser une campagne en entier : cibles, plateformes, budget, calendrier et indicateurs de réussite.</span><span class="en">Thinking a campaign through as a whole: audiences, platforms, budget, timeline and success indicators.</span></p></div>
+        </div>
+      </article>
+      <article class="case rose">
+        <div class="case-head">
+          <span class="case-n">03</span>
+          <div>
+            <span class="f-meta"><span class="fr">Master, mission de groupe, 2026</span><span class="en">Master's, group assignment, 2026</span></span>
+            <h2 class="case-t">TER'Alim</h2>
+            <p class="case-lead"><span class="fr">Comment donner envie aux jeunes de 15 à 26 ans de travailler dans les métiers du vivant ?</span><span class="en">How do you make young people aged 15 to 26 want to work in agriculture, food and the environment?</span></p>
+          </div>
+        </div>
+        <div class="case-grid">
+          <div><h4><span class="fr">Le contexte</span><span class="en">The context</span></h4><p><span class="fr">Une mission pour l'OCAPIAT et la DRAAF Bourgogne-Franche-Comté, sur des métiers qui souffrent d'un déficit d'image auprès des jeunes.</span><span class="en">An assignment for OCAPIAT and DRAAF Bourgogne-Franche-Comté, on careers that suffer from a poor image among young people.</span></p></div>
+          <div><h4><span class="fr">Mon rôle</span><span class="en">My role</span></h4><p><span class="fr">Deux secteurs à ma charge, l'agriculture et l'élevage, puis l'environnement et la nature : cadrer chaque secteur, repérer les formations de la région, analyser les campagnes existantes.</span><span class="en">Two sectors in my hands, agriculture and livestock, then environment and nature: framing each sector, mapping regional training, analysing existing campaigns.</span></p></div>
+          <div><h4><span class="fr">Ce que nous avons produit</span><span class="en">What we produced</span></h4><p><span class="fr">Une veille et un benchmark sourcés, présentés à l'oral : pour chaque campagne, sa cible, ses canaux, ses forces et ses limites.</span><span class="en">A sourced monitoring and benchmarking report, presented orally: for each campaign, its audience, channels, strengths and limits.</span></p></div>
+          <div><h4><span class="fr">Ce que ça montre</span><span class="en">What it shows</span></h4><p><span class="fr">Chercher des sources fiables, lire une campagne avec un œil critique et en tirer des pistes concrètes.</span><span class="en">Finding reliable sources, reading a campaign with a critical eye and turning that into concrete ideas.</span></p></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec wrap" style="padding-top:clamp(20px,3vh,40px)">
+    <div class="sec-top reveal">
+      <span class="kicker"><span class="fr">Et aussi</span><span class="en">And also</span></span>
+      <h2 class="disp h-lg"><span class="fr">Ce qui complète<br><em class="it">le tableau.</em></span><span class="en">What completes<br><em class="it">the picture.</em></span></h2>
+    </div>
     <div class="feat">
 
       <div class="fcard deep sp7" style="cursor:default">
-        <span class="f-meta"><span class="fr">Agence junior, en cours</span><span class="en">Junior agency, ongoing</span></span>
-        <h3>Curious Lab</h3>
-        <p><span class="fr">L'agence de communication junior du master, où les étudiants prennent en charge de vrais projets pour de vrais commanditaires. J'y suis référente d'une mission de stratégie de communication dans l'agroalimentaire : cadrage du besoin, construction de la stratégie, suivi de la mise en œuvre avec l'équipe.</span><span class="en">The master's junior communication agency, where students take on real projects for real clients. I lead a communication strategy assignment in the food industry: framing the brief, building the strategy, following up delivery with the team.</span></p>
-      </div>
-
-      <div class="fcard sp5" style="cursor:default">
-        <span class="f-meta"><span class="fr">Mémoire, 2026</span><span class="en">Dissertation, 2026</span></span>
+        <span class="f-meta"><span class="fr">Mémoire de fin d'études, 2026</span><span class="en">Final dissertation, 2026</span></span>
         <h3><span class="fr">Exporter sous contrainte</span><span class="en">Exporting under constraint</span></h3>
         <p><span class="fr">Comment intégrer le risque géopolitique, réglementaire et contractuel dans une stratégie commerciale internationale. Un an d'observation de terrain, trois cas analysés, trois outils proposés à l'entreprise.</span><span class="en">How to build geopolitical, regulatory and contractual risk into an international commercial strategy. A year of field observation, three cases analysed, three tools proposed to the company.</span></p>
+      </div>
+
+      <div class="fcard rose sp5" style="cursor:default">
+        <span class="f-meta"><span class="fr">Master, oral de groupe, 2026</span><span class="en">Master's, group presentation, 2026</span></span>
+        <h3><span class="fr">Kinder à l'export</span><span class="en">Kinder abroad</span></h3>
+        <p><span class="fr">Comment une marque voyage : notre analyse de la stratégie d'export de Kinder, de Kinder Surprise à Kinder Joy.</span><span class="en">How a brand travels: our analysis of Kinder's export strategy, from Kinder Surprise to Kinder Joy.</span></p>
+      </div>
+
+      <div class="fcard soft sp5" style="cursor:default">
+        <span class="f-meta"><span class="fr">Écriture journalistique, en cours</span><span class="en">Journalistic writing, in progress</span></span>
+        <h3><span class="fr">Les mots intraduisibles</span><span class="en">Untranslatable words</span></h3>
+        <p><span class="fr">Un article sur les mots qui n'existent que dans une langue, et sur ce qu'ils racontent du pays qui les a inventés.</span><span class="en">An article on words that exist in only one language, and on what they say about the country that made them.</span></p>
+      </div>
+
+      <div class="fcard sp7" style="cursor:default">
+        <span class="f-meta"><span class="fr">Stage, mai à juin 2024</span><span class="en">Internship, May to June 2024</span></span>
+        <h3>Emotis</h3>
+        <p><span class="fr">Mon premier stage, à distance : l'animation des réseaux sociaux de la marque, surtout son compte Pinterest. J'ai aussi conseillé ses clients au salon Silk in Lyon.</span><span class="en">My first internship, remote: running the brand's social media, especially its Pinterest account. I also advised its customers at the Silk in Lyon show.</span></p>
       </div>
 
       <a class="fcard sp6" href="extrem-lingette.pdf" target="_blank" rel="noopener">
@@ -924,7 +1322,7 @@ span.en{display:none}
           <h3>KNDS CBRN</h3>
         </div>
         <p><span class="fr">Une année comme assistante commerciale dans une entreprise de défense qui exporte vers des gouvernements et des industriels, en Europe et au Moyen-Orient.</span><span class="en">A year as a sales assistant in a defence company exporting to governments and industrial clients across Europe and the Middle East.</span></p>
-          <span class="cue"><span class="fr">Lire l'histoire complète</span><span class="en">Read the full story</span></span>
+        <span class="cue"><span class="fr">Lire l'histoire complète</span><span class="en">Read the full story</span></span>
       </a>
 
     </div>
@@ -1094,7 +1492,7 @@ span.en{display:none}
     <div class="duo">
       <div class="dark" style="padding:clamp(30px,4vw,48px)">
         <h2 class="disp h-sm" style="color:var(--paper);margin-bottom:14px"><span class="fr">Ce que je cherche</span><span class="en">What I am looking for</span></h2>
-        <p style="margin-bottom:26px"><span class="fr">Un stage de quatre à six mois à partir de mars 2027, en communication généraliste, avec une dimension internationale. À Dijon, dans la Loire, ou ailleurs en Europe avec Erasmus+.</span><span class="en">A four to six month internship from March 2027, in generalist communication with an international dimension. In Dijon, the Loire region, or elsewhere in Europe through Erasmus+.</span></p>
+        <p style="margin-bottom:26px"><span class="fr">Un stage de quatre à six mois à partir de mars 2027, en communication, sur un poste polyvalent. À Dijon, dans la Loire, ou ailleurs en Europe avec Erasmus+.</span><span class="en">A four to six month internship from March 2027, in communication, in a versatile role. In Dijon, the Loire region, or elsewhere in Europe through Erasmus+.</span></p>
         <div class="rows">
           <a class="row" href="mailto:enaebakj42@gmail.com"><b>Email</b>enaebakj42@gmail.com</a>
           <a class="row" href="tel:+33615124770"><b><span class="fr">Téléphone</span><span class="en">Phone</span></b>06 15 12 47 70</a>
@@ -1183,11 +1581,20 @@ function flip(){
 function buildTicker(){
   var en=document.body.classList.contains('lang-en');
   var bits=en
-    ? ['Available from March 2027','Four to six month internship','Dijon, Loire region or Europe','International communication','Open to a conversation']
-    : ['Disponible à partir de mars 2027','Stage de quatre à six mois','Dijon, Loire ou Europe','Communication internationale','Ouverte à la discussion'];
+    ? ['Available from March 2027','Four to six month internship','Dijon, Loire region or Europe','Communication and versatile roles','Open to a conversation']
+    : ['Disponible à partir de mars 2027','Stage de quatre à six mois','Dijon, Loire ou Europe','Communication et postes polyvalents','Ouverte à la discussion'];
   var seq='';
-  bits.forEach(function(t){seq+='<span>'+t+' <i>/</i></span>';});
+  bits.forEach(function(t){seq+='<span>'+t+' <i>\u2726</i></span>';});
   document.getElementById('tick').innerHTML='<div class="ticker-run">'+seq+seq+'</div>';
+  var t2=document.getElementById('tick2');
+  if(t2){
+    var w2=en
+      ? ['Communication strategy','Writing','Social media','Monitoring and benchmarking','Bonjour','Hello','Hallo']
+      : ['Stratégie de communication','Rédaction','Réseaux sociaux','Veille et benchmark','Bonjour','Hello','Hallo'];
+    var q2='';
+    w2.forEach(function(t){q2+='<span>'+t+' <i>\u2726</i></span>';});
+    t2.innerHTML='<div class="ticker-run">'+q2+q2+'</div>';
+  }
 }
 
 /* ---- ligne multilingue du hero ---- */
@@ -1237,7 +1644,7 @@ function send(e){
 
 /* ---- reveals des titres de section ---- */
 var io=null,io2=null;
-var ANIM='.trio>div,.fcard,.ref,.tl-item,.facets>div,.facts>div,.kv,.pills,.acc-item,.rows,.form,.portrait-side,.pull q';
+var ANIM='.trio>div,.fcard,.case,.bx,.ref,.tl-item,.facets>div,.facts>div,.kv,.pills,.acc-item,.rows,.form,.portrait-side,.pull q';
 
 function armReveals(){
   var page=document.querySelector('.pg.live');
@@ -1303,6 +1710,20 @@ window.addEventListener('scroll',function(){
 buildTicker();
 startSwitcher();
 armReveals();
+/* ---- curseur dore ---- */
+(function(){
+  var c=document.getElementById('cur');
+  if(!c||!window.matchMedia('(hover:hover) and (pointer:fine)').matches||slow)return;
+  var x=-100,y=-100,cx=-100,cy=-100;
+  document.addEventListener('mousemove',function(e){x=e.clientX;y=e.clientY;},{passive:true});
+  document.addEventListener('mouseover',function(e){
+    var t=e.target.closest('a,button,.scard,.bx,.g-photo,.acc-btn,.ref,.case');
+    c.classList.toggle('big',!!t);
+  });
+  (function loop(){cx+=(x-cx)*.2;cy+=(y-cy)*.2;c.style.transform='translate('+cx+'px,'+cy+'px)';requestAnimationFrame(loop);})();
+})();
+if(slow){document.body.classList.remove('intro');}
+else{setTimeout(function(){document.body.classList.remove('intro');var c=document.getElementById('curtain');if(c)c.remove();},4200);}
 </script>
 </body>
 </html>

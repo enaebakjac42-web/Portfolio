@@ -587,8 +587,8 @@ body.intro .chat .b3{animation-delay:2.7s,4.4s}
 .btn-warm{background:var(--rouge);color:var(--paper)}
 .btn-warm::before{background:var(--wine)}
 .pull.warm{background:var(--rouge);color:var(--paper)}
-.pull.warm .pull-in{border-color:rgba(255,253,248,.55)}
-.pull.warm .pull-in::before{background:var(--rouge);color:var(--paper)}
+.pull.warm .pull-in{border-color:rgba(219,169,76,.85)}
+.pull.warm .pull-in::before{background:var(--rouge);color:var(--gold)}
 .tl-item.now::before{background:var(--rouge);box-shadow:inset 0 0 0 3px var(--wine),0 0 0 5px rgba(201,76,67,.2)}
 #p-parcours .facts-band .fact-n{border-bottom-color:var(--rouge)}
 .kv li::before{background:var(--rouge)}
@@ -635,7 +635,7 @@ body.intro .chat .b3{animation-delay:2.7s,4.4s}
 .tool1 .tool-n{color:var(--gold)}
 .tool1 p{color:rgba(255,253,248,.82)}
 .tool2{background:var(--rouge);color:var(--paper)}
-.tool2 .tool-n{color:var(--sable)}
+.tool2 .tool-n{color:var(--gold)}
 .tool2 p{color:rgba(255,253,248,.92)}
 .tool3{background:var(--sable)}
 .tool3 .tool-n{color:var(--wine)}
@@ -1728,34 +1728,35 @@ function buildTicker(){
   }
 }
 
-/* ---- ligne multilingue du hero ---- */
+/* ---- ligne multilingue du hero ----
+   les trois langues tournent en boucle, et la rotation ne commence
+   qu'une fois la ligne visible (apres le rideau d'ouverture) */
 var swTimer=null;
 function startSwitcher(){
   var el=document.getElementById('sw');
   if(!el)return;
   if(swTimer){clearTimeout(swTimer);swTimer=null;}
   var en=document.body.classList.contains('lang-en');
-  var home=en?'International communication':'Communication internationale';
   var seq=en
-    ? ['International communication','Communication internationale','Internationale Kommunikation',home]
-    : ['Communication internationale','International communication','Internationale Kommunikation',home];
-  if(slow){el.textContent=home;return;}
-  var i=0;
+    ? ['International communication','Communication internationale','Internationale Kommunikation']
+    : ['Communication internationale','International communication','Internationale Kommunikation'];
+  el.classList.remove('out','in');
   el.textContent=seq[0];
+  if(slow)return;
+  var i=0;
   function step(){
-    i++;
-    if(i>=seq.length)return;
+    i=(i+1)%seq.length;
     el.classList.add('out');
-    setTimeout(function(){
+    swTimer=setTimeout(function(){
       el.textContent=seq[i];
       el.classList.remove('out');
       el.classList.add('in');
       void el.offsetWidth;
       el.classList.remove('in');
-      swTimer=setTimeout(step,1050);
+      swTimer=setTimeout(step,2200);
     },320);
   }
-  swTimer=setTimeout(step,1100);
+  swTimer=setTimeout(step,document.body.classList.contains('intro')?3600:2200);
 }
 
 /* ---- envoi du formulaire ---- */
